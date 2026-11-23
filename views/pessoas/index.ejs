@@ -24,7 +24,7 @@
     <% for (const pessoa of pessoas) { %>
       <tr>
         <td><a href="/pessoas/<%= pessoa.id %>/editar"><%= pessoa.nome %></a></td>
-        <td><%= rotulos[pessoa.situacao] %><% if (pessoa.situacao === "visitante" && pessoa.primeiraFrequenciaEm) { %> <span class="detalhe">· <%= mesesDeFrequencia(pessoa.primeiraFrequenciaEm) %> meses</span><% } %></td>
+        <td><%= rotulos[pessoa.situacao] %><% if (pessoa.situacao === "visitante" && pessoa.primeiraConversaPastoralEm) { %> <span class="detalhe">· <%= mesesDesde(pessoa.primeiraConversaPastoralEm) %> meses</span><% } %></td>
         <td><%= pessoa.consentiuContatoEm ? "Compartilha" : "Não compartilha" %></td>
       </tr>
     <% } %>

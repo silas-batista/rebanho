@@ -12,7 +12,7 @@ async function comoSecretaria(t, banco) {
 test("GET /pessoas mostra pessoas, contagem de ativos e alerta de aptos", async (t) => {
   const banco = bancoComUsuarios();
   criarPessoa(banco, { nome: "Ana Souza", situacao: "membro_ativo" });
-  criarPessoa(banco, { nome: "Carla Dias", situacao: "visitante", primeiraFrequenciaEm: "2020-01-01" });
+  criarPessoa(banco, { nome: "Carla Dias", situacao: "visitante", primeiraConversaPastoralEm: "2020-01-01" });
   const { url, headers } = await comoSecretaria(t, banco);
 
   const html = await (await fetch(`${url}/pessoas`, { headers })).text();

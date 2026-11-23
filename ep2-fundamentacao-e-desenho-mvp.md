@@ -113,7 +113,7 @@ erDiagram
     string telefone
     string email
     enum situacao "visitante | membro_ativo | membro_inativo"
-    date primeira_frequencia_em
+    date primeira_conversa_pastoral_em
     date recebido_como_membro_em
     datetime consentiu_contato_em "nulo = sem consentimento"
   }

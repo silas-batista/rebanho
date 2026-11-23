@@ -17,7 +17,7 @@ export function criarPessoa(banco, dados) {
 
   banco
     .prepare(
-      `INSERT INTO pessoas (nome, telefone, email, situacao, primeira_frequencia_em, consentiu_contato_em)
+      `INSERT INTO pessoas (nome, telefone, email, situacao, primeira_conversa_pastoral_em, consentiu_contato_em)
        VALUES (?, ?, ?, ?, ?, ?)`,
     )
     .run(
@@ -25,7 +25,7 @@ export function criarPessoa(banco, dados) {
       dados.telefone || null,
       dados.email || null,
       dados.situacao,
-      dados.primeiraFrequenciaEm || null,
+      dados.primeiraConversaPastoralEm || null,
       dados.consentiuContato ? new Date().toISOString() : null,
     );
 }
@@ -47,7 +47,7 @@ export function atualizarPessoa(banco, id, dados, { hoje = hojeNaIgreja() } = {}
 
   banco
     .prepare(
-      `UPDATE pessoas SET nome = ?, telefone = ?, email = ?, situacao = ?, primeira_frequencia_em = ?,
+      `UPDATE pessoas SET nome = ?, telefone = ?, email = ?, situacao = ?, primeira_conversa_pastoral_em = ?,
          recebido_como_membro_em = ?, consentiu_contato_em = ? WHERE id = ?`,
     )
     .run(
@@ -55,7 +55,7 @@ export function atualizarPessoa(banco, id, dados, { hoje = hojeNaIgreja() } = {}
       dados.telefone || null,
       dados.email || null,
       dados.situacao,
-      dados.primeiraFrequenciaEm || atual.primeira_frequencia_em,
+      dados.primeiraConversaPastoralEm || atual.primeira_conversa_pastoral_em,
       recebidoEm,
       consentiuEm,
       id,
@@ -88,7 +88,7 @@ function paraPessoa(linha) {
     telefone: linha.telefone,
     email: linha.email,
     situacao: linha.situacao,
-    primeiraFrequenciaEm: linha.primeira_frequencia_em && new Date(linha.primeira_frequencia_em),
+    primeiraConversaPastoralEm: linha.primeira_conversa_pastoral_em && new Date(linha.primeira_conversa_pastoral_em),
     recebidoComoMembroEm: linha.recebido_como_membro_em,
     consentiuContatoEm: linha.consentiu_contato_em && new Date(linha.consentiu_contato_em),
   };
