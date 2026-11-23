@@ -7,7 +7,7 @@ const ESQUEMA = `
     telefone TEXT,
     email TEXT,
     situacao TEXT NOT NULL CHECK (situacao IN ('visitante', 'membro_ativo', 'membro_inativo')),
-    primeira_frequencia_em TEXT,
+    primeira_conversa_pastoral_em TEXT,
     recebido_como_membro_em TEXT,
     consentiu_contato_em TEXT
   );

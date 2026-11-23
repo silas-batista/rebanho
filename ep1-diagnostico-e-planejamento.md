@@ -16,23 +16,23 @@
 **Parceiro:** Igreja Presbiteriana de Vila Formosa (Anápolis, GO)
 **Contato responsável:** Rev. Fabrício Ribeiro, pastor da igreja
 
-**Regra de negócio levantada:** para se tornar membro, a pessoa precisa frequentar a igreja por **6 meses**.
+**Regra de negócio levantada:** o processo de membresia leva **6 meses, contados a partir da primeira conversa pastoral**. Depois, a pessoa faz a classe de catecúmenos e é recebida por profissão de fé pública ou batismo. O processo é o mesmo para crianças (seção 3.1).
 
 **Rotina e atividades da igreja:**
 - **Domingo:** Culto Público às 09h, Escola Dominical às 10h e Culto Público às 19h.
-- **Pequenos Grupos (PGs):** encontros no meio da semana nas casas dos membros, conduzidos por líderes de PG.
+- **Pequenos Grupos (PGs):** 8 grupos, com encontros no meio da semana nas casas dos membros, conduzidos por líderes de PG. O endereço é passado pessoalmente aos novos membros.
 - **Projeto Tatame na Rocha:** projeto social que ensina jiu-jítsu às crianças do bairro, às quartas-feiras às 19h.
-- **Missões apoiadas (exemplos):** plantação de igreja no Uruguai com o Rev. Maurício Rolim e Sandra Rolim, e a missão Asas de Socorro com Wilker Mariano, entre outras.
+- **Missões apoiadas (exemplos):** plantação de igreja no Uruguai com o Rev. Maurício Rolim e Sandra Rolim, a missão Asas de Socorro com Wilker Mariano e outros projetos na África. A igreja divulga o trabalho dos missionários e os pedidos de oração deles.
 
 **Problema:**
-A igreja controla membros, contatos, agenda e missões de forma descentralizada: planilhas, cadernos, grupos de WhatsApp e a memória de poucas pessoas. Consequências:
+Segundo o pastor, o rol de cerca de **320 pessoas** é controlado em **planilhas** mantidas pela secretária, e a maior dificuldade é **saber quem são os membros ativos e quem não é** (seção 3.1). Agenda e missões são divulgadas na própria igreja. Consequências:
 
 - Ninguém sabe com segurança quem é membro ativo hoje.
 - Contatos ficam espalhados em celulares pessoais e se perdem quando um líder sai.
 - Cultos e eventos são divulgados só por WhatsApp. Avisos se perdem no meio das mensagens.
 - A congregação não tem visibilidade dos projetos missionários que apoia nem de quem são os missionários, o que enfraquece o engajamento e a transparência.
-- Não há registro de quando cada visitante começou a frequentar. Por isso fica difícil saber quem já cumpriu os **6 meses exigidos para a membresia**, e pessoas aptas podem passar despercebidas.
-- Os PGs se reúnem em casas de membros. Divulgar endereços em grupos abertos ou em uma agenda pública expõe essas famílias.
+- Não há um alerta de quando cada pessoa completa os **6 meses desde a primeira conversa pastoral**. Pessoas que já podem ir para a classe de catecúmenos podem passar despercebidas.
+- Os PGs se reúnem em casas de membros. A igreja já protege essas famílias passando o endereço só pessoalmente. Um sistema não pode quebrar esse cuidado.
 - O projeto Tatame na Rocha atende crianças do bairro, mas a comunidade em volta tem pouca visibilidade das atividades e de como participar.
 - Dados pessoais (inclusive filiação religiosa, que é **dado sensível pela LGPD, art. 5º, II**) circulam sem controle de acesso.
 
@@ -41,13 +41,41 @@ A igreja controla membros, contatos, agenda e missões de forma descentralizada:
 | Método | Com quem | Situação |
 |---|---|---|
 | Levantamento de informações junto à igreja | Liderança da igreja | **Realizado.** Trouxe a regra dos 6 meses para membresia, a rotina de cultos, os Pequenos Grupos nas casas, o projeto Tatame na Rocha e as missões apoiadas, todos usados no sistema |
-| Entrevista semiestruturada formal | Pastor e secretário(a) | **Não realizada no período.** Roteiro pronto (abaixo) |
+| Questionário escrito, enviado por WhatsApp | Rev. Fabrício Ribeiro | **Realizado em 23/11/2026.** Respostas na seção 3.1 |
+| Entrevista semiestruturada com a secretária | Secretária | **Não realizada no período** |
 | Questionário (Google Forms) | Membros e líderes de ministério | **Não realizado no período** |
 | Observação documental e de campo | Planilhas, grupos de WhatsApp, um culto | **Não realizada no período** |
 
-> Limitação: o diagnóstico se apoia nas informações levantadas junto à igreja, sem entrevista formal registrada nem questionário. Por isso, as linhas de base dos indicadores (seção 9) não foram medidas.
+> Limitação: o questionário foi respondido pelo pastor por escrito, de forma curta, e não houve conversa com a secretária, que é quem usa as planilhas. Por isso, o tempo gasto hoje (linha de base da seção 9) não foi medido.
 
-Perguntas-chave da entrevista:
+### 3.1 Respostas do pastor (WhatsApp, 23/11/2026)
+
+O aluno enviou as perguntas em seis blocos e guardou a conversa. As respostas estão transcritas como o pastor escreveu.
+
+| Bloco | Pergunta | Resposta do Rev. Fabrício |
+|---|---|---|
+| Como é hoje | Onde fica o rol de membros? | "Planilhas" |
+| | Quantos membros e visitantes? | "320" (um número só, sem separar membros e visitantes) |
+| | Quem cuida do cadastro? | "Secretária" |
+| | O que mais dá trabalho? | "Saber quem são os membros ativos ou não" |
+| Regras | De quando contam os 6 meses? | "Contam a partir da primeira conversa pastoral" |
+| | O que acontece depois? | "Classe de catecúmenos, depois profissão de fé pública ou batizado" |
+| | E as crianças? | "Mesmo processo para crianças" |
+| PGs e contatos | Quantos PGs? | "8 pgs" |
+| | O endereço pode aparecer no sistema? | "O endereço dos pgs são passados pessoalmente para novos membros" |
+| | Membros veriam o telefone uns dos outros? | "Com autorização" |
+| Missões | Há outros projetos? | "Temos outros projetos, na Africa" |
+| | Pode aparecer algo além do nome? | "É divulgado na igreja o trabalho que estão desenvolvendo e também os pedidos de oração dos missionários" |
+
+As respostas sobre o teste do sistema e o impacto estão na EP III (seção 9) e na EP IV.
+
+**O que mudou no projeto por causa das respostas:**
+- A contagem dos 6 meses passou a partir da **primeira conversa pastoral**, e não da primeira visita. O alerta agora diz que a pessoa pode entrar na **classe de catecúmenos**.
+- O sistema passou a orientar a **não cadastrar endereço de casa**. Os PGs aparecem para membros só com dia e horário.
+- O consentimento para mostrar contatos, que já existia, foi confirmado.
+- Pedidos de oração e os projetos da África entraram nas próximas versões, porque ainda faltam os detalhes.
+
+Perguntas-chave do roteiro original de entrevista, mantidas para a conversa com a secretária:
 1. Como vocês sabem hoje quantos membros ativos têm?
 2. Onde ficam os contatos? Quem tem acesso?
 3. Como a agenda é divulgada? Já houve evento esvaziado por falha de aviso?
@@ -71,7 +99,7 @@ Perguntas-chave da entrevista:
 - Dor: "Fico sabendo dos eventos em cima da hora."
 - Objetivo: ver a agenda no celular e saber como apoiar as missões.
 
-> As personas são hipóteses construídas a partir das informações levantadas. Não foram validadas em entrevista.
+> As personas são hipóteses construídas a partir das informações levantadas. O pastor confirmou que existe uma secretária e que a maior dor é saber quem são os membros ativos. Nome, idade e falas são ilustrativos.
 
 ## 5. Conexão com ODS
 
@@ -90,12 +118,12 @@ Aplicação web responsiva (funciona no celular), com login e dois perfis:
 - **Membro**: consulta agenda, missões e a lista de contatos (só dos membros que consentiram).
 
 Módulos do MVP:
-1. **Membros:** cadastro, situação (visitante/membro ativo/membro inativo), **data da primeira frequência**, data de recebimento como membro, filtro por situação e **alerta de visitantes que já completaram 6 meses** e estão aptos à membresia.
+1. **Membros:** cadastro, situação (visitante/membro ativo/membro inativo), **data da primeira conversa pastoral**, data de recebimento como membro, filtro por situação e **alerta de visitantes que já completaram 6 meses** e podem entrar na classe de catecúmenos.
 2. **Contatos:** lista de telefone/e-mail derivada do cadastro de membros, exibida apenas com **consentimento registrado (LGPD)**.
-3. **Agenda:** cultos recorrentes (domingo 09h, 10h e 19h), projetos como o Tatame na Rocha (quarta 19h) e eventos avulsos. Cada evento pode ser **público** ou **só para membros**, para que os endereços dos PGs nas casas não fiquem expostos.
+3. **Agenda:** cultos recorrentes (domingo 09h, 10h e 19h), projetos como o Tatame na Rocha (quarta 19h) e eventos avulsos. Cada evento pode ser **público** ou **só para membros**, para que os PGs apareçam só para membros. O endereço das casas não é cadastrado: continua sendo passado pessoalmente.
 4. **Missões:** projetos missionários apoiados, com local e descrição, e os missionários vinculados a cada projeto.
 
-**Fora do MVP (próximas versões):** módulo de Pequenos Grupos (líderes, participantes e frequência por PG, a definir com os líderes), finanças e dízimos, escalas de ministério, células e pequenos grupos, notificações por WhatsApp/e-mail, aniversariantes do mês, app nativo, check-in em eventos.
+**Fora do MVP (próximas versões):** pedidos de oração dos missionários, módulo de Pequenos Grupos (líderes, participantes e frequência por PG, a definir com os líderes), finanças e dízimos, escalas de ministério, células e pequenos grupos, notificações por WhatsApp/e-mail, aniversariantes do mês, app nativo, check-in em eventos.
 
 ## 7. Escopo e histórias de usuário
 
@@ -104,7 +132,7 @@ Módulos do MVP:
 | ID | História | Critério de aceite |
 |---|---|---|
 | US01 | Como **secretária**, quero cadastrar um membro com nome, telefone, e-mail e situação, para manter o quadro atualizado. | Membro salvo aparece na lista. Nome é obrigatório. |
-| US10 | Como **secretária**, quero ver os visitantes que já completaram 6 meses de frequência, para encaminhá-los ao processo de membresia. | Lista mostra visitantes com primeira frequência há 6 meses ou mais, com a data em que completaram o prazo. |
+| US10 | Como **secretária**, quero ver os visitantes que já completaram 6 meses desde a primeira conversa pastoral, para convidá-los à classe de catecúmenos. | Lista mostra visitantes com a primeira conversa pastoral há 6 meses ou mais. |
 | US02 | Como **secretária**, quero filtrar membros por situação (ativo/inativo/visitante), para responder rapidamente quantos membros ativos existem. | Filtro mostra a contagem total. |
 | US03 | Como **secretária**, quero registrar se o membro consentiu em compartilhar seu contato, para cumprir a LGPD. | Sem consentimento, o contato não aparece para outros membros. |
 | US04 | Como **membro**, quero consultar a lista de contatos dos irmãos que autorizaram, para me comunicar sem depender de grupos de WhatsApp. | A lista mostra só membros ativos com consentimento. |
@@ -116,7 +144,7 @@ Módulos do MVP:
 | US05 | Como **secretária**, quero cadastrar cultos recorrentes, para não recadastrar toda semana. | O culto aparece em todas as semanas futuras. |
 | US06 | Como **secretária**, quero cadastrar eventos avulsos com data, hora, local e descrição. | O evento aparece na agenda na data correta. |
 | US07 | Como **membro ou visitante**, quero ver a agenda dos próximos 30 dias no celular. | A agenda abre sem login e é legível no celular. |
-| US11 | Como **secretária**, quero marcar um evento como "só membros", para que o endereço de um PG não apareça na agenda pública. | Evento restrito não aparece sem login e aparece para membros logados. |
+| US11 | Como **secretária**, quero marcar um evento como "só membros", para que os PGs não apareçam na agenda pública. | Evento restrito não aparece sem login e aparece para membros logados. |
 | US08 | Como **secretária**, quero cadastrar projetos missionários e vincular missionários a eles. | O projeto lista seus missionários. |
 | US09 | Como **membro**, quero ver as missões que a igreja apoia e quem está em campo, para orar e contribuir. | Página de missões com projetos e missionários. |
 
@@ -140,7 +168,7 @@ O desenvolvimento foi concentrado em novembro de 2026, e a entrega ocorre na rea
 | Indicador | Linha de base (hoje) | Meta com o MVP |
 |---|---|---|
 | Tempo para gerar a lista de membros ativos | Não medido | < 1 minuto |
-| % de membros com cadastro completo | Não medido | ≥ 90% em 2 meses |
+| % de membros com cadastro completo | 0 de cerca de 320 no sistema (hoje em planilhas) | ≥ 90% em 2 meses |
 | % de contatos com consentimento LGPD registrado | 0% | 100% dos exibidos |
 | Membros que acessam a agenda pelo sistema | 0 | ≥ 50% dos ativos em 2 meses |
 | Visitantes aptos à membresia identificados automaticamente | 0 (controle manual) | 100% |
@@ -149,7 +177,7 @@ O desenvolvimento foi concentrado em novembro de 2026, e a entrega ocorre na rea
 
 ## 10. Revisão da experiência prática
 
-A hipótese inicial era um cadastro simples de membros e contatos. As informações da igreja acrescentaram três requisitos que não estavam no plano: a regra de 6 meses de frequência para a membresia, a necessidade de esconder os endereços dos Pequenos Grupos e a divulgação do projeto social Tatame na Rocha. O ponto fraco desta etapa foi não ter registrado uma entrevista formal nem medido a situação de antes, o que limita a comparação de impacto na EP IV.
+A hipótese inicial era um cadastro simples de membros e contatos. As informações da igreja acrescentaram três requisitos que não estavam no plano: a regra de 6 meses para a membresia, a necessidade de esconder os endereços dos Pequenos Grupos e a divulgação do projeto social Tatame na Rocha. O questionário ao pastor, respondido depois do planejamento, corrigiu uma suposição: os 6 meses contam da primeira conversa pastoral, e não da primeira visita. O ponto fraco desta etapa foi ter feito essa pergunta tarde e não ter medido o tempo que a secretária gasta hoje, o que limita a comparação de impacto na EP IV.
 
 ## 11. Autoavaliação e reflexão
 

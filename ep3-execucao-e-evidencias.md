@@ -102,7 +102,7 @@ Cada funcionalidade foi entregue em um pull request próprio, com descrição do
 
 | Arquivo | O que testa | Testes |
 |---|---|---|
-| `membresia.test.js` | RN01: 6 meses de frequência (limite exato, um dia a menos, sem data, membro) | 4 |
+| `membresia.test.js` | RN01: 6 meses desde a primeira conversa pastoral (limite exato, um dia a menos, sem data, membro) | 4 |
 | `pessoas.test.js` | Cadastro, filtro por situação, lista de aptos, nome obrigatório, contatos com consentimento | 5 |
 | `senhas.test.js` | Hash scrypt: senha certa, senha errada, salt diferente a cada geração | 3 |
 | `usuarios.test.js` | Autenticação, e-mail sem diferenciar maiúsculas, senha mínima de 8 caracteres | 5 |
@@ -117,7 +117,7 @@ Cada funcionalidade foi entregue em um pull request próprio, com descrição do
 - Mostrar eventos restritos na agenda pública faz o teste do PG falhar.
 - Remover o filtro de consentimento faz os 2 testes de contatos falharem.
 
-> Evidência: `docs/evidencias/10-saida-npm-test.txt`. Na versão final são **85 testes, todos passando** (os 35 novos cobrem bloqueio de login, edição de pessoas, usuários, saúde, backup e primeiro acesso).
+> Evidência: `docs/evidencias/10-saida-npm-test.txt`. Na versão final são **106 testes, todos passando**. Os novos cobrem bloqueio de login, edição de pessoas, usuários, saúde, backup, primeiro acesso, as correções de usabilidade e as regras confirmadas pelo pastor.
 
 ## 6. Pipeline de integração contínua
 
@@ -165,7 +165,7 @@ As imagens estão em `docs/evidencias/`. Os dados de pessoas são **fictícios**
 | Imagem | O que comprova |
 |---|---|
 | `07-pessoas-secretaria.jpg` | Lista de pessoas com filtros, contagem de membros ativos e **alerta de visitante apto à membresia** (RN01) |
-| `08-cadastro-pessoa.jpg` | Formulário com primeira frequência e **caixa de consentimento LGPD** |
+| `08-cadastro-pessoa.jpg` | Formulário com a data de início da contagem (na captura, ainda com o rótulo antigo "Primeira frequência") e **caixa de consentimento LGPD** |
 | `09-missoes-secretaria.jpg` | Secretaria cadastra projetos e adiciona missionários |
 
 **Requisitos da EP II atendidos:**
@@ -173,15 +173,26 @@ As imagens estão em `docs/evidencias/`. Os dados de pessoas são **fictícios**
 | Requisito | Status |
 |---|---|
 | RF01 a RF11 | ✅ Implementados |
-| RN01 a RN07 | ✅ Implementadas e testadas |
+| RN01 a RN08 | ✅ Implementadas e testadas (RN01 corrigida e RN08 criada a partir das respostas do pastor, PR #16) |
 | RNF01 Responsivo | ✅ Layout de coluna única, a partir de 360 px |
 | RNF02 LGPD | ✅ Consentimento registrado com data e hora, dados mínimos |
 | RNF03 Segurança | ✅ scrypt, cookie httpOnly/sameSite/secure, bloqueio após 5 tentativas falhas, cabeçalhos HTTP de segurança |
-| RNF04 Usabilidade | ⚠️ Não medido com usuários (as rodadas de validação não foram realizadas) |
+| RNF04 Usabilidade | ⚠️ Medido só de forma reduzida: o pastor avaliou o sistema publicado e deu nota 5, mas a secretária não executou as tarefas (seção 9) |
 
 ## 9. Primeira rodada de validação
 
-**Situação: não realizada no período.** A sessão com a igreja não aconteceu até a data de entrega. O sistema foi publicado (EP IV, seção 5) e o roteiro completo está pronto para uso:
+**Situação: realizada de forma reduzida, a distância, em 23/11/2026.** O aluno enviou ao Rev. Fabrício o endereço do sistema publicado e um questionário por WhatsApp. O pastor abriu o sistema e respondeu por escrito:
+
+| Pergunta | Resposta do Rev. Fabrício |
+|---|---|
+| Abra o link no celular e veja a agenda e as missões. Está tudo certo? | "Tudo certo" |
+| O que achou fácil? E confuso? | "Informações corretas" |
+| Que nota daria, de 1 a 5? | **"Nota 5"** |
+| O que falta para a igreja usar de verdade? | "Divulgar para os membros" |
+
+**Limites desta rodada:** o pastor avaliou as páginas abertas ao público (agenda e missões) na versão publicada naquele dia. Ninguém executou as tarefas da secretaria (T1 a T5 e T7), e o tempo de cada tarefa não foi medido. As respostas às perguntas de diagnóstico, no mesmo questionário, estão na EP I (seção 3.1) e mudaram o sistema (seção 11).
+
+**Roteiro completo, ainda não aplicado com a secretária:**
 
 - **Roteiro da 1ª rodada:** objetivo, preparação, condução, 7 tarefas (T1 a T7) com tabela de observação, perguntas finais e escala de satisfação.
 - **Tarefas planejadas:** cadastrar visitante (T1), saber o nº de membros ativos (T2), achar aptos à membresia (T3), cadastrar PG "só membros" (T4), adicionar missionário (T5), ver a agenda sem login no celular (T6), achar o telefone de outro membro (T7).
@@ -190,17 +201,17 @@ As imagens estão em `docs/evidencias/`. Os dados de pessoas são **fictícios**
 
 ## 10. Segunda rodada de validação
 
-**Situação: não realizada**, porque depende da primeira.
+**Situação: não realizada.** As correções feitas a partir das respostas do pastor (PR #16) ainda não foram mostradas a ele.
 
 **Critérios de aceitação da EP II:**
 
 | Critério | Meta | Resultado |
 |---|---|---|
-| Tarefas concluídas sem ajuda | ≥ 5 de 7 | Não medido |
+| Tarefas concluídas sem ajuda | ≥ 5 de 7 | Não medido. O pastor só consultou agenda e missões (T6) |
 | Tempo para saber o nº de membros ativos | < 1 minuto | Não medido com usuários. No sistema, é um clique no filtro "Membro ativo" |
 | Visitantes aptos identificados automaticamente | 100% | ✅ Garantido pela regra RN01 e por teste automatizado |
 | Contatos exibidos sem consentimento | 0 | ✅ Garantido pelas regras RN03/RN04 e por teste automatizado |
-| Satisfação do parceiro (1 a 5) | ≥ 4 | Não medido |
+| Satisfação do parceiro (1 a 5) | ≥ 4 | ✅ **5**, dada pelo Rev. Fabrício em 23/11/2026 |
 
 ## 11. Aprimoramento orientado por feedback
 
@@ -212,6 +223,16 @@ As imagens estão em `docs/evidencias/`. Os dados de pessoas são **fictícios**
 | "Os PGs acontecem nas casas dos membros" | Risco de expor endereços | Visibilidade "só membros" e regra segura por padrão (PR #3) |
 | Horários reais: domingo 09h, 10h e 19h, Tatame quarta 19h | Agenda fiel à rotina | Agenda real cadastrada no sistema publicado |
 | Missões reais (Uruguai, Asas de Socorro) | Página de missões com conteúdo real | Modelo de missionário simplificado (PR #4) |
+
+**Ajustes a partir do questionário respondido pelo pastor (23/11/2026, PR #16):**
+
+| Resposta do Rev. Fabrício | O que estava errado | Mudança |
+|---|---|---|
+| "Contam a partir da primeira conversa pastoral" | O sistema contava os 6 meses a partir da primeira frequência | Campo renomeado para "Primeira conversa pastoral", no banco e na tela |
+| "Classe de catecúmenos, depois profissão de fé pública ou batizado" | O alerta dizia "apto à membresia", como se a pessoa já pudesse ser recebida | O alerta diz "pode entrar na classe de catecúmenos" e explica o caminho até a profissão de fé ou o batismo |
+| "O endereço dos pgs são passados pessoalmente para novos membros" | A tela sugeria cadastrar o endereço das casas como evento "só membros" | O formulário orienta a não informar endereço de casa (regra RN08) |
+| "Com autorização" (contatos) | Nada: confirmou o consentimento já existente (RN04) | Nenhuma |
+| Pedidos de oração e projetos na África | Ainda não existem no sistema | Próximas versões. Faltam os detalhes com o pastor |
 
 **Ajustes a partir do uso real na publicação:**
 
@@ -234,11 +255,11 @@ As imagens estão em `docs/evidencias/`. Os dados de pessoas são **fictícios**
 
 **Pendências resolvidas nesta etapa:** bloqueio de login (PR #7), editar e inativar pessoas (PR #8), criar usuários pela tela (PR #9).
 
-**Pendências que continuam:** módulo de Pequenos Grupos (a definir com os líderes), menu recolhível no celular e as duas rodadas de validação.
+**Pendências que continuam:** módulo de Pequenos Grupos (a definir com os líderes), pedidos de oração dos missionários, projetos da África, menu recolhível no celular, as tarefas com a secretária e a segunda rodada de validação.
 
 ## 12. Revisão da experiência prática
 
-O plano da EP II se manteve: monólito, SQLite e 5 tabelas. A stack mudou de Rails para Node/Express por escolha do aluno, sem impacto no modelo de dados. As informações da igreja geraram um requisito de segurança não previsto (endereços dos PGs). Trabalhar com PRs pequenos e CI permitiu mudar o código com segurança: 12 PRs, todos com o CI verde. O ponto fraco desta etapa é a ausência das rodadas de validação com a igreja, o que deixa a usabilidade sem medição.
+O plano da EP II se manteve: monólito, SQLite e 5 tabelas. A stack mudou de Rails para Node/Express por escolha do aluno, sem impacto no modelo de dados. As informações da igreja geraram um requisito de segurança não previsto (endereços dos PGs). O questionário do pastor ainda corrigiu a regra principal: os 6 meses contam da primeira conversa pastoral, e não da primeira visita. Trabalhar com PRs pequenos e CI permitiu mudar o código com segurança: 12 PRs, todos com o CI verde. O ponto fraco desta etapa é a validação ter sido curta e a distância: o pastor aprovou o sistema com nota 5, mas a secretária, que vai usá-lo todo dia, ainda não executou as tarefas.
 
 ## 13. Autoavaliação e reflexão
 

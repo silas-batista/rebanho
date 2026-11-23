@@ -5,7 +5,7 @@ import { criarPessoa, buscarPessoa, atualizarPessoa, listarPessoas } from "../sr
 
 function comVisitante(dados = {}) {
   const banco = abrirBanco();
-  criarPessoa(banco, { nome: "Carla Dias", situacao: "visitante", primeiraFrequenciaEm: "2026-04-10", ...dados });
+  criarPessoa(banco, { nome: "Carla Dias", situacao: "visitante", primeiraConversaPastoralEm: "2026-04-10", ...dados });
   return { banco, id: listarPessoas(banco)[0].id };
 }
 

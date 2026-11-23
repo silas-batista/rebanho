@@ -22,8 +22,8 @@ test("filtra pessoas por situação", () => {
 
 test("lista apenas visitantes aptos à membresia", () => {
   const banco = abrirBanco();
-  criarPessoa(banco, { nome: "Carla Dias", situacao: "visitante", primeiraFrequenciaEm: "2026-04-10" });
-  criarPessoa(banco, { nome: "Bruno Lima", situacao: "visitante", primeiraFrequenciaEm: "2026-09-01" });
+  criarPessoa(banco, { nome: "Carla Dias", situacao: "visitante", primeiraConversaPastoralEm: "2026-04-10" });
+  criarPessoa(banco, { nome: "Bruno Lima", situacao: "visitante", primeiraConversaPastoralEm: "2026-09-01" });
 
   assert.deepEqual(listarAptasAMembresia(banco, hoje).map((p) => p.nome), ["Carla Dias"]);
 });

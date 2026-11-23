@@ -12,14 +12,27 @@ async function comoSecretaria(t, banco) {
 test("GET /pessoas mostra pessoas, contagem de ativos e alerta de aptos", async (t) => {
   const banco = bancoComUsuarios();
   criarPessoa(banco, { nome: "Ana Souza", situacao: "membro_ativo" });
-  criarPessoa(banco, { nome: "Carla Dias", situacao: "visitante", primeiraFrequenciaEm: "2020-01-01" });
+  criarPessoa(banco, { nome: "Carla Dias", situacao: "visitante", primeiraConversaPastoralEm: "2020-01-01" });
   const { url, headers } = await comoSecretaria(t, banco);
 
   const html = await (await fetch(`${url}/pessoas`, { headers })).text();
 
   assert.match(html, /Ana Souza/);
   assert.match(html, /Membros ativos: 1/);
-  assert.match(html, /1 visitante\(s\) apto\(s\) à membresia/);
+  assert.match(html, /1 visitante\(s\) pode\(m\) entrar na classe de catecúmenos/);
+});
+
+test("a regra de membresia aparece como a igreja pratica: desde a primeira conversa pastoral", async (t) => {
+  const banco = bancoComUsuarios();
+  criarPessoa(banco, { nome: "Carla Dias", situacao: "visitante", primeiraConversaPastoralEm: "2020-01-01" });
+  const { url, headers } = await comoSecretaria(t, banco);
+
+  const lista = await (await fetch(`${url}/pessoas`, { headers })).text();
+  const formulario = await (await fetch(`${url}/pessoas/nova`, { headers })).text();
+
+  assert.match(lista, /6 meses ou mais desde a primeira conversa pastoral/);
+  assert.match(lista, /profissão de fé ou batismo/);
+  assert.match(formulario, />Primeira conversa pastoral</);
 });
 
 test("POST /pessoas cadastra e redireciona para a lista", async (t) => {

@@ -54,7 +54,7 @@ O egresso de ADS deve analisar problemas reais, projetar e implementar sistemas 
 As soluções comerciais resolvem o problema, mas são **grandes demais e caras demais** para uma igreja local. A planilha é barata, mas **não protege dados nem gera informação confiável**.
 
 **Diferenciais do Rebanho:**
-1. **Regra de membresia da igreja:** alerta automático dos visitantes que completaram 6 meses de frequência. As soluções genéricas não trazem isso pronto.
+1. **Regra de membresia da igreja:** alerta automático dos visitantes que completaram 6 meses desde a primeira conversa pastoral. As soluções genéricas não trazem isso pronto.
 2. **LGPD no centro:** o contato só aparece com consentimento registrado com data e hora.
 3. **Escopo enxuto:** só o que a secretaria usa, com curva de aprendizado mínima.
 4. **Custo compatível:** até R$ 50/mês de hospedagem, sem licença por usuário.
@@ -113,7 +113,7 @@ erDiagram
     string telefone
     string email
     enum situacao "visitante | membro_ativo | membro_inativo"
-    date primeira_frequencia_em
+    date primeira_conversa_pastoral_em
     date recebido_como_membro_em
     datetime consentiu_contato_em "nulo = sem consentimento"
   }
@@ -153,15 +153,16 @@ erDiagram
 
 | ID | Regra |
 |---|---|
-| RN01 | Visitante com primeira frequência há 6 meses ou mais está **apto à membresia**. |
-| RN02 | Ao ser recebida, a pessoa passa a "membro ativo" e registra-se a data de recebimento. |
+| RN01 | Visitante com a primeira conversa pastoral há 6 meses ou mais **pode entrar na classe de catecúmenos**, o passo seguinte do processo de membresia. |
+| RN02 | Ao ser recebida por profissão de fé pública ou batismo, a pessoa passa a "membro ativo" e registra-se a data de recebimento. Crianças seguem o mesmo processo. |
 | RN03 | Visitantes e membros inativos nunca aparecem na lista de contatos. |
 | RN04 | Sem consentimento registrado, telefone e e-mail não aparecem para outros membros. |
 | RN05 | Agenda e missões são públicas. Pessoas e contatos exigem login. |
 | RN06 | Só o perfil Secretaria cria, edita ou inativa registros. |
-| RN07 | Eventos marcados "só membros" (como os PGs nas casas) não aparecem na agenda pública. Por padrão, a listagem esconde eventos restritos. |
+| RN07 | Eventos marcados "só membros" (como os PGs) não aparecem na agenda pública. Por padrão, a listagem esconde eventos restritos. |
+| RN08 | O endereço das casas dos PGs não é cadastrado. A igreja o passa pessoalmente aos novos membros. |
 
-> A confirmar com o Rev. Fabrício: se a frequência é interrompida, a contagem dos 6 meses recomeça? No MVP, a secretaria corrige a data manualmente.
+> Confirmado com o Rev. Fabrício em 23/11/2026 (EP I, seção 3.1): os 6 meses contam a partir da primeira conversa pastoral, seguidos da classe de catecúmenos e da profissão de fé ou batismo. A versão anterior desta regra contava da primeira frequência e foi corrigida no sistema.
 
 ## 9. Justificativa da solução técnica
 
@@ -192,10 +193,10 @@ erDiagram
 ## 11. Segurança e proteção de dados
 
 - **Base legal (LGPD):** constar no cadastro de uma igreja revela convicção religiosa, que é **dado sensível** (art. 5º, II). O art. 11 não admite legítimo interesse para dados sensíveis, então a base é o **consentimento específico e destacado do titular** (art. 11, I), colhido no cadastro, com a finalidade informada. O compartilhamento do contato com outros membros é um **segundo consentimento**, separado e revogável.
-- **Minimização:** só os dados necessários (nome, telefone, e-mail, datas). Sem CPF, endereço ou dados financeiros no MVP.
+- **Minimização:** só os dados necessários (nome, telefone, e-mail, datas). Sem CPF, endereço ou dados financeiros no MVP. Nem o endereço dos PGs é guardado (RN08).
 - **Controle de acesso:** dois perfis (RN06). Pessoas e contatos exigem login.
-- **Endereços de PGs:** os pequenos grupos se reúnem em casas de membros. Esses eventos são "só membros" (RN07), e a regra é segura por padrão: a consulta esconde eventos restritos a menos que o código peça o contrário.
-- **Autenticação:** senhas com hash bcrypt, bloqueio após tentativas falhas e sessão que expira por inatividade.
+- **PGs nas casas:** os pequenos grupos se reúnem em casas de membros. Esses eventos são "só membros" (RN07), e a regra é segura por padrão: a consulta esconde eventos restritos a menos que o código peça o contrário. O endereço não entra no sistema (RN08): o formulário orienta a secretária a não preenchê-lo.
+- **Autenticação:** senhas com hash scrypt e salt, bloqueio após tentativas falhas e sessão que expira por inatividade.
 - **Transporte:** HTTPS obrigatório.
 - **Direitos do titular:** a secretaria corrige ou exclui dados a pedido, e o membro pode revogar o consentimento.
 - **Backup:** cópia diária do banco, criptografada, fora do servidor.
@@ -231,7 +232,7 @@ erDiagram
 ├──────────────────────────────────────────┤
 │ [Todos][Visitantes][Ativos][Inativos]    │
 │ Ativos: 128                    [+ Nova]  │
-│ ⚠ 3 visitantes aptos à membresia      ▸  │
+│ ⚠ 3 podem ir para a classe de catecúm. ▸ │
 ├──────────────────────────────────────────┤
 │ Ana Souza     membro ativo   ✓ contato   │
 │ Bruno Lima    visitante (4 meses)        │
@@ -248,7 +249,7 @@ erDiagram
 │ Telefone         [____________]  │
 │ E-mail           [____________]  │
 │ Situação         [Visitante ▾]   │
-│ 1ª frequência    [__/__/____]    │
+│ 1ª conversa past.[__/__/____]    │
 │ ☐ Autoriza compartilhar contato  │
 │   com membros da igreja          │
 │            [Cancelar] [Salvar]   │
@@ -321,7 +322,7 @@ erDiagram
 
 ## 18. Revisão da experiência prática
 
-O desenho manteve o que a EP I propôs e acrescentou a regra RN07, porque os Pequenos Grupos acontecem nas casas dos membros e os endereços não podem ficar públicos. O modelo de dados ficou com 5 tabelas e uma única entidade Pessoa para membros, visitantes e contatos. Na revisão final, a base legal da LGPD foi corrigida: dado de filiação religiosa é sensível e exige consentimento, não legítimo interesse. Sem a validação do protótipo, nenhum ajuste veio diretamente do parceiro nesta etapa.
+O desenho manteve o que a EP I propôs e acrescentou a regra RN07, porque os Pequenos Grupos acontecem nas casas dos membros e os endereços não podem ficar públicos. O modelo de dados ficou com 5 tabelas e uma única entidade Pessoa para membros, visitantes e contatos. Na revisão final, a base legal da LGPD foi corrigida: dado de filiação religiosa é sensível e exige consentimento, não legítimo interesse. Sem a validação do protótipo, nenhum ajuste veio diretamente do parceiro nesta etapa. Depois, o questionário respondido pelo pastor corrigiu a regra RN01 e criou a RN08.
 
 ## 19. Autoavaliação e reflexão
 
