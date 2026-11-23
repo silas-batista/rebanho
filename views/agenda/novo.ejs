@@ -13,7 +13,9 @@
     <label class="opcao"><input type="radio" name="recorrencia" value="unica" <%= dados.recorrencia === 'unica' ? 'checked' : '' %>> Uma vez (evento)</label>
   </fieldset>
 
-  <label for="diaSemana">Dia da semana (culto)</label>
+  <fieldset data-quando="semanal">
+  <legend>Culto semanal</legend>
+  <label for="diaSemana">Dia da semana</label>
   <select id="diaSemana" name="diaSemana">
     <option value="">Selecione</option>
     <% diasSemana.forEach((dia, indice) => { %>
@@ -21,11 +23,15 @@
     <% }) %>
   </select>
 
-  <label for="horario">Horário (culto)</label>
+  <label for="horario">Horário</label>
   <input id="horario" name="horario" type="time" value="<%= dados.horario || '' %>">
+  </fieldset>
 
-  <label for="inicioEm">Data e hora (evento)</label>
+  <fieldset data-quando="unica">
+  <legend>Evento único</legend>
+  <label for="inicioEm">Data e hora</label>
   <input id="inicioEm" name="inicioEm" type="datetime-local" value="<%= dados.inicioEm || '' %>">
+  </fieldset>
 
   <label for="local">Local</label>
   <input id="local" name="local" value="<%= dados.local || '' %>">
@@ -41,4 +47,13 @@
 
   <div class="acoes"><a href="/agenda">Cancelar</a> <button type="submit">Salvar</button></div>
 </form>
+<script>
+  // Mostra só os campos do tipo escolhido. Sem JavaScript, os dois grupos aparecem.
+  const atualizarCampos = () => {
+    const escolhido = document.querySelector("input[name=recorrencia]:checked")?.value;
+    document.querySelectorAll("[data-quando]").forEach((grupo) => (grupo.hidden = grupo.dataset.quando !== escolhido));
+  };
+  document.querySelectorAll("input[name=recorrencia]").forEach((opcao) => opcao.addEventListener("change", atualizarCampos));
+  atualizarCampos();
+</script>
 <%- include("../_rodape") %>
