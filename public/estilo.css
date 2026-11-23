@@ -21,3 +21,9 @@ input, select { font: inherit; padding: .5rem; border: 1px solid #767676; border
 :focus-visible { outline: 3px solid #f5a623; outline-offset: 2px; }
 .sair { margin-left: auto; background: none; padding: 0; }
 .sair button { background: transparent; border: 1px solid #fff; }
+.agenda { list-style: none; padding: 0; }
+.agenda li { display: grid; gap: .1rem; background: #fff; padding: .75rem 1rem; border-left: 4px solid #1f3a5f; margin-bottom: .5rem; }
+.agenda .titulo { font-weight: 600; font-size: 1.05rem; }
+.agenda .detalhe { color: #555; }
+fieldset { border: 1px solid #ccc; border-radius: .25rem; margin-bottom: .5rem; }
+.selo { font-size: .75rem; font-weight: 400; background: #e6ecf3; color: #1f3a5f; padding: .1rem .4rem; border-radius: .5rem; }

@@ -1,0 +1,24 @@
+<%- include("../_topo", { titulo: "Agenda" }) %>
+<h1>Agenda: próximos <%= dias %> dias</h1>
+
+<% if (usuario?.perfil === "secretaria") { %>
+  <p class="resumo"><span></span><a href="/agenda/novo" class="botao">+ Novo evento</a></p>
+<% } %>
+
+<% if (!ocorrencias.length) { %>
+  <p>Nenhum culto ou evento nos próximos <%= dias %> dias.</p>
+<% } %>
+
+<ol class="agenda">
+  <% for (const ocorrencia of ocorrencias) { %>
+    <li>
+      <time datetime="<%= ocorrencia.data %>T<%= ocorrencia.horario %>">
+        <strong><%= formatarData(ocorrencia.data) %></strong> · <%= ocorrencia.horario.replace(":", "h") %>
+      </time>
+      <span class="titulo"><%= ocorrencia.titulo %><% if (ocorrencia.visibilidade === "membros") { %> <small class="selo">só membros</small><% } %></span>
+      <% if (ocorrencia.local) { %><span class="detalhe"><%= ocorrencia.local %></span><% } %>
+      <% if (ocorrencia.descricao) { %><span class="detalhe"><%= ocorrencia.descricao %></span><% } %>
+    </li>
+  <% } %>
+</ol>
+<%- include("../_rodape") %>
