@@ -15,6 +15,24 @@ export function criarApp(banco, { segredoSessao }) {
   if (!segredoSessao) throw new Error("segredoSessao é obrigatório");
 
   const app = express();
+  app.disable("x-powered-by");
+  app.use((_req, res, next) => {
+    res.set({
+      "X-Content-Type-Options": "nosniff",
+      "X-Frame-Options": "DENY",
+      "Referrer-Policy": "same-origin",
+    });
+    next();
+  });
+  app.get("/saude", (_req, res) => {
+    try {
+      banco.prepare("SELECT 1").get();
+      res.json({ status: "ok" });
+    } catch {
+      res.status(503).json({ status: "banco indisponível" });
+    }
+  });
+
   app.set("view engine", "ejs");
   app.set("views", raiz("views"));
   app.set("trust proxy", 1);
