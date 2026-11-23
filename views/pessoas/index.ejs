@@ -12,8 +12,8 @@
 
 <% if (aptas.length) { %>
   <section class="alerta" aria-labelledby="aptas">
-    <h2 id="aptas"><%= aptas.length %> visitante(s) apto(s) à membresia</h2>
-    <p class="detalhe">Visitantes que frequentam a igreja há <%= mesesParaMembresia %> meses ou mais.</p>
+    <h2 id="aptas"><%= aptas.length %> visitante(s) pode(m) entrar na classe de catecúmenos</h2>
+    <p class="detalhe">Já se passaram <%= mesesParaMembresia %> meses ou mais desde a primeira conversa pastoral. Depois da classe, a pessoa é recebida por profissão de fé ou batismo.</p>
     <ul><% for (const pessoa of aptas) { %><li><%= pessoa.nome %></li><% } %></ul>
   </section>
 <% } %>
