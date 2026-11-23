@@ -42,26 +42,26 @@ Os commits seguem o padrão **Conventional Commits** (`feat:`, `docs:`, `ci:`): 
 
 | Commit | Tipo | Descrição |
 |---|---|---|
-| `b1d7b4f` | feat | Regra de aptidão à membresia após 6 meses de frequência |
-| `eda75d9` | docs | Rascunhos das Experiências Práticas I e II |
-| `75abcd9` | ci | Testes rodando em push e pull request |
-| `e9f53b5` | feat | Repositório de pessoas com filtro por situação e lista de aptos |
-| `0958b50` | feat | Páginas de listagem e cadastro de pessoas |
-| `c12fdb5` | docs | README com instruções de instalação |
-| `1b6c25e` | feat | Hash de senha com scrypt |
-| `32e5c2a` | feat | Usuários com perfis e autenticação por e-mail e senha |
-| `e880e40` | feat | Login e perfil Secretaria exigidos nas páginas de pessoas |
-| `44d3505` | feat | Script de criação de usuário |
-| `4090a02` | feat | Cálculo das ocorrências de cultos semanais e eventos únicos |
-| `d3661ad` | feat | Repositório de eventos |
-| `6f5b922` | feat | Agenda pública e cadastro de eventos pela secretaria |
-| `d7713da` | feat | Eventos "só membros" fora da agenda pública (endereços dos PGs) |
-| `c9d83c1` | docs | Agenda real, PGs, projeto social e missões nos documentos |
-| `67ff94b` | docs | Tatame na Rocha às quartas, 19h |
-| `bfca9f1` | feat | Repositório de projetos missionários e missionários |
-| `ff86486` | feat | Página pública de missões e cadastro pela secretaria |
-| `1fb466d` | docs | Simplificação da entidade Missionário no modelo de dados |
-| `1e44854` | feat | Página de contatos só com membros ativos que consentiram |
+| `aaf343f` | feat | Regra de aptidão à membresia após 6 meses de frequência |
+| `a085dfa` | docs | Rascunhos das Experiências Práticas I e II |
+| `318a4f1` | ci | Testes rodando em push e pull request |
+| `b009eed` | feat | Repositório de pessoas com filtro por situação e lista de aptos |
+| `cecf65b` | feat | Páginas de listagem e cadastro de pessoas |
+| `8ca3ed2` | docs | README com instruções de instalação |
+| `e87bdc5` | feat | Hash de senha com scrypt |
+| `12a198b` | feat | Usuários com perfis e autenticação por e-mail e senha |
+| `5e8431a` | feat | Login e perfil Secretaria exigidos nas páginas de pessoas |
+| `df322c7` | feat | Script de criação de usuário |
+| `c009fd8` | feat | Cálculo das ocorrências de cultos semanais e eventos únicos |
+| `724359a` | feat | Repositório de eventos |
+| `a94f1fb` | feat | Agenda pública e cadastro de eventos pela secretaria |
+| `32a34fb` | feat | Eventos "só membros" fora da agenda pública (endereços dos PGs) |
+| `47819d5` | docs | Agenda real, PGs, projeto social e missões nos documentos |
+| `f67cd11` | docs | Tatame na Rocha às quartas, 19h |
+| `de4930b` | feat | Repositório de projetos missionários e missionários |
+| `ed2db17` | feat | Página pública de missões e cadastro pela secretaria |
+| `885821d` | docs | Simplificação da entidade Missionário no modelo de dados |
+| `2744197` | feat | Página de contatos só com membros ativos que consentiram |
 
 > Evidência: `docs/evidencias/13-historico-commits.jpg`. Ao final, o `main` tem 34 commits de trabalho e 12 commits de merge, um por pull request.
 
