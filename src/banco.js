@@ -31,10 +31,25 @@ const ESQUEMA = `
     horario TEXT,
     visibilidade TEXT NOT NULL DEFAULT 'publico' CHECK (visibilidade IN ('publico', 'membros'))
   );
+
+  CREATE TABLE IF NOT EXISTS projetos_missionarios (
+    id INTEGER PRIMARY KEY,
+    nome TEXT NOT NULL,
+    local TEXT,
+    descricao TEXT,
+    ativo INTEGER NOT NULL DEFAULT 1
+  );
+
+  CREATE TABLE IF NOT EXISTS missionarios (
+    id INTEGER PRIMARY KEY,
+    projeto_missionario_id INTEGER NOT NULL REFERENCES projetos_missionarios(id),
+    nome TEXT NOT NULL
+  );
 `;
 
 export function abrirBanco(caminho = ":memory:") {
   const banco = new DatabaseSync(caminho);
+  banco.exec("PRAGMA foreign_keys = ON");
   banco.exec(ESQUEMA);
   return banco;
 }
