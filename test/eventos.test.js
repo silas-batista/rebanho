@@ -29,3 +29,12 @@ test("rejeita culto semanal sem dia da semana ou horário", () => {
 test("rejeita evento único sem data e hora", () => {
   assert.throws(() => criarEvento(abrirBanco(), { titulo: "Cantata", recorrencia: "unica" }), /data e hora/);
 });
+
+test("eventos restritos a membros ficam fora da lista pública", () => {
+  const banco = abrirBanco();
+  criarEvento(banco, { titulo: "Culto", recorrencia: "semanal", diaSemana: "0", horario: "19:00" });
+  criarEvento(banco, { titulo: "PG Família Silva", recorrencia: "semanal", diaSemana: "3", horario: "20:00", visibilidade: "membros" });
+
+  assert.deepEqual(listarEventos(banco, { incluirRestritos: false }).map((e) => e.titulo), ["Culto"]);
+  assert.deepEqual(listarEventos(banco, { incluirRestritos: true }).map((e) => e.titulo), ["Culto", "PG Família Silva"]);
+});

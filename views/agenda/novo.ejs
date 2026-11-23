@@ -30,6 +30,12 @@
   <label for="local">Local</label>
   <input id="local" name="local" value="<%= dados.local || '' %>">
 
+  <fieldset>
+    <legend>Quem pode ver</legend>
+    <label class="opcao"><input type="radio" name="visibilidade" value="publico" <%= dados.visibilidade !== 'membros' ? 'checked' : '' %>> Todos (agenda pública)</label>
+    <label class="opcao"><input type="radio" name="visibilidade" value="membros" <%= dados.visibilidade === 'membros' ? 'checked' : '' %>> Só membros logados (use para endereços de casas, como os PGs)</label>
+  </fieldset>
+
   <label for="descricao">Descrição</label>
   <input id="descricao" name="descricao" value="<%= dados.descricao || '' %>">
 

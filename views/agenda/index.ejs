@@ -15,7 +15,7 @@
       <time datetime="<%= ocorrencia.data %>T<%= ocorrencia.horario %>">
         <strong><%= formatarData(ocorrencia.data) %></strong> · <%= ocorrencia.horario.replace(":", "h") %>
       </time>
-      <span class="titulo"><%= ocorrencia.titulo %></span>
+      <span class="titulo"><%= ocorrencia.titulo %><% if (ocorrencia.visibilidade === "membros") { %> <small class="selo">só membros</small><% } %></span>
       <% if (ocorrencia.local) { %><span class="detalhe"><%= ocorrencia.local %></span><% } %>
       <% if (ocorrencia.descricao) { %><span class="detalhe"><%= ocorrencia.descricao %></span><% } %>
     </li>

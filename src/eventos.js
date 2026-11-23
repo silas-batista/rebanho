@@ -1,3 +1,5 @@
+export const VISIBILIDADES = ["publico", "membros"];
+
 export class EventoInvalidoError extends Error {}
 
 const HORARIO = /^\d{2}:\d{2}$/;
@@ -23,17 +25,24 @@ export function criarEvento(banco, dados) {
     throw new EventoInvalidoError("Recorrência inválida");
   }
 
+  const visibilidade = dados.visibilidade || "publico";
+  if (!VISIBILIDADES.includes(visibilidade)) throw new EventoInvalidoError("Visibilidade inválida");
+
   banco
     .prepare(
-      `INSERT INTO eventos (titulo, descricao, local, recorrencia, inicio_em, dia_semana, horario)
-       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO eventos (titulo, descricao, local, recorrencia, inicio_em, dia_semana, horario, visibilidade)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
     )
-    .run(titulo, dados.descricao || null, dados.local || null, dados.recorrencia, inicioEm, diaSemana, horario);
+    .run(titulo, dados.descricao || null, dados.local || null, dados.recorrencia, inicioEm, diaSemana, horario, visibilidade);
 }
 
-export function listarEventos(banco) {
+// Por padrão só eventos públicos: endereços de pequenos grupos nas casas dos membros não podem vazar.
+export function listarEventos(banco, { incluirRestritos = false } = {}) {
+  const sql = incluirRestritos
+    ? "SELECT * FROM eventos ORDER BY titulo"
+    : "SELECT * FROM eventos WHERE visibilidade = 'publico' ORDER BY titulo";
   return banco
-    .prepare("SELECT * FROM eventos ORDER BY titulo")
+    .prepare(sql)
     .all()
     .map((linha) => ({
       id: linha.id,
@@ -44,5 +53,6 @@ export function listarEventos(banco) {
       inicioEm: linha.inicio_em,
       diaSemana: linha.dia_semana,
       horario: linha.horario,
+      visibilidade: linha.visibilidade,
     }));
 }

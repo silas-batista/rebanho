@@ -28,7 +28,8 @@ const ESQUEMA = `
     recorrencia TEXT NOT NULL CHECK (recorrencia IN ('unica', 'semanal')),
     inicio_em TEXT,
     dia_semana INTEGER CHECK (dia_semana BETWEEN 0 AND 6),
-    horario TEXT
+    horario TEXT,
+    visibilidade TEXT NOT NULL DEFAULT 'publico' CHECK (visibilidade IN ('publico', 'membros'))
   );
 `;
 
