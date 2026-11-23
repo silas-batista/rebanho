@@ -132,7 +132,7 @@
 | Nov/2026 | Levantamento de informações junto à igreja (EP I) | Liderança da igreja | Regra dos 6 meses, rotina de cultos, PGs nas casas, Tatame na Rocha, missões. Confirmação de que os missionários podem ser divulgados |
 | 23/11/2026 | Publicação e primeiro acesso | Aluno, com acesso de secretaria | Sistema no ar com a agenda e as missões reais |
 | 23/11/2026 | Avaliação heurística (sem usuários) | Aluno, com apoio de assistente de IA | 8 problemas de usabilidade, 7 corrigidos (PRs #14 e #15). Não substitui a validação com a igreja |
-| 23/11/2026 | Questionário por WhatsApp e avaliação do sistema publicado | Rev. Fabrício Ribeiro | Respostas de diagnóstico (EP I, seção 3.1), nota **5** ao sistema, autorização para citar a igreja e o nome dele, e concordância em assinar o Termo de Feedback |
+| 23/11/2026 | Questionário por WhatsApp e avaliação do sistema publicado | Rev. Fabrício Ribeiro | Respostas de diagnóstico (EP I, seção 3.1), nota **5** ao sistema, autorização para citar a igreja e o nome dele, e concordância em assinar o Termo de Feedback. Prints: `docs/evidencias/17-` e `18-respostas-pastor-whatsapp` |
 | 23/11/2026 | Correções a partir das respostas (PR #16) | Aluno | Regra dos 6 meses contada da conversa pastoral, caminho da classe de catecúmenos e orientação para não cadastrar endereço de PG |
 | — | Validação do protótipo (EP II) | — | **Não realizada** |
 | — | Tarefas com a secretária e 2ª rodada (EP III) | — | **Não realizadas.** Roteiro pronto |

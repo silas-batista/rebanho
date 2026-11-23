@@ -50,7 +50,9 @@ Segundo o pastor, o rol de cerca de **320 pessoas** é controlado em **planilhas
 
 ### 3.1 Respostas do pastor (WhatsApp, 23/11/2026)
 
-O aluno enviou as perguntas em seis blocos e guardou a conversa. As respostas estão transcritas como o pastor escreveu.
+O aluno enviou as perguntas em seis blocos, e o pastor respondeu numa única mensagem às 14h31. As respostas estão transcritas como ele escreveu.
+
+> Evidência: `docs/evidencias/17-respostas-pastor-whatsapp-1.jpg` e `docs/evidencias/18-respostas-pastor-whatsapp-2.jpg` (prints da conversa).
 
 | Bloco | Pergunta | Resposta do Rev. Fabrício |
 |---|---|---|

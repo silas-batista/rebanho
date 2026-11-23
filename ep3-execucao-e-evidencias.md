@@ -190,6 +190,8 @@ As imagens estão em `docs/evidencias/`. Os dados de pessoas são **fictícios**
 | Que nota daria, de 1 a 5? | **"Nota 5"** |
 | O que falta para a igreja usar de verdade? | "Divulgar para os membros" |
 
+> Evidência: `docs/evidencias/17-respostas-pastor-whatsapp-1.jpg` e `docs/evidencias/18-respostas-pastor-whatsapp-2.jpg`, bloco 5 da mensagem.
+
 **Limites desta rodada:** o pastor avaliou as páginas abertas ao público (agenda e missões) na versão publicada naquele dia. Ninguém executou as tarefas da secretaria (T1 a T5 e T7), e o tempo de cada tarefa não foi medido. As respostas às perguntas de diagnóstico, no mesmo questionário, estão na EP I (seção 3.1) e mudaram o sistema (seção 11).
 
 **Roteiro completo, ainda não aplicado com a secretária:**
