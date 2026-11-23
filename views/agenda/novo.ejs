@@ -1,0 +1,38 @@
+<%- include("../_topo", { titulo: "Novo evento" }) %>
+<h1>Novo evento</h1>
+
+<% if (erro) { %><p role="alert" class="erro"><%= erro %></p><% } %>
+
+<form method="post" action="/agenda">
+  <label for="titulo">Título *</label>
+  <input id="titulo" name="titulo" required value="<%= dados.titulo || '' %>">
+
+  <fieldset>
+    <legend>Quando acontece</legend>
+    <label class="opcao"><input type="radio" name="recorrencia" value="semanal" <%= dados.recorrencia === 'semanal' ? 'checked' : '' %>> Toda semana (culto)</label>
+    <label class="opcao"><input type="radio" name="recorrencia" value="unica" <%= dados.recorrencia === 'unica' ? 'checked' : '' %>> Uma vez (evento)</label>
+  </fieldset>
+
+  <label for="diaSemana">Dia da semana (culto)</label>
+  <select id="diaSemana" name="diaSemana">
+    <option value="">Selecione</option>
+    <% diasSemana.forEach((dia, indice) => { %>
+      <option value="<%= indice %>" <%= String(dados.diaSemana) === String(indice) ? 'selected' : '' %>><%= dia %></option>
+    <% }) %>
+  </select>
+
+  <label for="horario">Horário (culto)</label>
+  <input id="horario" name="horario" type="time" value="<%= dados.horario || '' %>">
+
+  <label for="inicioEm">Data e hora (evento)</label>
+  <input id="inicioEm" name="inicioEm" type="datetime-local" value="<%= dados.inicioEm || '' %>">
+
+  <label for="local">Local</label>
+  <input id="local" name="local" value="<%= dados.local || '' %>">
+
+  <label for="descricao">Descrição</label>
+  <input id="descricao" name="descricao" value="<%= dados.descricao || '' %>">
+
+  <div class="acoes"><a href="/agenda">Cancelar</a> <button type="submit">Salvar</button></div>
+</form>
+<%- include("../_rodape") %>
