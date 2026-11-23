@@ -1,0 +1,4 @@
+$ ls -la backups/   (23/11/2026 11:41)
+drwxr-xr-x@  3 silas  staff     96 Nov 23 11:29 .
+drwxr-xr-x@ 23 silas  staff    736 Nov 23 11:36 ..
+-rw-r--r--@  1 silas  staff  28672 Nov 23 11:29 rebanho-2026-11-23.db
