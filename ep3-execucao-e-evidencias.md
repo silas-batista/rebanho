@@ -213,7 +213,7 @@ As imagens estão em `docs/evidencias/`. Os dados de pessoas são **fictícios**
 | Tempo para saber o nº de membros ativos | < 1 minuto | Não medido com usuários. No sistema, é um clique no filtro "Membro ativo" |
 | Visitantes aptos identificados automaticamente | 100% | ✅ Garantido pela regra RN01 e por teste automatizado |
 | Contatos exibidos sem consentimento | 0 | ✅ Garantido pelas regras RN03/RN04 e por teste automatizado |
-| Satisfação do parceiro (1 a 5) | ≥ 4 | ✅ **5**, dada pelo Rev. Fabrício em 23/11/2026 |
+| Satisfação do parceiro (1 a 5) | ≥ 4 | ✅ **5**, dada pelo Rev. Fabrício em 23/11/2026 no questionário e confirmada no Termo de Feedback (nota 5 em 6 das 7 afirmações; EP IV, seção 13) |
 
 ## 11. Aprimoramento orientado por feedback
 
