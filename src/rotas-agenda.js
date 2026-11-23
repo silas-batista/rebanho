@@ -25,7 +25,7 @@ export function rotasAgenda(banco) {
   rotas.post("/", exigirPerfil("secretaria"), (req, res) => {
     try {
       criarEvento(banco, req.body);
-      res.redirect(303, "/agenda");
+      res.redirect(303, "/agenda?ok=evento");
     } catch (erro) {
       if (!(erro instanceof EventoInvalidoError)) throw erro;
       res.status(422).render("agenda/novo", { erro: erro.message, dados: req.body, diasSemana: DIAS_SEMANA });

@@ -38,16 +38,16 @@ export function rotasPessoas(banco) {
   rotas.post("/", (req, res) => {
     try {
       criarPessoa(banco, doFormulario(req.body));
-      res.redirect(303, "/pessoas");
+      res.redirect(303, "/pessoas?ok=pessoa");
     } catch (erro) {
       if (!(erro instanceof PessoaInvalidaError)) throw erro;
       formulario(res.status(422), { titulo: "Nova pessoa", acao: "/pessoas", dados: doFormulario(req.body), erro: erro.message });
     }
   });
 
-  rotas.get("/:id/editar", (req, res) => {
+  rotas.get("/:id/editar", (req, res, next) => {
     const pessoa = buscarPessoa(banco, Number(req.params.id));
-    if (!pessoa) return res.sendStatus(404);
+    if (!pessoa) return next();
     formulario(res, {
       titulo: "Editar pessoa",
       acao: `/pessoas/${pessoa.id}`,
@@ -63,7 +63,7 @@ export function rotasPessoas(banco) {
     const id = Number(req.params.id);
     try {
       atualizarPessoa(banco, id, doFormulario(req.body));
-      res.redirect(303, "/pessoas");
+      res.redirect(303, "/pessoas?ok=pessoa");
     } catch (erro) {
       if (!(erro instanceof PessoaInvalidaError)) throw erro;
       formulario(res.status(422), { titulo: "Editar pessoa", acao: `/pessoas/${id}`, dados: doFormulario(req.body), erro: erro.message });

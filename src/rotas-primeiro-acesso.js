@@ -9,7 +9,7 @@ export function rotasPrimeiroAcesso(banco, codigoPrimeiroAcesso) {
   const disponivel = () => Boolean(codigoPrimeiroAcesso) && listarUsuarios(banco).length === 0;
   const formulario = (res, erro = null, email = "") => res.render("primeiro-acesso", { erro, email });
 
-  rotas.use("/primeiro-acesso", (_req, res, next) => (disponivel() ? next() : res.sendStatus(404)));
+  rotas.use("/primeiro-acesso", (_req, _res, next) => (disponivel() ? next() : next("router")));
 
   rotas.get("/primeiro-acesso", (_req, res) => formulario(res));
 
