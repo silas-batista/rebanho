@@ -15,7 +15,7 @@ export function rotasMissoes(banco) {
   rotas.post("/", exigirPerfil("secretaria"), (req, res) => {
     try {
       criarProjeto(banco, req.body);
-      res.redirect(303, "/missoes");
+      res.redirect(303, "/missoes?ok=projeto");
     } catch (erro) {
       if (!(erro instanceof MissaoInvalidaError)) throw erro;
       res.status(422).render("missoes/novo", { erro: erro.message, dados: req.body });
@@ -25,7 +25,7 @@ export function rotasMissoes(banco) {
   rotas.post("/:id/missionarios", exigirPerfil("secretaria"), (req, res) => {
     try {
       adicionarMissionario(banco, Number(req.params.id), req.body);
-      res.redirect(303, "/missoes");
+      res.redirect(303, "/missoes?ok=missionario");
     } catch (erro) {
       if (!(erro instanceof MissaoInvalidaError)) throw erro;
       mostrarLista(res.status(422), erro.message);

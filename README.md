@@ -57,3 +57,4 @@ Express, EJS, SQLite (`node:sqlite`), testes com `node:test`. CI no GitHub Actio
 - [EP II: Fundamentação e desenho do MVP](ep2-fundamentacao-e-desenho-mvp.md)
 - [EP III: Execução e evidências](ep3-execucao-e-evidencias.md) (capturas em [`docs/evidencias`](docs/evidencias))
 - [EP IV: Avaliação de impacto e encerramento](ep4-avaliacao-de-impacto-e-encerramento.md)
+- [Avaliação heurística](docs/avaliacao-heuristica.md)

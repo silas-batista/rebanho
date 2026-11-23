@@ -131,6 +131,7 @@
 |---|---|---|---|
 | Nov/2026 | Levantamento de informações junto à igreja (EP I) | Liderança da igreja | Regra dos 6 meses, rotina de cultos, PGs nas casas, Tatame na Rocha, missões. Confirmação de que os missionários podem ser divulgados |
 | 23/11/2026 | Publicação e primeiro acesso | Aluno, com acesso de secretaria | Sistema no ar com a agenda e as missões reais |
+| 23/11/2026 | Avaliação heurística (sem usuários) | Aluno, com apoio de assistente de IA | 8 problemas de usabilidade, 4 corrigidos (PR #14). Não substitui a validação com a igreja |
 | — | Validação do protótipo (EP II) | — | **Não realizada** |
 | — | 1ª e 2ª rodadas de validação (EP III) | — | **Não realizadas.** Roteiro pronto |
 | — | Entrega e treinamento da secretaria | — | **Não realizada** |

@@ -12,6 +12,16 @@ import { rotasSessao, carregarUsuario, exigirPerfil } from "./rotas-sessao.js";
 const raiz = (caminho) => fileURLToPath(new URL(`../${caminho}`, import.meta.url));
 const DUAS_HORAS = 2 * 60 * 60 * 1000;
 
+// Mensagens fixas: a URL só escolhe uma delas, nunca injeta texto na página.
+const AVISOS = {
+  pessoa: "Pessoa salva.",
+  evento: "Evento salvo.",
+  projeto: "Projeto salvo.",
+  missionario: "Missionário adicionado.",
+  usuario: "Acesso criado.",
+  senha: "Senha alterada.",
+};
+
 export function criarApp(banco, { segredoSessao, codigoPrimeiroAcesso }) {
   if (!segredoSessao) throw new Error("segredoSessao é obrigatório");
 
@@ -50,6 +60,10 @@ export function criarApp(banco, { segredoSessao, codigoPrimeiroAcesso }) {
     }),
   );
   app.use(carregarUsuario(banco));
+  app.use((req, res, next) => {
+    res.locals.aviso = Object.hasOwn(AVISOS, req.query.ok) ? AVISOS[req.query.ok] : null;
+    next();
+  });
 
   app.get("/", (_req, res) => res.redirect("/agenda"));
   app.use(rotasSessao(banco));
@@ -60,6 +74,14 @@ export function criarApp(banco, { segredoSessao, codigoPrimeiroAcesso }) {
   app.use("/pessoas", exigirPerfil("secretaria"), rotasPessoas(banco));
   app.get("/contatos", exigirPerfil("secretaria", "membro"), (_req, res) => {
     res.render("contatos", { contatos: listarContatos(banco) });
+  });
+
+  app.use((_req, res) => {
+    res.status(404).render("erro", { titulo: "Página não encontrada", mensagem: "O endereço pode ter mudado ou não existir mais." });
+  });
+  app.use((erro, _req, res, _next) => {
+    console.error(erro);
+    res.status(500).render("erro", { titulo: "Algo deu errado", mensagem: "Tente de novo em alguns minutos. Se continuar, avise a secretaria." });
   });
   return app;
 }
