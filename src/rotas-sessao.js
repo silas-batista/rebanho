@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { autenticar, buscarUsuario } from "./usuarios.js";
+import { LimitadorDeTentativas } from "./limitador.js";
 
 export function carregarUsuario(banco) {
   return (req, res, next) => {
@@ -19,16 +20,22 @@ export function exigirPerfil(...perfis) {
   };
 }
 
-export function rotasSessao(banco) {
+export function rotasSessao(banco, limitador = new LimitadorDeTentativas()) {
   const rotas = Router();
 
   rotas.get("/entrar", (_req, res) => res.render("entrar", { erro: null, email: "" }));
 
   rotas.post("/entrar", (req, res) => {
-    const usuario = autenticar(banco, req.body.email, req.body.senha);
-    if (!usuario) {
-      return res.status(401).render("entrar", { erro: "E-mail ou senha incorretos", email: req.body.email ?? "" });
+    const email = req.body.email ?? "";
+    if (limitador.bloqueado(email)) {
+      return res.status(429).render("entrar", { erro: "Muitas tentativas. Tente novamente em 15 minutos.", email });
     }
+    const usuario = autenticar(banco, email, req.body.senha);
+    if (!usuario) {
+      limitador.registrarFalha(email);
+      return res.status(401).render("entrar", { erro: "E-mail ou senha incorretos", email });
+    }
+    limitador.limpar(email);
     req.session = { usuarioId: usuario.id };
     res.redirect(303, "/");
   });
