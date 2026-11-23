@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { rotasPessoas } from "./rotas-pessoas.js";
 import { rotasAgenda } from "./rotas-agenda.js";
 import { rotasMissoes } from "./rotas-missoes.js";
+import { listarContatos } from "./pessoas.js";
 import { rotasSessao, carregarUsuario, exigirPerfil } from "./rotas-sessao.js";
 
 const raiz = (caminho) => fileURLToPath(new URL(`../${caminho}`, import.meta.url));
@@ -35,5 +36,8 @@ export function criarApp(banco, { segredoSessao }) {
   app.use("/agenda", rotasAgenda(banco));
   app.use("/missoes", rotasMissoes(banco));
   app.use("/pessoas", exigirPerfil("secretaria"), rotasPessoas(banco));
+  app.get("/contatos", exigirPerfil("secretaria", "membro"), (_req, res) => {
+    res.render("contatos", { contatos: listarContatos(banco) });
+  });
   return app;
 }

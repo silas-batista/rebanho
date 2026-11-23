@@ -1,0 +1,16 @@
+<%- include("_topo", { titulo: "Contatos" }) %>
+<h1>Contatos dos membros</h1>
+<p class="detalhe">Aparecem aqui apenas membros ativos que autorizaram compartilhar seus contatos com a igreja.</p>
+
+<% if (!contatos.length) { %><p>Nenhum contato compartilhado ainda.</p><% } %>
+
+<ul class="contatos">
+  <% for (const contato of contatos) { %>
+    <li>
+      <strong><%= contato.nome %></strong>
+      <% if (contato.telefone) { %><a href="tel:<%= contato.telefone.replace(/[^\d+]/g, '') %>"><%= contato.telefone %></a><% } %>
+      <% if (contato.email) { %><a href="mailto:<%= contato.email %>"><%= contato.email %></a><% } %>
+    </li>
+  <% } %>
+</ul>
+<%- include("_rodape") %>
