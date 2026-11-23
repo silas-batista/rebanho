@@ -83,3 +83,13 @@ test("pequeno grupo restrito não aparece para visitante sem login, mas aparece 
   assert.doesNotMatch(publica, /PG Família Silva|Rua das Flores/);
   assert.match(deMembro, /PG Família Silva/);
 });
+
+test("formulário de evento orienta a não cadastrar endereço de casa, que o pastor passa pessoalmente", async (t) => {
+  const url = await iniciarServidor(t, bancoComUsuarios());
+  const { cookie } = await entrar(url, "secretaria@ipvf.org");
+
+  const html = await (await fetch(`${url}/agenda/novo`, { headers: { cookie } })).text();
+
+  assert.match(html, /Não informe endereço de casa/);
+  assert.doesNotMatch(html, /use para endereços de casas/);
+});

@@ -34,12 +34,13 @@
   </fieldset>
 
   <label for="local">Local</label>
-  <input id="local" name="local" value="<%= dados.local || '' %>">
+  <input id="local" name="local" value="<%= dados.local || '' %>" aria-describedby="local-ajuda">
+  <p id="local-ajuda" class="detalhe">Não informe endereço de casa. O endereço dos PGs é passado pessoalmente aos novos membros.</p>
 
   <fieldset>
     <legend>Quem pode ver</legend>
     <label class="opcao"><input type="radio" name="visibilidade" value="publico" <%= dados.visibilidade !== 'membros' ? 'checked' : '' %>> Todos (agenda pública)</label>
-    <label class="opcao"><input type="radio" name="visibilidade" value="membros" <%= dados.visibilidade === 'membros' ? 'checked' : '' %>> Só membros logados (use para endereços de casas, como os PGs)</label>
+    <label class="opcao"><input type="radio" name="visibilidade" value="membros" <%= dados.visibilidade === 'membros' ? 'checked' : '' %>> Só membros logados (por exemplo, dia e horário dos PGs)</label>
   </fieldset>
 
   <label for="descricao">Descrição</label>
