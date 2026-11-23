@@ -24,6 +24,23 @@ SEGREDO_SESSAO=$(openssl rand -hex 32) npm start      # http://localhost:3000
 | `PORT` | não | Porta HTTP (padrão 3000) |
 | `NODE_ENV=production` | em produção | Exige HTTPS para o cookie de sessão |
 
+## Publicação (gratuita, pelo túnel da Cloudflare)
+
+O sistema roda neste computador e fica acessível na internet por HTTPS enquanto o comando estiver aberto.
+
+```sh
+brew install cloudflared
+cp .env.example .env            # preencha SEGREDO_SESSAO com: openssl rand -hex 32
+npm run criar-usuario -- secretaria@igreja.org secretaria
+npm run publicar                # mostra o endereço https://....trycloudflare.com
+```
+
+- O endereço muda a cada `npm run publicar`.
+- O computador precisa ficar ligado.
+- `GET /saude` responde `{"status":"ok"}` e serve para monitoramento (ex.: UptimeRobot).
+- Com `PASTA_BACKUP` definido, o banco é copiado ao iniciar e a cada 24 h. Ficam os 14 backups mais recentes.
+- Em produção, o login só funciona por HTTPS (cookie `secure`).
+
 ## Perfis
 
 - **Secretaria:** cadastra e gerencia pessoas, agenda e missões.
