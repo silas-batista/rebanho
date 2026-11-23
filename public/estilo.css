@@ -19,3 +19,5 @@ input, select { font: inherit; padding: .5rem; border: 1px solid #767676; border
 .opcao { display: flex; gap: .5rem; align-items: center; }
 .acoes { display: flex; justify-content: flex-end; gap: 1rem; align-items: center; }
 :focus-visible { outline: 3px solid #f5a623; outline-offset: 2px; }
+.sair { margin-left: auto; background: none; padding: 0; }
+.sair button { background: transparent; border: 1px solid #fff; }

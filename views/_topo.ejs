@@ -10,7 +10,12 @@
   <header>
     <a href="/" class="marca">Rebanho</a>
     <nav aria-label="Principal">
-      <a href="/pessoas">Pessoas</a>
+      <% if (usuario?.perfil === "secretaria") { %><a href="/pessoas">Pessoas</a><% } %>
     </nav>
+    <% if (usuario) { %>
+      <form method="post" action="/sair" class="sair"><button type="submit">Sair</button></form>
+    <% } else { %>
+      <a href="/entrar" class="sair">Entrar</a>
+    <% } %>
   </header>
   <main>

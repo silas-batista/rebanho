@@ -8,9 +8,11 @@
   },
   "scripts": {
     "start": "node src/server.js",
-    "test": "node --test"
+    "test": "node --test",
+    "criar-usuario": "node src/criar-usuario.js"
   },
   "dependencies": {
+    "cookie-session": "^2.1.1",
     "ejs": "^7.0.2",
     "express": "^5.3.0"
   }
