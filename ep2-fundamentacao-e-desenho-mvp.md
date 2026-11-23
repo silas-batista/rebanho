@@ -101,7 +101,7 @@ As soluções comerciais resolvem o problema, mas são **grandes demais e caras 
 
 ## 8. Modelagem simplificada dos dados
 
-Membros, visitantes e contatos são **a mesma entidade (Pessoa)**. "Contatos" é uma consulta filtrada (membros ativos com consentimento), não uma tabela. Cultos e eventos dividem a tabela **Evento**, e o campo `recorrencia` os diferencia.
+Membros, visitantes e contatos são **a mesma entidade (Pessoa)**. "Contatos" é uma consulta filtrada (membros ativos com consentimento), não uma tabela. Cultos e eventos dividem a tabela **Evento**, e o campo `recorrencia` os diferencia. O missionário guarda só o nome: o local do trabalho pertence ao projeto, e contatos pessoais de missionários ficam fora do sistema.
 
 ```mermaid
 erDiagram
@@ -147,8 +147,6 @@ erDiagram
     int id
     int projeto_missionario_id
     string nome
-    string campo
-    string contato
   }
 ```
 
