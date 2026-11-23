@@ -11,8 +11,8 @@ export function bancoComUsuarios() {
   return banco;
 }
 
-export async function iniciarServidor(t, banco) {
-  const http = criarApp(banco, { segredoSessao: "segredo-de-teste" }).listen(0);
+export async function iniciarServidor(t, banco, opcoes = {}) {
+  const http = criarApp(banco, { segredoSessao: "segredo-de-teste", ...opcoes }).listen(0);
   await new Promise((resolve) => http.once("listening", resolve));
   t.after(() => http.close());
   return `http://localhost:${http.address().port}`;
