@@ -13,6 +13,7 @@
 <% if (aptas.length) { %>
   <section class="alerta" aria-labelledby="aptas">
     <h2 id="aptas"><%= aptas.length %> visitante(s) apto(s) à membresia</h2>
+    <p class="detalhe">Visitantes que frequentam a igreja há <%= mesesParaMembresia %> meses ou mais.</p>
     <ul><% for (const pessoa of aptas) { %><li><%= pessoa.nome %></li><% } %></ul>
   </section>
 <% } %>
@@ -23,7 +24,7 @@
     <% for (const pessoa of pessoas) { %>
       <tr>
         <td><a href="/pessoas/<%= pessoa.id %>/editar"><%= pessoa.nome %></a></td>
-        <td><%= rotulos[pessoa.situacao] %></td>
+        <td><%= rotulos[pessoa.situacao] %><% if (pessoa.situacao === "visitante" && pessoa.primeiraFrequenciaEm) { %> <span class="detalhe">· <%= mesesDeFrequencia(pessoa.primeiraFrequenciaEm) %> meses</span><% } %></td>
         <td><%= pessoa.consentiuContatoEm ? "Compartilha" : "Não compartilha" %></td>
       </tr>
     <% } %>

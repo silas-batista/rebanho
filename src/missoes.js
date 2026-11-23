@@ -1,11 +1,34 @@
 export class MissaoInvalidaError extends Error {}
 
-export function criarProjeto(banco, { nome, local, descricao }) {
+function validarProjeto({ nome, local, descricao }) {
   if (!nome?.trim()) throw new MissaoInvalidaError("Nome do projeto é obrigatório");
+  return [nome.trim(), local || null, descricao || null];
+}
+
+export function criarProjeto(banco, dados) {
   const { lastInsertRowid } = banco
     .prepare("INSERT INTO projetos_missionarios (nome, local, descricao) VALUES (?, ?, ?)")
-    .run(nome.trim(), local || null, descricao || null);
+    .run(...validarProjeto(dados));
   return Number(lastInsertRowid);
+}
+
+export function atualizarProjeto(banco, id, dados) {
+  banco.prepare("UPDATE projetos_missionarios SET nome = ?, local = ?, descricao = ? WHERE id = ?").run(...validarProjeto(dados), id);
+}
+
+export function excluirProjeto(banco, id) {
+  banco.exec("BEGIN");
+  banco.prepare("DELETE FROM missionarios WHERE projeto_missionario_id = ?").run(id);
+  banco.prepare("DELETE FROM projetos_missionarios WHERE id = ?").run(id);
+  banco.exec("COMMIT");
+}
+
+export function buscarProjeto(banco, id) {
+  return listarProjetos(banco).find((projeto) => projeto.id === id) ?? null;
+}
+
+export function removerMissionario(banco, id) {
+  banco.prepare("DELETE FROM missionarios WHERE id = ?").run(id);
 }
 
 export function adicionarMissionario(banco, projetoId, { nome }) {

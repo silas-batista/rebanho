@@ -54,9 +54,9 @@
 |---|---|
 | Código da aplicação | ~800 linhas (19 módulos em `src/`) |
 | Páginas e estilo | ~380 linhas |
-| Testes automatizados | 85 testes, ~900 linhas |
-| Commits | 34 de trabalho + 12 de merge |
-| Pull requests | 12, todos com CI verde |
+| Testes automatizados | 104 testes |
+| Commits | ~45 de trabalho, mais um merge por PR |
+| Pull requests | 15, todos com CI verde |
 
 > A quantidade de código de teste é maior que a da aplicação. As regras críticas (membresia, consentimento, visibilidade dos PGs, permissões) foram testadas e depois quebradas de propósito para provar que o teste detecta a falha.
 
@@ -116,7 +116,7 @@
 | Monitor externo | Planejado: UptimeRobot (plano gratuito) consultando `/saude` a cada 5 minutos. **Não configurado no período**, porque o endereço do túnel muda a cada publicação | — |
 | Backup | Cópia consistente do banco (`VACUUM INTO`) ao iniciar e a cada 24 h, mantendo as 14 mais recentes | `16-backups.txt` |
 | Segurança | Cabeçalhos `nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy`. Bloqueio de login após 5 tentativas | Testes automatizados |
-| Qualidade | CI roda os 85 testes em todo pull request e no `main` | `12-github-actions.jpg` |
+| Qualidade | CI roda os 104 testes em todo pull request e no `main` | `12-github-actions.jpg` |
 
 **Ocorrências no período:**
 
@@ -131,7 +131,7 @@
 |---|---|---|---|
 | Nov/2026 | Levantamento de informações junto à igreja (EP I) | Liderança da igreja | Regra dos 6 meses, rotina de cultos, PGs nas casas, Tatame na Rocha, missões. Confirmação de que os missionários podem ser divulgados |
 | 23/11/2026 | Publicação e primeiro acesso | Aluno, com acesso de secretaria | Sistema no ar com a agenda e as missões reais |
-| 23/11/2026 | Avaliação heurística (sem usuários) | Aluno, com apoio de assistente de IA | 8 problemas de usabilidade, 4 corrigidos (PR #14). Não substitui a validação com a igreja |
+| 23/11/2026 | Avaliação heurística (sem usuários) | Aluno, com apoio de assistente de IA | 8 problemas de usabilidade, 7 corrigidos (PRs #14 e #15). Não substitui a validação com a igreja |
 | — | Validação do protótipo (EP II) | — | **Não realizada** |
 | — | 1ª e 2ª rodadas de validação (EP III) | — | **Não realizadas.** Roteiro pronto |
 | — | Entrega e treinamento da secretaria | — | **Não realizada** |
@@ -213,7 +213,7 @@ O que funcionou melhor foi deixar as informações da igreja mudarem o sistema: 
 1. **Validação:** aplicar o roteiro da 1ª rodada com a secretaria e o pastor e corrigir o que surgir.
 2. **Hospedagem definitiva:** uma VPS de baixo custo com o mesmo `npm start`, ou o computador da secretaria da igreja com o túnel. Com um domínio próprio, o endereço fica fixo e o monitor externo passa a funcionar.
 3. **Entrega dos dados:** exportar o banco e os backups para a igreja e apagá-los do computador do aluno.
-4. **Funcionalidades:** editar e excluir eventos e projetos missionários, e o módulo de Pequenos Grupos, a definir com os líderes.
+4. **Funcionalidades:** módulo de Pequenos Grupos, a definir com os líderes, e menu recolhível no celular.
 
 ## 15. Autoavaliação e reflexão
 

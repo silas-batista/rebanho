@@ -19,9 +19,9 @@
 | 2 | Prevenção de erros | O formulário de evento mostrava ao mesmo tempo os campos de culto semanal e de evento único. Era possível escolher "toda semana" e preencher só a data | **3** | ✅ Corrigido: só aparece o grupo do tipo escolhido |
 | 3 | Ajudar a reconhecer e corrigir erros / consistência | Endereço inexistente mostrava "Not Found" ou "Cannot GET" em inglês. Um erro interno mostraria a mensagem técnica padrão | **2** | ✅ Corrigido: páginas em português, sem detalhes técnicos, com link de volta |
 | 4 | Visibilidade do status do sistema | Depois de salvar pessoa, evento, projeto, missionário ou acesso, a tela voltava para a lista sem confirmar nada | **2** | ✅ Corrigido: aviso "Pessoa salva.", "Evento salvo." etc. As mensagens são fixas, e a URL não consegue injetar texto na página |
-| 5 | Controle e liberdade do usuário | Eventos e projetos missionários podem ser cadastrados, mas não editados nem excluídos. Um erro de digitação fica para sempre | **3** | ⏳ Pendente |
-| 6 | Reconhecer em vez de lembrar | A lista de pessoas não mostra há quanto tempo cada visitante frequenta. A secretaria precisa abrir o cadastro para saber | **1** | ⏳ Pendente |
-| 7 | Ajuda e documentação | A regra dos 6 meses não aparece explicada na tela. Quem não conhece a regra não entende o alerta de aptos | **1** | ⏳ Pendente |
+| 5 | Controle e liberdade do usuário | Eventos e projetos missionários podem ser cadastrados, mas não editados nem excluídos. Um erro de digitação fica para sempre | **3** | ✅ Corrigido: editar e excluir, com confirmação obrigatória antes de excluir, e remover missionário |
+| 6 | Reconhecer em vez de lembrar | A lista de pessoas não mostra há quanto tempo cada visitante frequenta. A secretaria precisa abrir o cadastro para saber | **1** | ✅ Corrigido: "Visitante · 7 meses" na lista |
+| 7 | Ajuda e documentação | A regra dos 6 meses não aparece explicada na tela. Quem não conhece a regra não entende o alerta de aptos | **1** | ✅ Corrigido: o alerta explica a regra |
 | 8 | Estética e design minimalista | No celular, o cabeçalho da secretaria ocupa 162 px de altura, por causa dos 7 itens de menu | **1** | ⏳ Pendente (menu recolhível) |
 
 ## O que já atende bem
@@ -35,4 +35,4 @@
 
 ## Resultado
 
-Foram encontrados **8 problemas**: 3 de gravidade 3, 2 de gravidade 2 e 3 de gravidade 1. Os **4 primeiros foram corrigidos** no mesmo dia, com testes automatizados para as páginas de erro e os avisos de confirmação (90 testes no total). Os pendentes entram como próximos passos, junto com a validação com a igreja, que vai dizer quais deles realmente atrapalham.
+Foram encontrados **8 problemas**: 3 de gravidade 3, 2 de gravidade 2 e 3 de gravidade 1. **7 foram corrigidos** no mesmo dia, em dois pull requests (#14 e #15), com testes automatizados (104 testes no total). Fica pendente só o menu alto no celular (gravidade 1). A validação com a igreja vai dizer quais problemas realmente atrapalham e quais faltaram.

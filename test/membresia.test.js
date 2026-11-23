@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { aptaAMembresia } from "../src/membresia.js";
+import { aptaAMembresia, mesesDeFrequencia } from "../src/membresia.js";
 
 const hoje = new Date("2026-11-23");
 
@@ -22,4 +22,10 @@ test("visitante sem data de primeira frequência não está apto", () => {
 test("membro ativo não aparece como apto à membresia", () => {
   const membro = { situacao: "membro_ativo", primeiraFrequenciaEm: new Date("2020-01-01") };
   assert.equal(aptaAMembresia(membro, hoje), false);
+});
+
+test("conta os meses completos de frequência", () => {
+  assert.equal(mesesDeFrequencia(new Date("2026-05-23"), hoje), 6);
+  assert.equal(mesesDeFrequencia(new Date("2026-05-24"), hoje), 5);
+  assert.equal(mesesDeFrequencia(new Date("2026-11-01"), hoje), 0);
 });

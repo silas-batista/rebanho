@@ -20,6 +20,8 @@ const AVISOS = {
   missionario: "Missionário adicionado.",
   usuario: "Acesso criado.",
   senha: "Senha alterada.",
+  excluido: "Item excluído.",
+  removido: "Missionário removido.",
 };
 
 export function criarApp(banco, { segredoSessao, codigoPrimeiroAcesso }) {
