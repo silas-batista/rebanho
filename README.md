@@ -12,11 +12,22 @@ Projeto da disciplina **Projeto de Software** (CST em Análise e Desenvolvimento
 
 ```sh
 npm install
-npm start          # http://localhost:3000
-npm test           # testes automatizados
+npm test                                              # testes automatizados
+npm run criar-usuario -- voce@igreja.org secretaria   # primeiro acesso (pede a senha)
+SEGREDO_SESSAO=$(openssl rand -hex 32) npm start      # http://localhost:3000
 ```
 
-Variáveis opcionais: `PORT` (padrão 3000) e `BANCO` (caminho do arquivo SQLite, padrão `rebanho.db`).
+| Variável | Obrigatória | Descrição |
+|---|---|---|
+| `SEGREDO_SESSAO` | sim | Texto longo e aleatório que assina o cookie de sessão |
+| `BANCO` | não | Caminho do arquivo SQLite (padrão `rebanho.db`) |
+| `PORT` | não | Porta HTTP (padrão 3000) |
+| `NODE_ENV=production` | em produção | Exige HTTPS para o cookie de sessão |
+
+## Perfis
+
+- **Secretaria:** cadastra e gerencia pessoas, agenda e missões.
+- **Membro:** consulta agenda, missões e contatos autorizados.
 
 ## Stack
 
