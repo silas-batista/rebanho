@@ -1,6 +1,8 @@
 import { abrirBanco } from "./banco.js";
 import { criarApp } from "./app.js";
 import { criarBackup } from "./backup.js";
+import { listarUsuarios } from "./usuarios.js";
+import { randomBytes } from "node:crypto";
 
 const porta = process.env.PORT || 3000;
 const banco = abrirBanco(process.env.BANCO || "rebanho.db");
@@ -19,4 +21,10 @@ if (pastaBackup) {
   setInterval(fazerBackup, UM_DIA);
 }
 
-criarApp(banco, { segredoSessao }).listen(porta, () => console.log(`Rebanho em http://localhost:${porta}`));
+// Sem nenhum usuário, gera um código de uso único para criar a primeira secretaria pelo navegador.
+const codigoPrimeiroAcesso = listarUsuarios(banco).length === 0 ? randomBytes(16).toString("hex") : undefined;
+
+criarApp(banco, { segredoSessao, codigoPrimeiroAcesso }).listen(porta, () => {
+  console.log(`Rebanho em http://localhost:${porta}`);
+  if (codigoPrimeiroAcesso) console.log(`Primeiro acesso: abra /primeiro-acesso e use o código ${codigoPrimeiroAcesso}`);
+});
