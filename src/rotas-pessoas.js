@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { mesesDeFrequencia, MESES_PARA_MEMBRESIA } from "./membresia.js";
 import {
   criarPessoa,
   buscarPessoa,
@@ -26,6 +27,8 @@ export function rotasPessoas(banco) {
       totalAtivos: listarPessoas(banco, { situacao: "membro_ativo" }).length,
       aptas: listarAptasAMembresia(banco),
       rotulos: ROTULOS_SITUACAO,
+      mesesDeFrequencia,
+      mesesParaMembresia: MESES_PARA_MEMBRESIA,
     });
   });
 
