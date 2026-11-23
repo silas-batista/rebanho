@@ -48,3 +48,27 @@ test("POST /pessoas sem nome devolve 422 com a mensagem de erro", async (t) => {
   assert.equal(resposta.status, 422);
   assert.match(await resposta.text(), /Nome é obrigatório/);
 });
+
+test("secretaria abre a edição com os dados preenchidos e salva a alteração", async (t) => {
+  const banco = bancoComUsuarios();
+  criarPessoa(banco, { nome: "Carla Dias", situacao: "visitante", telefone: "62 90000-0003" });
+  const { url, headers } = await comoSecretaria(t, banco);
+
+  const formulario = await (await fetch(`${url}/pessoas/1/editar`, { headers })).text();
+  const resposta = await fetch(`${url}/pessoas/1`, {
+    method: "POST",
+    headers,
+    body: new URLSearchParams({ nome: "Carla Dias", situacao: "membro_ativo" }),
+    redirect: "manual",
+  });
+
+  assert.match(formulario, /value="62 90000-0003"/);
+  assert.equal(resposta.status, 303);
+  assert.match(await (await fetch(`${url}/pessoas?situacao=membro_ativo`, { headers })).text(), /Carla Dias/);
+});
+
+test("editar pessoa inexistente devolve 404", async (t) => {
+  const { url, headers } = await comoSecretaria(t, bancoComUsuarios());
+
+  assert.equal((await fetch(`${url}/pessoas/999/editar`, { headers })).status, 404);
+});

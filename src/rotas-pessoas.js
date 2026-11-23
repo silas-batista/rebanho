@@ -1,5 +1,13 @@
 import { Router } from "express";
-import { criarPessoa, listarPessoas, listarAptasAMembresia, PessoaInvalidaError, SITUACOES } from "./pessoas.js";
+import {
+  criarPessoa,
+  buscarPessoa,
+  atualizarPessoa,
+  listarPessoas,
+  listarAptasAMembresia,
+  PessoaInvalidaError,
+  SITUACOES,
+} from "./pessoas.js";
 
 export const ROTULOS_SITUACAO = {
   visitante: "Visitante",
@@ -21,17 +29,44 @@ export function rotasPessoas(banco) {
     });
   });
 
-  rotas.get("/nova", (_req, res) => {
-    res.render("pessoas/nova", { erro: null, dados: {}, rotulos: ROTULOS_SITUACAO });
-  });
+  const formulario = (res, { titulo, acao, dados, erro = null }) =>
+    res.render("pessoas/formulario", { titulo, acao, dados, erro, rotulos: ROTULOS_SITUACAO });
+  const doFormulario = (corpo) => ({ ...corpo, consentiuContato: corpo.consentiuContato === "sim" });
+
+  rotas.get("/nova", (_req, res) => formulario(res, { titulo: "Nova pessoa", acao: "/pessoas", dados: {} }));
 
   rotas.post("/", (req, res) => {
     try {
-      criarPessoa(banco, { ...req.body, consentiuContato: req.body.consentiuContato === "sim" });
+      criarPessoa(banco, doFormulario(req.body));
       res.redirect(303, "/pessoas");
     } catch (erro) {
       if (!(erro instanceof PessoaInvalidaError)) throw erro;
-      res.status(422).render("pessoas/nova", { erro: erro.message, dados: req.body, rotulos: ROTULOS_SITUACAO });
+      formulario(res.status(422), { titulo: "Nova pessoa", acao: "/pessoas", dados: doFormulario(req.body), erro: erro.message });
+    }
+  });
+
+  rotas.get("/:id/editar", (req, res) => {
+    const pessoa = buscarPessoa(banco, Number(req.params.id));
+    if (!pessoa) return res.sendStatus(404);
+    formulario(res, {
+      titulo: "Editar pessoa",
+      acao: `/pessoas/${pessoa.id}`,
+      dados: {
+        ...pessoa,
+        primeiraFrequenciaEm: pessoa.primeiraFrequenciaEm?.toISOString().slice(0, 10),
+        consentiuContato: Boolean(pessoa.consentiuContatoEm),
+      },
+    });
+  });
+
+  rotas.post("/:id", (req, res) => {
+    const id = Number(req.params.id);
+    try {
+      atualizarPessoa(banco, id, doFormulario(req.body));
+      res.redirect(303, "/pessoas");
+    } catch (erro) {
+      if (!(erro instanceof PessoaInvalidaError)) throw erro;
+      formulario(res.status(422), { titulo: "Editar pessoa", acao: `/pessoas/${id}`, dados: doFormulario(req.body), erro: erro.message });
     }
   });
 
