@@ -1,0 +1,33 @@
+<%- include("../_topo", { titulo: "Nova pessoa" }) %>
+<h1>Nova pessoa</h1>
+
+<% if (erro) { %><p role="alert" class="erro"><%= erro %></p><% } %>
+
+<form method="post" action="/pessoas">
+  <label for="nome">Nome *</label>
+  <input id="nome" name="nome" required value="<%= dados.nome || '' %>">
+
+  <label for="telefone">Telefone</label>
+  <input id="telefone" name="telefone" type="tel" value="<%= dados.telefone || '' %>">
+
+  <label for="email">E-mail</label>
+  <input id="email" name="email" type="email" value="<%= dados.email || '' %>">
+
+  <label for="situacao">Situação</label>
+  <select id="situacao" name="situacao">
+    <% for (const [valor, rotulo] of Object.entries(rotulos)) { %>
+      <option value="<%= valor %>" <%= dados.situacao === valor ? 'selected' : '' %>><%= rotulo %></option>
+    <% } %>
+  </select>
+
+  <label for="primeiraFrequenciaEm">Primeira frequência</label>
+  <input id="primeiraFrequenciaEm" name="primeiraFrequenciaEm" type="date" value="<%= dados.primeiraFrequenciaEm || '' %>">
+
+  <label class="opcao">
+    <input type="checkbox" name="consentiuContato" value="sim">
+    Autoriza compartilhar telefone e e-mail com membros da igreja
+  </label>
+
+  <div class="acoes"><a href="/pessoas">Cancelar</a> <button type="submit">Salvar</button></div>
+</form>
+<%- include("../_rodape") %>
