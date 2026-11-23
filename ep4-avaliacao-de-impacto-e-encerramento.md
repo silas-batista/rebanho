@@ -167,7 +167,7 @@ Indicadores definidos na EP I. A satisfação do parceiro foi medida pelo questi
 | Tempo para saber o nº de membros ativos | Não medido | < 1 min | Não medido com usuários | No sistema, é um clique no filtro "Membro ativo" |
 | % de membros com cadastro completo | 0 de cerca de 320 (em planilhas) | ≥ 90% em 2 meses | Não medido | Depende de a secretária passar a planilha para o sistema |
 | Membros que acessam a agenda pelo sistema | 0 | ≥ 50% em 2 meses | Não medido | Depende de divulgação e de endereço fixo |
-| Satisfação do parceiro (1 a 5) | — | ≥ 4 | **5** | Resposta do Rev. Fabrício ao questionário, 23/11/2026 |
+| Satisfação do parceiro (1 a 5) | — | ≥ 4 | **5** | Resposta do Rev. Fabrício ao questionário e nota 5 em 6 das 7 afirmações do Termo de Feedback, 23/11/2026 |
 
 **Análise:** o projeto atingiu os indicadores que dependem do próprio sistema: as regras de membresia e de consentimento funcionam e são verificadas automaticamente a cada mudança no código. A satisfação do parceiro superou a meta (nota 5).
 
@@ -206,11 +206,31 @@ O que funcionou melhor foi deixar as informações da igreja mudarem o sistema: 
 
 ## 13. Termo de feedback
 
-**Pendente de assinatura.** O Termo de Feedback foi preparado (identificação, declaração das funcionalidades, 7 afirmações com escala de 1 a 5, comentários e autorização de uso). Em 23/11/2026, o Rev. Fabrício autorizou citar a igreja e o nome dele ("Sim") e concordou em assinar o termo ("Pode sim"). Até a revisão deste documento, o termo assinado ainda não tinha sido recebido.
+**Preenchido pelo Rev. Fabrício em 23/11/2026, no documento online. Sem assinatura manuscrita ou digital.**
+
+> Evidência: `docs/evidencias/19-termo-de-feedback-preenchido.pdf`, exportado do documento online. Na exportação, os itens marcados da lista aparecem riscados, que é como o editor mostra itens concluídos.
+
+| Afirmação | Nota (1 a 5) |
+|---|---|
+| O aluno entendeu as necessidades da igreja | 5 |
+| O sistema resolve um problema real da secretaria | Sem resposta |
+| O sistema é fácil de usar | 5 |
+| Os dados dos membros ficam protegidos | 5 |
+| A agenda e as missões ajudam a comunidade a participar | 5 |
+| O aluno se comunicou com respeito e clareza | 5 |
+| A igreja recomendaria continuar usando o sistema | 5 |
+
+- **Funcionalidades marcadas como demonstradas ou usadas:** as cinco (cadastro de pessoas, contatos, agenda, missões e login).
+- **O que o sistema trouxe de mais útil:** "Praticidade e velocidade de comunicação".
+- **O que deveria melhorar:** "por enquanto, atende bem".
+- **A igreja pretende continuar usando?** Sim.
+- **Autorização de uso:** concedida. O pastor já tinha autorizado também pelo WhatsApp ("Sim").
+
+**Limites:** o nome do pastor foi digitado, e não assinado, e ficou no espaço acima da linha do aluno. Uma das sete afirmações ficou sem nota, e o endereço e o período não foram preenchidos. O termo foi aceito assim porque não havia como imprimir no período. Se ele for assinado depois, o arquivo substitui esta evidência.
 
 ## 14. Revisão da experiência prática
 
-**Balanço:** foi entregue um sistema completo, testado (106 testes), publicado com HTTPS, backup e verificação de saúde, com a agenda e as missões reais da igreja. O pastor avaliou o sistema com nota 5, e as respostas dele corrigiram duas regras. Ficaram pendentes as tarefas com a secretária, a medição de uso e o termo assinado.
+**Balanço:** foi entregue um sistema completo, testado (106 testes), publicado com HTTPS, backup e verificação de saúde, com a agenda e as missões reais da igreja. O pastor avaliou o sistema com nota 5, e as respostas dele corrigiram duas regras. O pastor também preencheu o Termo de Feedback, com nota 5 em 6 das 7 afirmações. Ficaram pendentes as tarefas com a secretária, a medição de uso e a assinatura do termo.
 
 **Continuidade depois da disciplina** (próximos passos recomendados à igreja):
 
