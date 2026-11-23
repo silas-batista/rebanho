@@ -1,0 +1,28 @@
+<%- include("../_topo", { titulo: "Missões" }) %>
+<h1>Missões que apoiamos</h1>
+
+<% if (erro) { %><p role="alert" class="erro"><%= erro %></p><% } %>
+
+<% if (usuario?.perfil === "secretaria") { %>
+  <p class="resumo"><span></span><a href="/missoes/novo" class="botao">+ Novo projeto</a></p>
+<% } %>
+
+<% if (!projetos.length) { %><p>Nenhum projeto missionário cadastrado.</p><% } %>
+
+<% for (const projeto of projetos) { %>
+  <article class="projeto" aria-labelledby="projeto-<%= projeto.id %>">
+    <h2 id="projeto-<%= projeto.id %>"><%= projeto.nome %><% if (projeto.local) { %> <span class="detalhe">· <%= projeto.local %></span><% } %></h2>
+    <% if (projeto.descricao) { %><p><%= projeto.descricao %></p><% } %>
+    <% if (projeto.missionarios.length) { %>
+      <p><strong>Missionários:</strong> <%= projeto.missionarios.map((m) => m.nome).join(", ") %></p>
+    <% } %>
+    <% if (usuario?.perfil === "secretaria") { %>
+      <form method="post" action="/missoes/<%= projeto.id %>/missionarios" class="em-linha">
+        <label for="missionario-<%= projeto.id %>">Adicionar missionário</label>
+        <input id="missionario-<%= projeto.id %>" name="nome" required>
+        <button type="submit">Adicionar</button>
+      </form>
+    <% } %>
+  </article>
+<% } %>
+<%- include("../_rodape") %>

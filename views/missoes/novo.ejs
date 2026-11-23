@@ -1,0 +1,18 @@
+<%- include("../_topo", { titulo: "Novo projeto missionário" }) %>
+<h1>Novo projeto missionário</h1>
+
+<% if (erro) { %><p role="alert" class="erro"><%= erro %></p><% } %>
+
+<form method="post" action="/missoes">
+  <label for="nome">Nome do projeto *</label>
+  <input id="nome" name="nome" required value="<%= dados.nome || '' %>">
+
+  <label for="local">Local (país, cidade ou região)</label>
+  <input id="local" name="local" value="<%= dados.local || '' %>">
+
+  <label for="descricao">Descrição</label>
+  <input id="descricao" name="descricao" value="<%= dados.descricao || '' %>">
+
+  <div class="acoes"><a href="/missoes">Cancelar</a> <button type="submit">Salvar</button></div>
+</form>
+<%- include("../_rodape") %>
