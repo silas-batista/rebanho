@@ -35,6 +35,14 @@ export function listarAptasAMembresia(banco, hoje = new Date()) {
   return listarPessoas(banco, { situacao: "visitante" }).filter((pessoa) => aptaAMembresia(pessoa, hoje));
 }
 
+// RN03 e RN04: só membros ativos que autorizaram compartilhar o contato (LGPD).
+export function listarContatos(banco) {
+  return banco
+    .prepare("SELECT * FROM pessoas WHERE situacao = 'membro_ativo' AND consentiu_contato_em IS NOT NULL ORDER BY nome")
+    .all()
+    .map(paraPessoa);
+}
+
 function paraPessoa(linha) {
   return {
     id: linha.id,

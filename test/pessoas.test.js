@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { abrirBanco } from "../src/banco.js";
-import { criarPessoa, listarPessoas, listarAptasAMembresia } from "../src/pessoas.js";
+import { criarPessoa, listarPessoas, listarAptasAMembresia, listarContatos } from "../src/pessoas.js";
 
 const hoje = new Date("2026-11-23");
 
@@ -31,4 +31,14 @@ test("lista apenas visitantes aptos à membresia", () => {
 test("rejeita pessoa sem nome", () => {
   const banco = abrirBanco();
   assert.throws(() => criarPessoa(banco, { nome: "  ", situacao: "visitante" }), /nome/i);
+});
+
+test("contatos: só membros ativos que consentiram", () => {
+  const banco = abrirBanco();
+  criarPessoa(banco, { nome: "Ana Souza", situacao: "membro_ativo", telefone: "62 90000-0001", consentiuContato: true });
+  criarPessoa(banco, { nome: "Bruno Lima", situacao: "membro_ativo", telefone: "62 90000-0002" });
+  criarPessoa(banco, { nome: "Carla Dias", situacao: "visitante", consentiuContato: true });
+  criarPessoa(banco, { nome: "Daniel Rocha", situacao: "membro_inativo", consentiuContato: true });
+
+  assert.deepEqual(listarContatos(banco).map((p) => p.nome), ["Ana Souza"]);
 });

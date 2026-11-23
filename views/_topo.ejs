@@ -12,6 +12,7 @@
     <nav aria-label="Principal">
       <a href="/agenda">Agenda</a>
       <a href="/missoes">Missões</a>
+      <% if (usuario) { %><a href="/contatos">Contatos</a><% } %>
       <% if (usuario?.perfil === "secretaria") { %><a href="/pessoas">Pessoas</a><% } %>
     </nav>
     <% if (usuario) { %>
