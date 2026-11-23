@@ -6,12 +6,13 @@ import { rotasAgenda } from "./rotas-agenda.js";
 import { rotasMissoes } from "./rotas-missoes.js";
 import { listarContatos } from "./pessoas.js";
 import { rotasUsuarios } from "./rotas-usuarios.js";
+import { rotasPrimeiroAcesso } from "./rotas-primeiro-acesso.js";
 import { rotasSessao, carregarUsuario, exigirPerfil } from "./rotas-sessao.js";
 
 const raiz = (caminho) => fileURLToPath(new URL(`../${caminho}`, import.meta.url));
 const DUAS_HORAS = 2 * 60 * 60 * 1000;
 
-export function criarApp(banco, { segredoSessao }) {
+export function criarApp(banco, { segredoSessao, codigoPrimeiroAcesso }) {
   if (!segredoSessao) throw new Error("segredoSessao é obrigatório");
 
   const app = express();
@@ -52,6 +53,7 @@ export function criarApp(banco, { segredoSessao }) {
 
   app.get("/", (_req, res) => res.redirect("/agenda"));
   app.use(rotasSessao(banco));
+  app.use(rotasPrimeiroAcesso(banco, codigoPrimeiroAcesso));
   app.use("/agenda", rotasAgenda(banco));
   app.use("/missoes", rotasMissoes(banco));
   app.use(rotasUsuarios(banco));
