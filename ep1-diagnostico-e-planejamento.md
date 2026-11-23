@@ -183,6 +183,6 @@ A hipótese inicial era um cadastro simples de membros e contatos. As informaç�
 
 ## 11. Autoavaliação e reflexão
 
-> Rascunho baseado no que aconteceu no projeto. Leia e ajuste com as suas palavras.
+Escolhi a Igreja Presbiteriana de Vila Formosa porque sou membro dela e quis ajudar. No começo, eu achava que o sistema seria só uma lista de membros e contatos. Não imaginava que a igreja tivesse regras que mudariam o projeto, como o processo de membresia e o cuidado com o endereço dos Pequenos Grupos.
 
-Aprendi que as regras mais importantes do sistema não estavam na minha ideia inicial: vieram de perguntar como a igreja funciona. A regra dos 6 meses e a privacidade dos PGs mudaram o modelo de dados. Faria diferente: marcaria a entrevista formal logo no início, com data e registro, e mediria o tempo que a secretaria gasta hoje, para ter uma linha de base.
+A parte mais difícil desta etapa foi escrever a documentação: personas, histórias de usuário e indicadores. Eu prefiro ver o sistema funcionando, mas entendi que, sem esse planejamento, eu teria construído a coisa errada. Se fosse começar de novo, envolveria a secretária desde o início, porque é ela quem vai usar o sistema todos os dias e quem conhece as planilhas de hoje.

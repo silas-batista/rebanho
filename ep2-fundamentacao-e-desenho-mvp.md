@@ -326,6 +326,6 @@ O desenho manteve o que a EP I propôs e acrescentou a regra RN07, porque os Peq
 
 ## 19. Autoavaliação e reflexão
 
-> Rascunho baseado no que aconteceu no projeto. Leia e ajuste com as suas palavras.
+Escrever requisitos, regras de negócio e o modelo de dados foi a parte que menos gostei, porque prefiro ver o sistema funcionando. Mesmo assim, foi nesta etapa que entendi o tamanho real do problema: o que eu achava que seria só uma lista de membros virou um sistema com regras da igreja e com dados sensíveis.
 
-O mais difícil foi resistir a uma arquitetura maior do que o problema. Um monólito com SQLite atende uma igreja local com custo quase zero. Na LGPD, aprendi que a base legal depende do tipo de dado: num cadastro de igreja, tudo é sensível. Faria diferente: mostraria os wireframes à secretaria antes de codificar.
+O que mais aprendi aqui foi a LGPD. Eu não sabia que estar no cadastro de uma igreja revela a religião da pessoa, que é dado sensível, e que por isso o consentimento precisa vir antes de tudo. Se fosse começar de novo, mostraria os protótipos de tela à secretária antes de programar, porque é ela quem vai usar o sistema.
