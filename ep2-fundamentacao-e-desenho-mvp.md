@@ -134,6 +134,7 @@ erDiagram
     datetime inicio_em "eventos únicos"
     int dia_semana "cultos, 0 = domingo"
     time horario "cultos"
+    enum visibilidade "publico | membros"
   }
   PROJETO_MISSIONARIO {
     int id
@@ -161,6 +162,7 @@ erDiagram
 | RN04 | Sem consentimento registrado, telefone e e-mail não aparecem para outros membros. |
 | RN05 | Agenda e missões são públicas. Pessoas e contatos exigem login. |
 | RN06 | Só o perfil Secretaria cria, edita ou inativa registros. |
+| RN07 | Eventos marcados "só membros" (como os PGs nas casas) não aparecem na agenda pública. Por padrão, a listagem esconde eventos restritos. |
 
 > A confirmar com o Rev. Fabrício: se a frequência é interrompida, a contagem dos 6 meses recomeça? No MVP, a secretaria corrige a data manualmente.
 
@@ -195,6 +197,7 @@ erDiagram
 - **Base legal (LGPD):** consentimento do titular (art. 11, I) para exibir contatos. O cadastro interno se apoia no legítimo interesse da organização religiosa sem fins lucrativos, com a finalidade informada ao membro [VERIFICAR com orientação do tutor].
 - **Minimização:** só os dados necessários (nome, telefone, e-mail, datas). Sem CPF, endereço ou dados financeiros no MVP.
 - **Controle de acesso:** dois perfis (RN06). Pessoas e contatos exigem login.
+- **Endereços de PGs:** os pequenos grupos se reúnem em casas de membros. Esses eventos são "só membros" (RN07), e a regra é segura por padrão: a consulta esconde eventos restritos a menos que o código peça o contrário.
 - **Autenticação:** senhas com hash bcrypt, bloqueio após tentativas falhas e sessão que expira por inatividade.
 - **Transporte:** HTTPS obrigatório.
 - **Direitos do titular:** a secretaria corrige ou exclui dados a pedido, e o membro pode revogar o consentimento.
@@ -220,6 +223,7 @@ erDiagram
 - **ODS 16, metas 16.6 e 16.10:** instituição comunitária mais organizada e transparente, com proteção de dados pessoais.
 - **ODS 17, meta 17.17:** dá visibilidade às parcerias missionárias da igreja.
 - **ODS 10 (redução das desigualdades):** a acessibilidade inclui idosos e pessoas com deficiência no acesso à informação da igreja.
+- **ODS 3 e ODS 10:** a agenda pública divulga o projeto **Tatame na Rocha** (jiu-jítsu gratuito para crianças do bairro), ampliando o alcance de uma ação social da igreja.
 
 ## 14. Protótipo das telas principais
 
@@ -259,10 +263,11 @@ erDiagram
 ┌───────────────────────────────────┐
 │ Agenda: próximos 30 dias          │
 ├───────────────────────────────────┤
-│ DOM 29/11 · 09h  Escola Dominical │
-│ DOM 29/11 · 19h  Culto            │
-│ QUA 02/12 · 20h  Estudo bíblico   │
-│ SÁB 05/12 · 18h  Cantata de Natal │
+│ SÁB 28/11 · [h]  Tatame na Rocha  │
+│ DOM 29/11 · 09h  Culto Público    │
+│ DOM 29/11 · 10h  Escola Dominical │
+│ DOM 29/11 · 19h  Culto Público    │
+│ (PGs só aparecem para membros)    │
 └───────────────────────────────────┘
 ```
 
@@ -271,13 +276,15 @@ erDiagram
 ┌────────────────────────────────┐
 │ Missões que apoiamos           │
 ├────────────────────────────────┤
-│ ▸ [Projeto] · [Local]          │
-│   Missionários: [Nome], [Nome] │
-│   [descrição curta]            │
+│ ▸ Plantação de igreja · Uruguai│
+│   Missionários: Rev. Maurício  │
+│   Rolim e Sandra Rolim         │
+│ ▸ Asas de Socorro              │
+│   Missionário: Wilker Mariano  │
 └────────────────────────────────┘
 ```
 
-> Horários e eventos são ilustrativos. [PREENCHER com a agenda e as missões reais da igreja.] Se possível, refaça as telas no Figma e anexe as imagens.
+> Horários dos cultos e missões informados pela igreja. [PREENCHER: dia e horário do Tatame na Rocha e as demais missões apoiadas.] Se possível, refaça as telas no Figma e anexe as imagens.
 
 ## 15. Registro e descrição das interfaces
 
