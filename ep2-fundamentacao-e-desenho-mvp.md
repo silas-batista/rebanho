@@ -263,7 +263,7 @@ erDiagram
 ┌───────────────────────────────────┐
 │ Agenda: próximos 30 dias          │
 ├───────────────────────────────────┤
-│ SÁB 28/11 · [h]  Tatame na Rocha  │
+│ QUA 25/11 · 19h  Tatame na Rocha  │
 │ DOM 29/11 · 09h  Culto Público    │
 │ DOM 29/11 · 10h  Escola Dominical │
 │ DOM 29/11 · 19h  Culto Público    │
@@ -284,7 +284,7 @@ erDiagram
 └────────────────────────────────┘
 ```
 
-> Horários dos cultos e missões informados pela igreja. [PREENCHER: dia e horário do Tatame na Rocha e as demais missões apoiadas.] Se possível, refaça as telas no Figma e anexe as imagens.
+> Horários dos cultos e missões informados pela igreja. [PREENCHER: demais missões apoiadas.] Se possível, refaça as telas no Figma e anexe as imagens.
 
 ## 15. Registro e descrição das interfaces
 
