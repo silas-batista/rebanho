@@ -1,0 +1,32 @@
+<%- include("../_topo", { titulo: "Pessoas" }) %>
+<h1>Pessoas</h1>
+
+<nav aria-label="Filtrar por situação" class="filtros">
+  <a href="/pessoas" <%= !situacao ? 'aria-current=page' : '' %>>Todos</a>
+  <% for (const [valor, rotulo] of Object.entries(rotulos)) { %>
+    <a href="/pessoas?situacao=<%= valor %>" <%= situacao === valor ? 'aria-current=page' : '' %>><%= rotulo %></a>
+  <% } %>
+</nav>
+
+<p class="resumo">Membros ativos: <%= totalAtivos %> <a href="/pessoas/nova" class="botao">+ Nova pessoa</a></p>
+
+<% if (aptas.length) { %>
+  <section class="alerta" aria-labelledby="aptas">
+    <h2 id="aptas"><%= aptas.length %> visitante(s) apto(s) à membresia</h2>
+    <ul><% for (const pessoa of aptas) { %><li><%= pessoa.nome %></li><% } %></ul>
+  </section>
+<% } %>
+
+<table>
+  <thead><tr><th scope="col">Nome</th><th scope="col">Situação</th><th scope="col">Contato</th></tr></thead>
+  <tbody>
+    <% for (const pessoa of pessoas) { %>
+      <tr>
+        <td><%= pessoa.nome %></td>
+        <td><%= rotulos[pessoa.situacao] %></td>
+        <td><%= pessoa.consentiuContatoEm ? "Compartilha" : "Não compartilha" %></td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>
+<%- include("../_rodape") %>
