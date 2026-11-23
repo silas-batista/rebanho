@@ -1,9 +1,9 @@
 # Experiência Prática III: Execução e Evidências do Projeto de Software
 
-> Rascunho para colar no DreamShaper na reabertura (04 a 07/12/2026).
+> Versão final para o DreamShaper (reabertura de 04 a 07/12/2026).
 > Seções na mesma ordem do "Resultado do Projeto" da plataforma.
 > Repositório: https://github.com/silas-batista/rebanho
-> **[PREENCHER]** marca o que depende de você ou da igreja.
+> Onde uma atividade planejada não foi realizada no período, o documento diz isso explicitamente.
 
 ---
 
@@ -63,7 +63,7 @@ Os commits seguem o padrão **Conventional Commits** (`feat:`, `docs:`, `ci:`): 
 | `1fb466d` | docs | Simplificação da entidade Missionário no modelo de dados |
 | `1e44854` | feat | Página de contatos só com membros ativos que consentiram |
 
-> [PREENCHER: print da página de commits no GitHub e os commits feitos depois deste rascunho]
+> Evidência: `docs/evidencias/13-historico-commits.jpg`. Ao final, o `main` tem 34 commits de trabalho e 12 commits de merge, um por pull request.
 
 ## 4. Revisão técnica e pull requests
 
@@ -76,13 +76,23 @@ Cada funcionalidade foi entregue em um pull request próprio, com descrição do
 | [#3](https://github.com/silas-batista/rebanho/pull/3) | `feat/agenda` | Agenda de cultos e eventos, PGs só para membros | US05, US06, US07, US11 |
 | [#4](https://github.com/silas-batista/rebanho/pull/4) | `feat/missoes` | Missões e missionários | US08, US09 |
 | [#5](https://github.com/silas-batista/rebanho/pull/5) | `feat/contatos` | Contatos com consentimento | US04 |
+| [#6](https://github.com/silas-batista/rebanho/pull/6) | `docs/ep3` | Rascunho da EP III, capturas e correção da contagem de testes | — |
+| [#7](https://github.com/silas-batista/rebanho/pull/7) | `feat/bloqueio-login` | Bloqueio após 5 tentativas de login em 15 min | RNF03 |
+| [#8](https://github.com/silas-batista/rebanho/pull/8) | `feat/editar-pessoas` | Editar, receber como membro, revogar consentimento | RF01, RF04, RN02 |
+| [#9](https://github.com/silas-batista/rebanho/pull/9) | `feat/usuarios` | Gestão de usuários e troca de senha | RF09 |
+| [#10](https://github.com/silas-batista/rebanho/pull/10) | `feat/publicacao` | Publicação, `/saude`, backup, cabeçalhos de segurança | RNF03, RNF07 |
+| [#11](https://github.com/silas-batista/rebanho/pull/11) | `docs/ep4` | Rascunho da EP IV | — |
+| [#12](https://github.com/silas-batista/rebanho/pull/12) | `feat/primeiro-acesso` | Primeiro acesso pelo navegador com código de uso único | RF09 |
 
 **Pontos levantados na revisão técnica:**
 - **PR #1:** as páginas ficaram sem proteção até o login existir. O problema foi registrado no PR, com o aviso de não ir para produção antes do #2.
 - **PR #3:** ao receber a informação de que os PGs se reúnem nas casas dos membros, surgiu o risco de **expor endereços na agenda pública**. Isso virou a regra RN07 e um commit de correção no mesmo PR, com teste que procura o endereço no HTML público.
 - **PR #4:** o campo "contato do missionário" saiu do modelo (minimização de dados, LGPD).
+- **PR #6:** ao conferir os números para este documento, descobriu-se que o `npm test` contava um arquivo auxiliar como teste (51 em vez de 50). O script foi corrigido.
+- **PR #7:** trade-off registrado: bloquear por e-mail impede força bruta, mas permite que alguém bloqueie a conta da secretaria por 15 minutos. Aceito para o contexto.
+- **PR #12:** nasceu de um problema real da publicação (ver seção 11).
 
-> [PREENCHER: prints dos PRs com seus comentários de revisão e aprovação. Revise cada PR no GitHub, deixe pelo menos um comentário técnico e faça o merge na ordem #1 → #5.]
+**Como a revisão foi feita:** cada PR registra na descrição o que muda, as decisões e os riscos, e só foi integrado com o CI verde. Não houve revisor além do próprio aluno, e os 12 PRs foram integrados em sequência ao final, com merge commit para preservar o histórico. Evidência: `docs/evidencias/11-pull-requests.jpg`.
 
 ## 5. Execução de testes automatizados
 
@@ -107,7 +117,7 @@ Cada funcionalidade foi entregue em um pull request próprio, com descrição do
 - Mostrar eventos restritos na agenda pública faz o teste do PG falhar.
 - Remover o filtro de consentimento faz os 2 testes de contatos falharem.
 
-> [PREENCHER: print do terminal com `npm test`]
+> Evidência: `docs/evidencias/10-saida-npm-test.txt`. Na versão final são **85 testes, todos passando** (os 35 novos cobrem bloqueio de login, edição de pessoas, usuários, saúde, backup e primeiro acesso).
 
 ## 6. Pipeline de integração contínua
 
@@ -132,10 +142,10 @@ jobs:
 
 - Roda a cada **push em `main`** e em **todo pull request**.
 - Instala as dependências com `--ignore-scripts`, para não executar scripts de terceiros na instalação.
-- **Todos os 5 PRs passaram no CI** (cerca de 10 s cada).
+- **Todos os 12 PRs passaram no CI** (10 a 16 s cada), e o `main` também.
 - Um PR com teste falhando fica marcado em vermelho no GitHub, o que impede o merge de código quebrado.
 
-> [PREENCHER: print da aba Actions com os runs verdes e de um PR mostrando o check "test" aprovado]
+> Evidência: `docs/evidencias/12-github-actions.jpg`.
 
 ## 7. Evidências de funcionamento do software (1/2): visão pública e do membro
 
@@ -166,80 +176,60 @@ As imagens estão em `docs/evidencias/`. Os dados de pessoas são **fictícios**
 | RN01 a RN07 | ✅ Implementadas e testadas |
 | RNF01 Responsivo | ✅ Layout de coluna única, a partir de 360 px |
 | RNF02 LGPD | ✅ Consentimento registrado com data e hora, dados mínimos |
-| RNF03 Segurança | ✅ scrypt, cookie httpOnly/sameSite/secure. ⏳ Bloqueio após tentativas falhas: pendente |
-| RNF04 Usabilidade | [PREENCHER após a validação] |
+| RNF03 Segurança | ✅ scrypt, cookie httpOnly/sameSite/secure, bloqueio após 5 tentativas falhas, cabeçalhos HTTP de segurança |
+| RNF04 Usabilidade | ⚠️ Não medido com usuários (as rodadas de validação não foram realizadas) |
 
 ## 9. Primeira rodada de validação
 
-**Objetivo:** verificar se a secretaria e o pastor conseguem usar o sistema nas tarefas principais.
+**Situação: não realizada no período.** A sessão com a igreja não aconteceu até a data de entrega. O sistema foi publicado (EP IV, seção 5) e o roteiro completo está pronto para uso:
 
-**Participantes:** [PREENCHER: Rev. Fabrício Ribeiro, secretário(a), 1 ou 2 membros]
-**Data e local:** [PREENCHER]
-**Formato:** uso do sistema no celular ou computador, com o aluno observando sem ajudar.
+- **Roteiro da 1ª rodada:** objetivo, preparação, condução, 7 tarefas (T1 a T7) com tabela de observação, perguntas finais e escala de satisfação.
+- **Tarefas planejadas:** cadastrar visitante (T1), saber o nº de membros ativos (T2), achar aptos à membresia (T3), cadastrar PG "só membros" (T4), adicionar missionário (T5), ver a agenda sem login no celular (T6), achar o telefone de outro membro (T7).
 
-**Tarefas:**
-
-| # | Tarefa | Perfil | Concluiu sem ajuda? | Tempo | Observações |
-|---|---|---|---|---|---|
-| T1 | Cadastrar um visitante novo com a data da primeira frequência | Secretaria | [ ] | | |
-| T2 | Descobrir quantos membros ativos a igreja tem | Secretaria | [ ] | | |
-| T3 | Encontrar quem já está apto à membresia | Secretaria | [ ] | | |
-| T4 | Cadastrar o PG de uma casa como "só membros" | Secretaria | [ ] | | |
-| T5 | Adicionar um missionário a um projeto | Secretaria | [ ] | | |
-| T6 | Ver a agenda da semana no celular sem fazer login | Visitante | [ ] | | |
-| T7 | Encontrar o telefone de outro membro | Membro | [ ] | | |
-
-**Perguntas finais:**
-1. O que foi mais difícil?
-2. O que falta para vocês usarem no dia a dia?
-3. De 1 a 5, quanto o sistema ajudaria a secretaria?
-
-**Resultados:** [PREENCHER]
+**O que foi verificado no sistema publicado**, pelo endereço público com HTTPS: agenda e missões reais acessíveis sem login, `/pessoas` redirecionando para o login, cabeçalhos de segurança presentes, `/saude` respondendo e o primeiro acesso da secretaria pelo navegador. Isso confirma que o sistema funciona publicado, não que é fácil de usar para a secretaria.
 
 ## 10. Segunda rodada de validação
 
-**Objetivo:** confirmar que os ajustes da primeira rodada resolveram os problemas encontrados.
-
-**Participantes:** [PREENCHER: de preferência os mesmos da 1ª rodada]
-**Data:** [PREENCHER]
-
-| Problema da 1ª rodada | Ajuste feito (PR) | Resolvido? |
-|---|---|---|
-| [PREENCHER] | [PREENCHER] | [ ] |
+**Situação: não realizada**, porque depende da primeira.
 
 **Critérios de aceitação da EP II:**
 
 | Critério | Meta | Resultado |
 |---|---|---|
-| Tarefas concluídas sem ajuda | ≥ 4 de 5 | [PREENCHER] |
-| Tempo para saber o nº de membros ativos | < 1 minuto | [PREENCHER] |
-| Visitantes aptos identificados automaticamente | 100% | ✅ coberto por teste automatizado |
-| Contatos exibidos sem consentimento | 0 | ✅ coberto por teste automatizado |
-| Satisfação do parceiro (1 a 5) | ≥ 4 | [PREENCHER] |
+| Tarefas concluídas sem ajuda | ≥ 5 de 7 | Não medido |
+| Tempo para saber o nº de membros ativos | < 1 minuto | Não medido com usuários. No sistema, é um clique no filtro "Membro ativo" |
+| Visitantes aptos identificados automaticamente | 100% | ✅ Garantido pela regra RN01 e por teste automatizado |
+| Contatos exibidos sem consentimento | 0 | ✅ Garantido pelas regras RN03/RN04 e por teste automatizado |
+| Satisfação do parceiro (1 a 5) | ≥ 4 | Não medido |
 
 ## 11. Aprimoramento orientado por feedback
 
-**Ajustes já feitos a partir de informações da igreja durante o desenvolvimento:**
+**Ajustes feitos a partir de informações da igreja:**
 
 | Feedback da igreja | Impacto | Mudança |
 |---|---|---|
 | "Membresia exige 6 meses de frequência" | Nova regra de negócio | RN01, campo de primeira frequência e alerta de aptos (PR #1) |
 | "Os PGs acontecem nas casas dos membros" | Risco de expor endereços | Visibilidade "só membros" e regra segura por padrão (PR #3) |
-| Horários reais: domingo 09h, 10h e 19h, Tatame quarta 19h | Agenda fiel à rotina | Dados de demonstração e documentação atualizados |
+| Horários reais: domingo 09h, 10h e 19h, Tatame quarta 19h | Agenda fiel à rotina | Agenda real cadastrada no sistema publicado |
 | Missões reais (Uruguai, Asas de Socorro) | Página de missões com conteúdo real | Modelo de missionário simplificado (PR #4) |
 
-**Ajustes das rodadas de validação:** [PREENCHER com o que surgir. Cada ajuste vira um PR com teste.]
+**Ajustes a partir do uso real na publicação:**
 
-**Pendências conhecidas (próximas melhorias):**
-- Bloqueio após tentativas de login falhas
-- Tela para a secretaria criar usuários (hoje é por script)
-- Editar e inativar pessoas, eventos e projetos
-- Módulo de Pequenos Grupos (a definir com os líderes)
+| Problema observado | Causa | Mudança |
+|---|---|---|
+| A criação do primeiro usuário pelo terminal falhou três vezes, e o banco publicado continuou sem nenhum usuário | Comando de terminal frágil para quem não é desenvolvedor, sem mostrar em qual banco gravava | O script passou a mostrar o caminho do banco e erros curtos. Depois, criou-se o **primeiro acesso pelo navegador** com código de uso único, que se desativa após o primeiro cadastro (PR #12). Funcionou na primeira tentativa |
+| A igreja dependeria do desenvolvedor para cada novo acesso | Usuários só eram criados por script | Gestão de usuários pela tela e troca de senha (PR #9) |
+
+**Pendências resolvidas nesta etapa:** bloqueio de login (PR #7), editar e inativar pessoas (PR #8), criar usuários pela tela (PR #9).
+
+**Pendências que continuam:** editar e excluir eventos e projetos missionários (hoje só é possível cadastrar), módulo de Pequenos Grupos (a definir com os líderes) e as duas rodadas de validação.
 
 ## 12. Revisão da experiência prática
 
-[PREENCHER. Sugestão de pontos: o plano da EP II se manteve (monólito, SQLite, 5 tabelas). A stack mudou de Rails para Node/Express por escolha do aluno, sem impacto no modelo. Informações novas da igreja (PGs nas casas) geraram requisito de segurança que não estava previsto. Trabalhar com PRs pequenos e CI deu segurança para mudar o código.]
+O plano da EP II se manteve: monólito, SQLite e 5 tabelas. A stack mudou de Rails para Node/Express por escolha do aluno, sem impacto no modelo de dados. As informações da igreja geraram um requisito de segurança não previsto (endereços dos PGs). Trabalhar com PRs pequenos e CI permitiu mudar o código com segurança: 12 PRs, todos com o CI verde. O ponto fraco desta etapa é a ausência das rodadas de validação com a igreja, o que deixa a usabilidade sem medição.
 
 ## 13. Autoavaliação e reflexão
 
-[PREENCHER: o que aprendeu com TDD e com "quebrar o código de propósito" para validar os testes, como foi usar Git com branches e PRs, a importância de ouvir o parceiro (o risco dos endereços dos PGs só apareceu na conversa), e o que faria diferente.]
+> Rascunho baseado no que aconteceu no projeto. Leia e ajuste com as suas palavras.
+
+O TDD mudou a forma como vejo testes: escrever o teste antes e depois quebrar o código de propósito mostrou quais testes realmente protegem o sistema. Branches e PRs deixaram cada mudança pequena e explicável. O episódio do primeiro usuário mostrou que algo simples para um desenvolvedor (rodar um comando) pode ser a maior barreira para o usuário real. Faria diferente: faria a primeira rodada de validação assim que o sistema foi publicado, em vez de deixar para o fim.

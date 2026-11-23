@@ -13,7 +13,7 @@ Projeto da disciplina **Projeto de Software** (CST em Análise e Desenvolvimento
 ```sh
 npm install
 npm test                                              # testes automatizados
-npm run criar-usuario -- voce@igreja.org secretaria   # só o primeiro acesso; os demais pela tela "Usuários"
+npm run criar-usuario -- voce@igreja.org secretaria   # opcional: ou use /primeiro-acesso (abaixo)
 SEGREDO_SESSAO=$(openssl rand -hex 32) npm start      # http://localhost:3000
 ```
 
@@ -40,6 +40,7 @@ npm run publicar                # mostra o endereço https://....trycloudflare.c
 - `GET /saude` responde `{"status":"ok"}` e serve para monitoramento (ex.: UptimeRobot).
 - Com `PASTA_BACKUP` definido, o banco é copiado ao iniciar e a cada 24 h. Ficam os 14 backups mais recentes.
 - Em produção, o login só funciona por HTTPS (cookie `secure`).
+- **Primeiro acesso:** com o banco sem usuários, o servidor mostra no terminal um código de uso único. Abra `/primeiro-acesso`, informe o código e crie a secretaria. A página some depois do primeiro cadastro.
 
 ## Perfis
 

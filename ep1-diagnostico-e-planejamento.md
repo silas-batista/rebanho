@@ -1,7 +1,7 @@
 # Experiência Prática I: Diagnóstico e Planejamento
 
 > Rascunho para colar no DreamShaper na reabertura (04 a 07/12/2026).
-> Tudo marcado com **[PREENCHER]** depende de dados reais do parceiro. Não invente: a tutoria avalia evidência de contato real.
+> Versão final. Onde uma atividade planejada não foi realizada no período, o documento diz isso explicitamente.
 
 ---
 
@@ -13,7 +13,7 @@
 
 ## 2. Parceiro e problema local
 
-**Parceiro:** Igreja Presbiteriana de Vila Formosa (Anápolis, GO) [PREENCHER: nº aproximado de membros]
+**Parceiro:** Igreja Presbiteriana de Vila Formosa (Anápolis, GO)
 **Contato responsável:** Rev. Fabrício Ribeiro, pastor da igreja
 
 **Regra de negócio levantada:** para se tornar membro, a pessoa precisa frequentar a igreja por **6 meses**.
@@ -38,12 +38,14 @@ A igreja controla membros, contatos, agenda e missões de forma descentralizada:
 
 ## 3. Métodos de investigação e coleta de evidências
 
-| Método | Com quem | Evidência gerada |
+| Método | Com quem | Situação |
 |---|---|---|
-| Entrevista semiestruturada | Pastor e secretário(a) | Anotações/áudio autorizado [PREENCHER data] |
-| Questionário curto (Google Forms) | Membros e líderes de ministério | Nº de respostas e gráficos [PREENCHER] |
-| Observação documental | Planilhas, cadernos, grupos de WhatsApp atuais | Prints anonimizados, contagem de registros duplicados/desatualizados |
-| Observação de campo | Um culto e um evento | Como os avisos são feitos hoje |
+| Levantamento de informações junto à igreja | Liderança da igreja | **Realizado.** Trouxe a regra dos 6 meses para membresia, a rotina de cultos, os Pequenos Grupos nas casas, o projeto Tatame na Rocha e as missões apoiadas, todos usados no sistema |
+| Entrevista semiestruturada formal | Pastor e secretário(a) | **Não realizada no período.** Roteiro pronto (abaixo) |
+| Questionário (Google Forms) | Membros e líderes de ministério | **Não realizado no período** |
+| Observação documental e de campo | Planilhas, grupos de WhatsApp, um culto | **Não realizada no período** |
+
+> Limitação: o diagnóstico se apoia nas informações levantadas junto à igreja, sem entrevista formal registrada nem questionário. Por isso, as linhas de base dos indicadores (seção 9) não foram medidas.
 
 Perguntas-chave da entrevista:
 1. Como vocês sabem hoje quantos membros ativos têm?
@@ -69,7 +71,7 @@ Perguntas-chave da entrevista:
 - Dor: "Fico sabendo dos eventos em cima da hora."
 - Objetivo: ver a agenda no celular e saber como apoiar as missões.
 
-> [PREENCHER: ajustar as personas com base nas entrevistas reais]
+> As personas são hipóteses construídas a partir das informações levantadas. Não foram validadas em entrevista.
 
 ## 5. Conexão com ODS
 
@@ -126,29 +128,31 @@ Alinhado às 4 Experiências Práticas:
 
 | Fase | EP | Entregas |
 |---|---|---|
-| 1 | EP I: Diagnóstico e planejamento | Entrevistas, questionário, escopo, histórias, este documento |
+| 1 | EP I: Diagnóstico e planejamento | Levantamento junto à igreja, escopo, histórias, este documento |
 | 2 | EP II: Fundamentação e desenho do MVP | Requisitos, modelo de dados, protótipo de telas, arquitetura |
-| 3 | EP III | Implementação: Membros, Contatos, Agenda |
-| 4 | EP IV | Implementação: Missões, testes com a secretaria, implantação e apresentação |
+| 3 | EP III: Execução e evidências | Implementação de todos os módulos, testes, CI, pull requests |
+| 4 | EP IV: Impacto e encerramento | Segurança, publicação, monitoramento, documentação final |
 
-[PREENCHER: datas reais conforme o calendário da reabertura e do próximo período]
+O desenvolvimento foi concentrado em novembro de 2026, e a entrega ocorre na reabertura de 04 a 07/12/2026.
 
 ## 9. Indicadores de resultado
 
 | Indicador | Linha de base (hoje) | Meta com o MVP |
 |---|---|---|
-| Tempo para gerar a lista de membros ativos | [PREENCHER, ex.: ~2h] | < 1 minuto |
-| % de membros com cadastro completo | [PREENCHER] | ≥ 90% em 2 meses |
+| Tempo para gerar a lista de membros ativos | Não medido | < 1 minuto |
+| % de membros com cadastro completo | Não medido | ≥ 90% em 2 meses |
 | % de contatos com consentimento LGPD registrado | 0% | 100% dos exibidos |
 | Membros que acessam a agenda pelo sistema | 0 | ≥ 50% dos ativos em 2 meses |
 | Visitantes aptos à membresia identificados automaticamente | 0 (controle manual) | 100% |
-| Projetos missionários visíveis à congregação | [PREENCHER] | 100% dos apoiados |
+| Projetos missionários visíveis à congregação | Nenhum canal único | 100% dos apoiados |
 | Satisfação da secretaria (escala 1 a 5) | — | ≥ 4 |
 
 ## 10. Revisão da experiência prática
 
-[PREENCHER após as entrevistas: o que mudou entre a hipótese inicial e o que o parceiro relatou]
+A hipótese inicial era um cadastro simples de membros e contatos. As informações da igreja acrescentaram três requisitos que não estavam no plano: a regra de 6 meses de frequência para a membresia, a necessidade de esconder os endereços dos Pequenos Grupos e a divulgação do projeto social Tatame na Rocha. O ponto fraco desta etapa foi não ter registrado uma entrevista formal nem medido a situação de antes, o que limita a comparação de impacto na EP IV.
 
 ## 11. Autoavaliação e reflexão
 
-[PREENCHER: o que aprendeu sobre levantar requisitos com um cliente real, dificuldades e o que faria diferente]
+> Rascunho baseado no que aconteceu no projeto. Leia e ajuste com as suas palavras.
+
+Aprendi que as regras mais importantes do sistema não estavam na minha ideia inicial: vieram de perguntar como a igreja funciona. A regra dos 6 meses e a privacidade dos PGs mudaram o modelo de dados. Faria diferente: marcaria a entrevista formal logo no início, com data e registro, e mediria o tempo que a secretaria gasta hoje, para ter uma linha de base.
