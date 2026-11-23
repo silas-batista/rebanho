@@ -21,7 +21,7 @@
 **Rotina e atividades da igreja:**
 - **Domingo:** Culto Público às 09h, Escola Dominical às 10h e Culto Público às 19h.
 - **Pequenos Grupos (PGs):** encontros no meio da semana nas casas dos membros, conduzidos por líderes de PG.
-- **Projeto Tatame na Rocha:** projeto social que ensina jiu-jítsu às crianças do bairro.
+- **Projeto Tatame na Rocha:** projeto social que ensina jiu-jítsu às crianças do bairro, às quartas-feiras às 19h.
 - **Missões apoiadas (exemplos):** plantação de igreja no Uruguai com o Rev. Maurício Rolim e Sandra Rolim, e a missão Asas de Socorro com Wilker Mariano, entre outras.
 
 **Problema:**
@@ -51,7 +51,7 @@ Perguntas-chave da entrevista:
 3. Como a agenda é divulgada? Já houve evento esvaziado por falha de aviso?
 4. Quais missões e missionários a igreja apoia? Como a congregação acompanha?
 5. Como os PGs são organizados hoje? Quem são os líderes e como os endereços são divulgados?
-6. Qual o dia e horário do Tatame na Rocha? Quantas crianças participam?
+6. Quantas crianças participam do Tatame na Rocha? Como elas chegam até o projeto?
 7. Como vocês acompanham hoje os 6 meses de frequência para a membresia?
 8. Quanto tempo por semana a secretaria gasta com isso?
 
@@ -90,7 +90,7 @@ Aplicação web responsiva (funciona no celular), com login e dois perfis:
 Módulos do MVP:
 1. **Membros:** cadastro, situação (visitante/membro ativo/membro inativo), **data da primeira frequência**, data de recebimento como membro, filtro por situação e **alerta de visitantes que já completaram 6 meses** e estão aptos à membresia.
 2. **Contatos:** lista de telefone/e-mail derivada do cadastro de membros, exibida apenas com **consentimento registrado (LGPD)**.
-3. **Agenda:** cultos recorrentes (domingo 09h, 10h e 19h), projetos como o Tatame na Rocha e eventos avulsos. Cada evento pode ser **público** ou **só para membros**, para que os endereços dos PGs nas casas não fiquem expostos.
+3. **Agenda:** cultos recorrentes (domingo 09h, 10h e 19h), projetos como o Tatame na Rocha (quarta 19h) e eventos avulsos. Cada evento pode ser **público** ou **só para membros**, para que os endereços dos PGs nas casas não fiquem expostos.
 4. **Missões:** projetos missionários apoiados, com local e descrição, e os missionários vinculados a cada projeto.
 
 **Fora do MVP (próximas versões):** módulo de Pequenos Grupos (líderes, participantes e frequência por PG, a definir com os líderes), finanças e dízimos, escalas de ministério, células e pequenos grupos, notificações por WhatsApp/e-mail, aniversariantes do mês, app nativo, check-in em eventos.
