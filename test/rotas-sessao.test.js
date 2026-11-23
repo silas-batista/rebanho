@@ -43,3 +43,22 @@ test("sair encerra a sessão", async (t) => {
 
   assert.equal((await fetch(`${url}/pessoas`, { headers: { cookie: cookieDepois }, redirect: "manual" })).status, 303);
 });
+
+test("após 5 senhas erradas, bloqueia até a senha certa com 429", async (t) => {
+  const url = await iniciarServidor(t, bancoComUsuarios());
+  for (let i = 0; i < 5; i++) await entrar(url, "secretaria@ipvf.org", "errada");
+
+  const { resposta } = await entrar(url, "secretaria@ipvf.org");
+
+  assert.equal(resposta.status, 429);
+  assert.match(await resposta.text(), /Muitas tentativas/);
+});
+
+test("bloqueio de um e-mail não afeta outro", async (t) => {
+  const url = await iniciarServidor(t, bancoComUsuarios());
+  for (let i = 0; i < 5; i++) await entrar(url, "secretaria@ipvf.org", "errada");
+
+  const { resposta } = await entrar(url, "membro@ipvf.org");
+
+  assert.equal(resposta.status, 303);
+});
