@@ -265,6 +265,8 @@ O plano da EP II se manteve: monólito, SQLite e 5 tabelas. A stack mudou de Rai
 
 ## 13. Autoavaliação e reflexão
 
-> Rascunho baseado no que aconteceu no projeto. Leia e ajuste com as suas palavras.
+Nesta etapa aprendi muita coisa nova. Os testes automatizados (TDD) mostraram que dá para provar que uma regra funciona: o teste vem antes do código e, depois, quebramos a regra de propósito para ver o teste falhar. Aprendi a usar GitHub com branches e pull requests, um para cada funcionalidade, e a publicar um sistema na internet com HTTPS e backup.
 
-O TDD mudou a forma como vejo testes: escrever o teste antes e depois quebrar o código de propósito mostrou quais testes realmente protegem o sistema. Branches e PRs deixaram cada mudança pequena e explicável. O episódio do primeiro usuário mostrou que algo simples para um desenvolvedor (rodar um comando) pode ser a maior barreira para o usuário real. Faria diferente: faria a primeira rodada de validação assim que o sistema foi publicado, em vez de deixar para o fim.
+O momento de maior frustração foi o primeiro acesso: tentei criar o usuário da secretaria pelo terminal três vezes, e não funcionou. A solução foi criar o primeiro acesso pelo navegador, que funcionou na primeira tentativa. Com isso, entendi que o que é simples para quem programa pode ser a maior barreira para quem vai usar.
+
+Usei uma IA, o Claude Code, no desenvolvimento. Ela me ajudou a ir mais rápido, mas quem decidiu o projeto, trouxe as informações da igreja e conferiu os resultados fui eu.

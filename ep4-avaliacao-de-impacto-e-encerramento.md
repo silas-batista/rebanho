@@ -200,9 +200,11 @@ Sobre o impacto, o pastor escreveu que o sistema "muda a forma de interagir com 
 
 ## 12. Autoavaliação discursiva
 
-> Rascunho baseado no que aconteceu no projeto. Leia e ajuste com as suas palavras.
+Quando o pastor deu nota 5 e escreveu que o sistema "muda a forma de interagir com os membros", senti orgulho de ter ajudado a minha igreja de verdade. O que funcionou melhor foi ouvir a igreja: as respostas do pastor corrigiram a regra mais importante do sistema, porque os 6 meses contam da primeira conversa pastoral, e não da primeira visita.
 
-O que funcionou melhor foi deixar as informações da igreja mudarem o sistema: a regra dos 6 meses e a privacidade dos Pequenos Grupos não estavam na ideia inicial e hoje são as partes mais importantes. Na parte técnica, a maior dificuldade não foi o código, mas colocar o sistema no ar para pessoas reais: o primeiro acesso pelo terminal falhou várias vezes, e a solução foi trazer esse passo para o navegador. O que faria diferente: perguntar as regras ao pastor logo no início. Só no fim descobri que os 6 meses contam da primeira conversa pastoral, e não da primeira visita, e que o endereço dos PGs nem deveria entrar no sistema. A competência que mais se desenvolveu foi a responsabilidade com dados de terceiros: cada decisão de LGPD foi pensada antes do código.
+A maior dificuldade foi colocar o sistema nas mãos de pessoas reais. O primeiro acesso pelo terminal falhou três vezes, e precisei trazer esse passo para o navegador. A IA (Claude Code) ajudou a ir mais rápido, mas as decisões, as informações da igreja e a conferência dos resultados ficaram comigo.
+
+Se fosse começar de novo, envolveria a secretária desde o início, porque é ela quem vai usar o sistema todos os dias e ainda não conseguiu testá-lo. Levo deste projeto três habilidades: ouvir o cliente antes de construir, testar e versionar o código com segurança e cuidar dos dados das pessoas, como pede a LGPD.
 
 ## 13. Termo de feedback
 
@@ -241,6 +243,6 @@ O que funcionou melhor foi deixar as informações da igreja mudarem o sistema: 
 
 ## 15. Autoavaliação e reflexão
 
-> Rascunho baseado no que aconteceu no projeto. Leia e ajuste com as suas palavras.
+Comecei este projeto porque sou membro da igreja e quis ajudar, e termino com um sistema que o pastor aprovou e que a igreja pretende continuar usando. As quatro experiências práticas me mostraram o caminho inteiro de um software: entender o problema, planejar, construir com testes e controle de versão e colocar no ar com segurança.
 
-As quatro experiências práticas mostraram o caminho inteiro de um software: entender um problema real, desenhar uma solução do tamanho certo, construir com testes e controle de versão, e colocar no ar com segurança. Aprendi que trabalhar com um cliente real exige mais do que código: exige agenda, conversa e paciência para validar. Também aprendi que, num sistema de igreja, quase todo dado é sensível, e que proteger as pessoas precisa estar no modelo de dados desde o começo. A conversa com o pastor, mesmo curta, corrigiu a regra mais importante do sistema. Num próximo projeto, eu faria essa conversa no primeiro dia.
+A lição principal é que as regras mais importantes não estavam na minha cabeça, e sim na igreja. Para o meu trabalho e para a carreira, levo o hábito de ouvir o cliente antes de construir, de testar e versionar o código e de proteger os dados das pessoas desde o começo.
