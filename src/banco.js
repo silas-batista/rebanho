@@ -19,6 +19,17 @@ const ESQUEMA = `
     senha_hash TEXT NOT NULL,
     perfil TEXT NOT NULL CHECK (perfil IN ('secretaria', 'membro'))
   );
+
+  CREATE TABLE IF NOT EXISTS eventos (
+    id INTEGER PRIMARY KEY,
+    titulo TEXT NOT NULL,
+    descricao TEXT,
+    local TEXT,
+    recorrencia TEXT NOT NULL CHECK (recorrencia IN ('unica', 'semanal')),
+    inicio_em TEXT,
+    dia_semana INTEGER CHECK (dia_semana BETWEEN 0 AND 6),
+    horario TEXT
+  );
 `;
 
 export function abrirBanco(caminho = ":memory:") {
