@@ -3,6 +3,7 @@ import cookieSession from "cookie-session";
 import { fileURLToPath } from "node:url";
 import { rotasPessoas } from "./rotas-pessoas.js";
 import { rotasAgenda } from "./rotas-agenda.js";
+import { rotasMissoes } from "./rotas-missoes.js";
 import { rotasSessao, carregarUsuario, exigirPerfil } from "./rotas-sessao.js";
 
 const raiz = (caminho) => fileURLToPath(new URL(`../${caminho}`, import.meta.url));
@@ -32,6 +33,7 @@ export function criarApp(banco, { segredoSessao }) {
   app.get("/", (_req, res) => res.redirect("/agenda"));
   app.use(rotasSessao(banco));
   app.use("/agenda", rotasAgenda(banco));
+  app.use("/missoes", rotasMissoes(banco));
   app.use("/pessoas", exigirPerfil("secretaria"), rotasPessoas(banco));
   return app;
 }

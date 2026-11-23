@@ -27,3 +27,8 @@ input, select { font: inherit; padding: .5rem; border: 1px solid #767676; border
 .agenda .detalhe { color: #555; }
 fieldset { border: 1px solid #ccc; border-radius: .25rem; margin-bottom: .5rem; }
 .selo { font-size: .75rem; font-weight: 400; background: #e6ecf3; color: #1f3a5f; padding: .1rem .4rem; border-radius: .5rem; }
+.projeto { background: #fff; padding: .75rem 1rem; border-left: 4px solid #2e6b3f; margin-bottom: .75rem; }
+.projeto h2 { font-size: 1.1rem; margin: 0 0 .25rem; }
+.em-linha { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; padding: .5rem 0 0; background: none; }
+.em-linha input { margin: 0; flex: 1; min-width: 10rem; }
+header nav { display: flex; gap: 1rem; }
