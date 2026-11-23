@@ -1,0 +1,16 @@
+<%- include("../_topo", { titulo: "Minha senha" }) %>
+<h1>Minha senha</h1>
+
+<% if (erro) { %><p role="alert" class="erro"><%= erro %></p><% } %>
+<% if (sucesso) { %><p role="status" class="sucesso">Senha alterada.</p><% } %>
+
+<form method="post" action="/minha-senha">
+  <label for="atual">Senha atual</label>
+  <input id="atual" name="atual" type="password" autocomplete="current-password" required>
+
+  <label for="nova">Nova senha (mínimo 8 caracteres)</label>
+  <input id="nova" name="nova" type="password" minlength="8" autocomplete="new-password" required>
+
+  <div class="acoes"><button type="submit">Alterar senha</button></div>
+</form>
+<%- include("../_rodape") %>

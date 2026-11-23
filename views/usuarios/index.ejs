@@ -1,0 +1,32 @@
+<%- include("../_topo", { titulo: "Usuários" }) %>
+<h1>Usuários</h1>
+
+<% if (erro) { %><p role="alert" class="erro"><%= erro %></p><% } %>
+
+<table>
+  <thead><tr><th scope="col">E-mail</th><th scope="col">Perfil</th></tr></thead>
+  <tbody>
+    <% for (const u of usuarios) { %>
+      <tr><td><%= u.email %></td><td><%= u.perfil === "secretaria" ? "Secretaria" : "Membro" %></td></tr>
+    <% } %>
+  </tbody>
+</table>
+
+<h2>Novo acesso</h2>
+<form method="post" action="/usuarios">
+  <label for="email">E-mail</label>
+  <input id="email" name="email" type="email" required value="<%= dados.email || '' %>">
+
+  <label for="perfil">Perfil</label>
+  <select id="perfil" name="perfil">
+    <option value="membro" <%= dados.perfil !== 'secretaria' ? 'selected' : '' %>>Membro</option>
+    <option value="secretaria" <%= dados.perfil === 'secretaria' ? 'selected' : '' %>>Secretaria</option>
+  </select>
+
+  <label for="senha">Senha inicial (mínimo 8 caracteres)</label>
+  <input id="senha" name="senha" type="password" minlength="8" autocomplete="new-password" required>
+  <p class="detalhe">Entregue a senha pessoalmente e peça para a pessoa trocá-la em "Minha senha" no primeiro acesso.</p>
+
+  <div class="acoes"><button type="submit">Criar acesso</button></div>
+</form>
+<%- include("../_rodape") %>

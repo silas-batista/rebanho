@@ -13,7 +13,7 @@ Projeto da disciplina **Projeto de Software** (CST em Análise e Desenvolvimento
 ```sh
 npm install
 npm test                                              # testes automatizados
-npm run criar-usuario -- voce@igreja.org secretaria   # primeiro acesso (pede a senha)
+npm run criar-usuario -- voce@igreja.org secretaria   # só o primeiro acesso; os demais pela tela "Usuários"
 SEGREDO_SESSAO=$(openssl rand -hex 32) npm start      # http://localhost:3000
 ```
 
