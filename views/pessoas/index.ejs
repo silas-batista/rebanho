@@ -22,7 +22,7 @@
   <tbody>
     <% for (const pessoa of pessoas) { %>
       <tr>
-        <td><%= pessoa.nome %></td>
+        <td><a href="/pessoas/<%= pessoa.id %>/editar"><%= pessoa.nome %></a></td>
         <td><%= rotulos[pessoa.situacao] %></td>
         <td><%= pessoa.consentiuContatoEm ? "Compartilha" : "Não compartilha" %></td>
       </tr>
