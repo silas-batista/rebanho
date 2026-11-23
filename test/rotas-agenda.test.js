@@ -63,3 +63,23 @@ test("evento inválido devolve 422 com a mensagem", async (t) => {
   assert.equal(resposta.status, 422);
   assert.match(await resposta.text(), /horário do culto/);
 });
+
+test("pequeno grupo restrito não aparece para visitante sem login, mas aparece para membro", async (t) => {
+  const banco = bancoComUsuarios();
+  criarEvento(banco, {
+    titulo: "PG Família Silva",
+    recorrencia: "semanal",
+    diaSemana: "3",
+    horario: "20:00",
+    local: "Rua das Flores, 123",
+    visibilidade: "membros",
+  });
+  const url = await iniciarServidor(t, banco);
+  const { cookie } = await entrar(url, "membro@ipvf.org");
+
+  const publica = await (await fetch(`${url}/agenda`)).text();
+  const deMembro = await (await fetch(`${url}/agenda`, { headers: { cookie } })).text();
+
+  assert.doesNotMatch(publica, /PG Família Silva|Rua das Flores/);
+  assert.match(deMembro, /PG Família Silva/);
+});

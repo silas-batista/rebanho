@@ -9,9 +9,10 @@ export const DIAS_SEMANA = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", 
 export function rotasAgenda(banco) {
   const rotas = Router();
 
-  rotas.get("/", (_req, res) => {
+  rotas.get("/", (req, res) => {
+    const eventos = listarEventos(banco, { incluirRestritos: Boolean(req.usuario) });
     res.render("agenda/index", {
-      ocorrencias: ocorrenciasNoPeriodo(listarEventos(banco), hojeNaIgreja(), DIAS_NA_AGENDA),
+      ocorrencias: ocorrenciasNoPeriodo(eventos, hojeNaIgreja(), DIAS_NA_AGENDA),
       dias: DIAS_NA_AGENDA,
       formatarData,
     });
