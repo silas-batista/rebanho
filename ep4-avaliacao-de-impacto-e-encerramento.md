@@ -16,21 +16,21 @@
 
 ## 2. Síntese do projeto
 
-**Problema:** a igreja controlava membros, contatos, agenda e missões em planilhas, cadernos e grupos de WhatsApp. Ninguém sabia com segurança quem era membro ativo, quem já cumpria os 6 meses para a membresia, nem tinha um lugar único para a agenda e as missões. Dados pessoais, inclusive filiação religiosa (dado sensível pela LGPD), circulavam sem controle.
+**Problema:** a igreja controlava o rol de cerca de 320 pessoas em planilhas mantidas pela secretária. Segundo o pastor, a maior dificuldade era saber quem são os membros ativos e quem não é. Também não havia alerta de quem já cumpria os 6 meses desde a primeira conversa pastoral, nem tinha um lugar único para a agenda e as missões. Dados pessoais, inclusive filiação religiosa (dado sensível pela LGPD), circulavam sem controle.
 
 **Solução:** o **Rebanho**, um sistema web responsivo com dois perfis (Secretaria e Membro), entregue em quatro etapas:
 
 | EP | Etapa | Resultado |
 |---|---|---|
 | I | Diagnóstico e planejamento | Problema, personas, ODS 16 e 17, MVP, 11 histórias de usuário, cronograma e indicadores |
-| II | Fundamentação e desenho | Requisitos, 7 regras de negócio, modelo de dados de 5 tabelas, arquitetura, protótipos, plano de validação |
-| III | Execução e evidências | MVP completo, pull requests, testes automatizados, CI, capturas de tela. Rodadas de validação planejadas, não realizadas |
+| II | Fundamentação e desenho | Requisitos, 8 regras de negócio, modelo de dados de 5 tabelas, arquitetura, protótipos, plano de validação |
+| III | Execução e evidências | MVP completo, pull requests, testes automatizados, CI, capturas de tela. Validação reduzida com o pastor (nota 5). Tarefas com a secretária não realizadas |
 | IV | Impacto e encerramento | Segurança, sistema publicado com monitoramento e backup, análise ética e de ODS, plano de continuidade |
 
 **O que o sistema faz hoje:**
-- Cadastro e edição de pessoas, com **alerta automático de visitantes que completaram 6 meses** de frequência
+- Cadastro e edição de pessoas, com **alerta automático de visitantes que completaram 6 meses desde a primeira conversa pastoral** e podem entrar na classe de catecúmenos
 - **Contatos** visíveis só para membros logados e só de quem **autorizou** o compartilhamento
-- **Agenda pública** (cultos de domingo 09h, 10h e 19h, Tatame na Rocha às quartas 19h), com os **Pequenos Grupos visíveis só para membros**, para não expor endereços de casas
+- **Agenda pública** (cultos de domingo 09h, 10h e 19h, Tatame na Rocha às quartas 19h), com os **Pequenos Grupos visíveis só para membros**. O endereço das casas não é cadastrado: a igreja o passa pessoalmente
 - **Missões** apoiadas e seus missionários
 - Gestão de acessos pela secretaria e troca de senha pelo próprio usuário
 
@@ -54,9 +54,9 @@
 |---|---|
 | Código da aplicação | ~800 linhas (19 módulos em `src/`) |
 | Páginas e estilo | ~380 linhas |
-| Testes automatizados | 104 testes |
+| Testes automatizados | 106 testes |
 | Commits | ~45 de trabalho, mais um merge por PR |
-| Pull requests | 15, todos com CI verde |
+| Pull requests | 16, todos com CI verde |
 
 > A quantidade de código de teste é maior que a da aplicação. As regras críticas (membresia, consentimento, visibilidade dos PGs, permissões) foram testadas e depois quebradas de propósito para provar que o teste detecta a falha.
 
@@ -116,7 +116,7 @@
 | Monitor externo | Planejado: UptimeRobot (plano gratuito) consultando `/saude` a cada 5 minutos. **Não configurado no período**, porque o endereço do túnel muda a cada publicação | — |
 | Backup | Cópia consistente do banco (`VACUUM INTO`) ao iniciar e a cada 24 h, mantendo as 14 mais recentes | `16-backups.txt` |
 | Segurança | Cabeçalhos `nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy`. Bloqueio de login após 5 tentativas | Testes automatizados |
-| Qualidade | CI roda os 104 testes em todo pull request e no `main` | `12-github-actions.jpg` |
+| Qualidade | CI roda os 106 testes em todo pull request e no `main` | `12-github-actions.jpg` |
 
 **Ocorrências no período:**
 
@@ -132,11 +132,13 @@
 | Nov/2026 | Levantamento de informações junto à igreja (EP I) | Liderança da igreja | Regra dos 6 meses, rotina de cultos, PGs nas casas, Tatame na Rocha, missões. Confirmação de que os missionários podem ser divulgados |
 | 23/11/2026 | Publicação e primeiro acesso | Aluno, com acesso de secretaria | Sistema no ar com a agenda e as missões reais |
 | 23/11/2026 | Avaliação heurística (sem usuários) | Aluno, com apoio de assistente de IA | 8 problemas de usabilidade, 7 corrigidos (PRs #14 e #15). Não substitui a validação com a igreja |
+| 23/11/2026 | Questionário por WhatsApp e avaliação do sistema publicado | Rev. Fabrício Ribeiro | Respostas de diagnóstico (EP I, seção 3.1), nota **5** ao sistema, autorização para citar a igreja e o nome dele, e concordância em assinar o Termo de Feedback |
+| 23/11/2026 | Correções a partir das respostas (PR #16) | Aluno | Regra dos 6 meses contada da conversa pastoral, caminho da classe de catecúmenos e orientação para não cadastrar endereço de PG |
 | — | Validação do protótipo (EP II) | — | **Não realizada** |
-| — | 1ª e 2ª rodadas de validação (EP III) | — | **Não realizadas.** Roteiro pronto |
+| — | Tarefas com a secretária e 2ª rodada (EP III) | — | **Não realizadas.** Roteiro pronto |
 | — | Entrega e treinamento da secretaria | — | **Não realizada** |
 
-**Como a comunidade mudou o sistema:** a informação sobre os PGs nas casas gerou a regra de privacidade RN07. A regra dos 6 meses virou o alerta de aptos à membresia. Os horários reais e as missões reais deram forma à agenda e à página de missões. Como as validações não aconteceram, nenhum ajuste veio do uso do sistema pela igreja.
+**Como a comunidade mudou o sistema:** a informação sobre os PGs nas casas gerou a regra de privacidade RN07. A regra dos 6 meses virou o alerta de membresia. Os horários reais e as missões reais deram forma à agenda e à página de missões. As respostas do pastor corrigiram o sistema em dois pontos: os 6 meses contam da **primeira conversa pastoral**, e o endereço dos PGs **não entra no sistema**, porque a igreja o passa pessoalmente.
 
 ## 8. Responsabilidade ética e dilemas
 
@@ -144,7 +146,7 @@
 |---|---|---|
 | **Filiação religiosa é dado sensível** (LGPD, art. 5º, II) | Cadastro só com dados mínimos (nome, telefone, e-mail, datas), sem CPF ou endereço. Lista de pessoas só para a Secretaria | Minimização: o que não é coletado não vaza |
 | **Compartilhar contatos entre membros** | Só com consentimento registrado com data e hora, revogável a qualquer momento | Base legal do art. 11, I. O membro decide |
-| **Endereços dos PGs nas casas** | Eventos "só membros", com regra segura por padrão: se o código não pedir o contrário, eventos restritos ficam ocultos | Evitar expor a localização de famílias na internet |
+| **Endereços dos PGs nas casas** | Eventos "só membros", com regra segura por padrão. Depois da resposta do pastor, o endereço deixou de ser cadastrado: o formulário orienta a não preenchê-lo | Evitar expor a localização de famílias na internet. A igreja já passava o endereço só pessoalmente, e o sistema respeita esse costume |
 | **Crianças do Tatame na Rocha** | O sistema não cadastra as crianças, só divulga o projeto | Dados de menores exigem cuidado extra (LGPD, art. 14) e não eram necessários |
 | **Nomes de missionários em página pública** | Publicados com confirmação da igreja de que eles divulgam o trabalho | Consentimento antes de expor pessoas |
 | **Dados da igreja no computador do aluno** | Hospedagem temporária, com backup. Proposta: ao fim do projeto, entregar os dados à igreja e apagá-los do computador do aluno | O aluno não deve ficar como guardião permanente de dados de terceiros |
@@ -155,19 +157,21 @@
 
 ## 9. Medição de indicadores e impacto
 
-Indicadores definidos na EP I. Os que dependem de uso pela igreja **não foram medidos**, porque as validações e o uso real não aconteceram no período.
+Indicadores definidos na EP I. A satisfação do parceiro foi medida pelo questionário de 23/11/2026. Os que dependem de uso diário pela igreja **não foram medidos**, porque o uso real não começou no período.
 
 | Indicador | Antes | Meta | Resultado | Como |
 |---|---|---|---|---|
-| Visitantes aptos à membresia identificados automaticamente | 0% (controle manual) | 100% | **100%** | Garantido pela regra RN01 e por teste automatizado |
+| Visitantes que completaram os 6 meses identificados automaticamente | 0% (controle manual em planilha) | 100% | **100%** | Garantido pela regra RN01 e por teste automatizado |
 | Contatos exibidos sem consentimento | Sem controle | 0 | **0** | Garantido pelas regras RN03/RN04 e por teste automatizado |
-| Projetos missionários visíveis à congregação | Nenhum canal único | 100% | **2 projetos publicados** | A igreja apoia outros projetos além desses dois, ainda não cadastrados |
+| Projetos missionários visíveis à congregação | Nenhum canal único | 100% | **2 projetos publicados** | A igreja apoia outros projetos na África, ainda não cadastrados por falta de detalhes |
 | Tempo para saber o nº de membros ativos | Não medido | < 1 min | Não medido com usuários | No sistema, é um clique no filtro "Membro ativo" |
-| % de membros com cadastro completo | Não medido | ≥ 90% em 2 meses | Não medido | Depende de a secretaria cadastrar os membros |
+| % de membros com cadastro completo | 0 de cerca de 320 (em planilhas) | ≥ 90% em 2 meses | Não medido | Depende de a secretária passar a planilha para o sistema |
 | Membros que acessam a agenda pelo sistema | 0 | ≥ 50% em 2 meses | Não medido | Depende de divulgação e de endereço fixo |
-| Satisfação do parceiro (1 a 5) | — | ≥ 4 | Não medido | Termo de Feedback não aplicado |
+| Satisfação do parceiro (1 a 5) | — | ≥ 4 | **5** | Resposta do Rev. Fabrício ao questionário, 23/11/2026 |
 
-**Análise:** o projeto atingiu os indicadores que dependem do próprio sistema: as regras de membresia e de consentimento funcionam e são verificadas automaticamente a cada mudança no código. Não atingiu, nem mediu, os indicadores de adoção e satisfação, porque o sistema não chegou a ser usado pela igreja no período. O impacto social, portanto, é **potencial, não comprovado**. Medi-lo exige as rodadas de validação e alguns meses de uso.
+**Análise:** o projeto atingiu os indicadores que dependem do próprio sistema: as regras de membresia e de consentimento funcionam e são verificadas automaticamente a cada mudança no código. A satisfação do parceiro superou a meta (nota 5).
+
+Sobre o impacto, o pastor escreveu que o sistema "muda a forma de interagir com os membros e também na praticidade de informar os membros e novos membros". Para ele, o próximo passo é "divulgar para os membros". Os indicadores de adoção ainda não foram medidos, porque a secretária não passou a planilha para o sistema no período. Por isso, o impacto é **reconhecido pelo parceiro, mas ainda não medido no uso**.
 
 ## 10. Análise de avanço do Objetivo de Desenvolvimento Sustentável
 
@@ -184,39 +188,39 @@ Indicadores definidos na EP I. Os que dependem de uso pela igreja **não foram m
 
 | Conceito estudado | Como apareceu no projeto |
 |---|---|
-| Engenharia de requisitos | Entrevista com o parceiro gerou regras que não estavam no escopo inicial (6 meses, PGs) |
+| Engenharia de requisitos | As informações do parceiro geraram regras que não estavam no escopo inicial (6 meses, PGs). O questionário corrigiu uma suposição do aluno sobre de quando contam os 6 meses |
 | MVP e priorização MoSCoW | Finanças, escalas e células ficaram de fora, e o MVP ficou pronto a tempo |
 | Modelagem de dados | Uma única entidade Pessoa para membros, visitantes e contatos evitou dados duplicados, que eram o problema original |
-| TDD e testes automatizados | 80 testes. Regras quebradas de propósito para provar que os testes detectam falhas |
+| TDD e testes automatizados | 106 testes. Regras quebradas de propósito para provar que os testes detectam falhas |
 | Controle de versão | Uma branch e um pull request por funcionalidade, commits pequenos e descritivos |
 | Integração contínua | GitHub Actions bloqueia código quebrado antes do merge |
 | Segurança da informação | Hash de senha, cookies seguros, bloqueio de força bruta, cabeçalhos HTTP |
 | LGPD e privacy by design | Consentimento e minimização desde o modelo de dados |
-| Interação humano-computador | Acessibilidade (WCAG), uso no celular, validação com usuários reais |
+| Interação humano-computador | Acessibilidade (WCAG), uso no celular, avaliação heurística e avaliação do pastor |
 
 ## 12. Autoavaliação discursiva
 
 > Rascunho baseado no que aconteceu no projeto. Leia e ajuste com as suas palavras.
 
-O que funcionou melhor foi deixar as informações da igreja mudarem o sistema: a regra dos 6 meses e a privacidade dos Pequenos Grupos não estavam na ideia inicial e hoje são as partes mais importantes. Na parte técnica, a maior dificuldade não foi o código, mas colocar o sistema no ar para pessoas reais: o primeiro acesso pelo terminal falhou várias vezes, e a solução foi trazer esse passo para o navegador. O que faria diferente: validar com a igreja logo depois da primeira publicação, em vez de deixar para o fim, porque sem isso o projeto ficou sem a medição de impacto. A competência que mais se desenvolveu foi a responsabilidade com dados de terceiros: cada decisão de LGPD foi pensada antes do código.
+O que funcionou melhor foi deixar as informações da igreja mudarem o sistema: a regra dos 6 meses e a privacidade dos Pequenos Grupos não estavam na ideia inicial e hoje são as partes mais importantes. Na parte técnica, a maior dificuldade não foi o código, mas colocar o sistema no ar para pessoas reais: o primeiro acesso pelo terminal falhou várias vezes, e a solução foi trazer esse passo para o navegador. O que faria diferente: perguntar as regras ao pastor logo no início. Só no fim descobri que os 6 meses contam da primeira conversa pastoral, e não da primeira visita, e que o endereço dos PGs nem deveria entrar no sistema. A competência que mais se desenvolveu foi a responsabilidade com dados de terceiros: cada decisão de LGPD foi pensada antes do código.
 
 ## 13. Termo de feedback
 
-**Não aplicado.** O Termo de Feedback foi preparado (identificação, declaração das funcionalidades, 7 afirmações com escala de 1 a 5, comentários e autorização de uso), mas não foi preenchido nem assinado pela igreja até a data de entrega, porque as sessões de validação não aconteceram.
+**Pendente de assinatura.** O Termo de Feedback foi preparado (identificação, declaração das funcionalidades, 7 afirmações com escala de 1 a 5, comentários e autorização de uso). Em 23/11/2026, o Rev. Fabrício autorizou citar a igreja e o nome dele ("Sim") e concordou em assinar o termo ("Pode sim"). Até a revisão deste documento, o termo assinado ainda não tinha sido recebido.
 
 ## 14. Revisão da experiência prática
 
-**Balanço:** foi entregue um sistema completo, testado (85 testes), publicado com HTTPS, backup e verificação de saúde, com a agenda e as missões reais da igreja. Ficaram pendentes as validações com usuários, a medição de impacto e o termo assinado. A causa foi não ter conseguido agendar as sessões com a igreja no período da disciplina.
+**Balanço:** foi entregue um sistema completo, testado (106 testes), publicado com HTTPS, backup e verificação de saúde, com a agenda e as missões reais da igreja. O pastor avaliou o sistema com nota 5, e as respostas dele corrigiram duas regras. Ficaram pendentes as tarefas com a secretária, a medição de uso e o termo assinado.
 
 **Continuidade depois da disciplina** (próximos passos recomendados à igreja):
 
-1. **Validação:** aplicar o roteiro da 1ª rodada com a secretaria e o pastor e corrigir o que surgir.
+1. **Divulgação e validação:** como o pastor sugeriu, divulgar o sistema para os membros. Antes, aplicar o roteiro de tarefas com a secretária e passar a planilha de cerca de 320 pessoas para o sistema.
 2. **Hospedagem definitiva:** uma VPS de baixo custo com o mesmo `npm start`, ou o computador da secretaria da igreja com o túnel. Com um domínio próprio, o endereço fica fixo e o monitor externo passa a funcionar.
 3. **Entrega dos dados:** exportar o banco e os backups para a igreja e apagá-los do computador do aluno.
-4. **Funcionalidades:** módulo de Pequenos Grupos, a definir com os líderes, e menu recolhível no celular.
+4. **Funcionalidades:** pedidos de oração dos missionários, projetos da África, módulo dos 8 Pequenos Grupos (a definir com os líderes, sem endereços) e menu recolhível no celular.
 
 ## 15. Autoavaliação e reflexão
 
 > Rascunho baseado no que aconteceu no projeto. Leia e ajuste com as suas palavras.
 
-As quatro experiências práticas mostraram o caminho inteiro de um software: entender um problema real, desenhar uma solução do tamanho certo, construir com testes e controle de versão, e colocar no ar com segurança. Aprendi que trabalhar com um cliente real exige mais do que código: exige agenda, conversa e paciência para validar. Também aprendi que, num sistema de igreja, quase todo dado é sensível, e que proteger as pessoas precisa estar no modelo de dados desde o começo. A parte que ficou por fazer, a validação com a igreja, é a que eu priorizaria num próximo projeto.
+As quatro experiências práticas mostraram o caminho inteiro de um software: entender um problema real, desenhar uma solução do tamanho certo, construir com testes e controle de versão, e colocar no ar com segurança. Aprendi que trabalhar com um cliente real exige mais do que código: exige agenda, conversa e paciência para validar. Também aprendi que, num sistema de igreja, quase todo dado é sensível, e que proteger as pessoas precisa estar no modelo de dados desde o começo. A conversa com o pastor, mesmo curta, corrigiu a regra mais importante do sistema. Num próximo projeto, eu faria essa conversa no primeiro dia.

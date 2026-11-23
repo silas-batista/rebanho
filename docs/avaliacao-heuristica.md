@@ -2,7 +2,7 @@
 
 > **O que é:** inspeção de usabilidade pelas 10 heurísticas de Nielsen, feita sem usuários.
 > **Quem fez:** o aluno, com apoio de assistente de IA, em 23/11/2026, sobre uma cópia local do sistema com dados fictícios.
-> **O que não é:** não substitui a validação com a secretaria e o pastor (EP III, seções 9 e 10), que não foi realizada no período. Uma avaliação heurística encontra problemas prováveis. Só o uso real confirma quais atrapalham de fato.
+> **O que não é:** não substitui a validação com a secretaria e o pastor (EP III, seções 9 e 10), que foi feita só de forma reduzida: o pastor avaliou o sistema publicado com nota 5, mas a secretária ainda não executou as tarefas. Uma avaliação heurística encontra problemas prováveis. Só o uso real confirma quais atrapalham de fato.
 
 ## Método
 
@@ -35,4 +35,4 @@
 
 ## Resultado
 
-Foram encontrados **8 problemas**: 3 de gravidade 3, 2 de gravidade 2 e 3 de gravidade 1. **7 foram corrigidos** no mesmo dia, em dois pull requests (#14 e #15), com testes automatizados (104 testes no total). Fica pendente só o menu alto no celular (gravidade 1). A validação com a igreja vai dizer quais problemas realmente atrapalham e quais faltaram.
+Foram encontrados **8 problemas**: 3 de gravidade 3, 2 de gravidade 2 e 3 de gravidade 1. **7 foram corrigidos** no mesmo dia, em dois pull requests (#14 e #15), com testes automatizados (106 testes no total, contando as correções posteriores). Fica pendente só o menu alto no celular (gravidade 1). A validação com a igreja vai dizer quais problemas realmente atrapalham e quais faltaram.
