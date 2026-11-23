@@ -1,0 +1,19 @@
+<%- include("_topo", { titulo: "Primeiro acesso" }) %>
+<h1>Primeiro acesso</h1>
+<p>Crie o acesso da secretaria. Esta página só funciona uma vez, enquanto o sistema não tem nenhum usuário.</p>
+
+<% if (erro) { %><p role="alert" class="erro"><%= erro %></p><% } %>
+
+<form method="post" action="/primeiro-acesso">
+  <label for="codigo">Código de primeiro acesso</label>
+  <input id="codigo" name="codigo" required autocomplete="off" spellcheck="false">
+
+  <label for="email">Seu e-mail</label>
+  <input id="email" name="email" type="email" autocomplete="username" required value="<%= email || '' %>">
+
+  <label for="senha">Sua senha (mínimo 8 caracteres)</label>
+  <input id="senha" name="senha" type="password" minlength="8" autocomplete="new-password" required>
+
+  <div class="acoes"><button type="submit">Criar acesso e entrar</button></div>
+</form>
+<%- include("_rodape") %>
