@@ -13,7 +13,8 @@
       <a href="/agenda">Agenda</a>
       <a href="/missoes">Missões</a>
       <% if (usuario) { %><a href="/contatos">Contatos</a><% } %>
-      <% if (usuario?.perfil === "secretaria") { %><a href="/pessoas">Pessoas</a><% } %>
+      <% if (usuario?.perfil === "secretaria") { %><a href="/pessoas">Pessoas</a><a href="/usuarios">Usuários</a><% } %>
+      <% if (usuario) { %><a href="/minha-senha">Minha senha</a><% } %>
     </nav>
     <% if (usuario) { %>
       <form method="post" action="/sair" class="sair"><button type="submit">Sair</button></form>
