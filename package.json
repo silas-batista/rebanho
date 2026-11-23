@@ -7,9 +7,10 @@
     "node": ">=24"
   },
   "scripts": {
-    "start": "node src/server.js",
+    "start": "node --env-file-if-exists=.env src/server.js",
     "test": "node --test \"test/**/*.test.js\"",
-    "criar-usuario": "node src/criar-usuario.js"
+    "criar-usuario": "node --env-file-if-exists=.env src/criar-usuario.js",
+    "publicar": "sh scripts/publicar.sh"
   },
   "dependencies": {
     "cookie-session": "^2.1.1",
