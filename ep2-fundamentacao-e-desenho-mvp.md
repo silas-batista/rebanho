@@ -1,9 +1,9 @@
 # Experiência Prática II: Fundamentação e Desenho do MVP
 
-> Rascunho para colar no DreamShaper na reabertura (04 a 07/12/2026).
+> Versão final para o DreamShaper (reabertura de 04 a 07/12/2026).
 > Seções na mesma ordem do "Resultado do Projeto" da plataforma.
 > Continua a EP I: Igreja Presbiteriana de Vila Formosa (Anápolis/GO), contato Rev. Fabrício Ribeiro.
-> **[PREENCHER]** e **[VERIFICAR]** marcam o que depende de você.
+> Onde uma atividade planejada não foi realizada no período, o documento diz isso explicitamente.
 
 ---
 
@@ -43,12 +43,11 @@ O egresso de ADS deve analisar problemas reais, projetar e implementar sistemas 
 | Solução | Tipo | Pontos fortes | Limitações para este parceiro |
 |---|---|---|---|
 | Planilha Google + grupos de WhatsApp | Improviso atual | Gratuito, todos já sabem usar | Sem controle de acesso, sem consentimento, dados duplicados, avisos se perdem |
-| InChurch [VERIFICAR preço] | App brasileiro de gestão de igrejas | App próprio, completo | Assinatura mensal; muitas funções além do necessário |
-| Planning Center [VERIFICAR] | Plataforma internacional | Muito completo, modular | Em inglês, cobrado em dólar |
-| Breeze ChMS [VERIFICAR] | Sistema internacional de membros | Simples de usar | Em inglês, cobrado em dólar, sem foco em LGPD |
-| [PREENCHER: algum sistema que a igreja já tenha considerado] | | | |
+| InChurch | App brasileiro de gestão de igrejas | App próprio, completo | Modelo de assinatura; muitas funções além do necessário |
+| Planning Center | Plataforma internacional | Muito completo, modular | Interface em inglês, cobrança em dólar |
+| Breeze ChMS | Sistema internacional de membros | Simples de usar | Interface em inglês, cobrança em dólar |
 
-> Antes de entregar, confira nos sites oficiais preço, idioma e funções de cada solução e registre a data da consulta.
+> Comparação feita pelas características gerais de cada solução. Preços e planos atuais não foram consultados.
 
 ## 5. Análise crítica e diferenciação
 
@@ -192,7 +191,7 @@ erDiagram
 
 ## 11. Segurança e proteção de dados
 
-- **Base legal (LGPD):** consentimento do titular (art. 11, I) para exibir contatos. O cadastro interno se apoia no legítimo interesse da organização religiosa sem fins lucrativos, com a finalidade informada ao membro [VERIFICAR com orientação do tutor].
+- **Base legal (LGPD):** constar no cadastro de uma igreja revela convicção religiosa, que é **dado sensível** (art. 5º, II). O art. 11 não admite legítimo interesse para dados sensíveis, então a base é o **consentimento específico e destacado do titular** (art. 11, I), colhido no cadastro, com a finalidade informada. O compartilhamento do contato com outros membros é um **segundo consentimento**, separado e revogável.
 - **Minimização:** só os dados necessários (nome, telefone, e-mail, datas). Sem CPF, endereço ou dados financeiros no MVP.
 - **Controle de acesso:** dois perfis (RN06). Pessoas e contatos exigem login.
 - **Endereços de PGs:** os pequenos grupos se reúnem em casas de membros. Esses eventos são "só membros" (RN07), e a regra é segura por padrão: a consulta esconde eventos restritos a menos que o código peça o contrário.
@@ -282,7 +281,7 @@ erDiagram
 └────────────────────────────────┘
 ```
 
-> Horários dos cultos e missões informados pela igreja. [PREENCHER: demais missões apoiadas.] Se possível, refaça as telas no Figma e anexe as imagens.
+> Horários dos cultos e missões informados pela igreja, que apoia também outros projetos além dos dois listados. As telas implementadas estão em `docs/evidencias/` (EP III).
 
 ## 15. Registro e descrição das interfaces
 
@@ -307,14 +306,14 @@ erDiagram
 3. **Perguntas:** o que falta? O que sobra? A regra dos 6 meses está correta?
 4. **Registro:** anotar acertos, dúvidas e ajustes pedidos.
 
-[PREENCHER: data, participantes e resultado da validação]
+**Situação:** a validação do protótipo com a igreja **não foi realizada no período**. O desenho seguiu direto para a implementação (EP III), incorporando as informações levantadas junto à igreja. O roteiro acima foi ampliado para 7 tarefas e reaproveitado no roteiro de validação do sistema pronto.
 
 ## 17. Critérios de aceitação mensuráveis
 
 | Critério | Meta |
 |---|---|
 | Secretaria entende como fazer cada tarefa T1 a T5 sem ajuda | ≥ 4 de 5 tarefas |
-| Tempo estimado para saber o nº de membros ativos | < 1 minuto (hoje: [PREENCHER]) |
+| Tempo estimado para saber o nº de membros ativos | < 1 minuto (linha de base não medida) |
 | Visitantes aptos à membresia identificados automaticamente | 100% |
 | Contatos exibidos sem consentimento | 0 |
 | Telas que passam no verificador de contraste WCAG AA | 100% |
@@ -322,8 +321,10 @@ erDiagram
 
 ## 18. Revisão da experiência prática
 
-[PREENCHER após a validação: o que o parceiro aprovou, o que pediu para mudar e o que mudou em relação à EP I]
+O desenho manteve o que a EP I propôs e acrescentou a regra RN07, porque os Pequenos Grupos acontecem nas casas dos membros e os endereços não podem ficar públicos. O modelo de dados ficou com 5 tabelas e uma única entidade Pessoa para membros, visitantes e contatos. Na revisão final, a base legal da LGPD foi corrigida: dado de filiação religiosa é sensível e exige consentimento, não legítimo interesse. Sem a validação do protótipo, nenhum ajuste veio diretamente do parceiro nesta etapa.
 
 ## 19. Autoavaliação e reflexão
 
-[PREENCHER: o que aprendeu ao transformar o diagnóstico em desenho técnico, dificuldades nas decisões de arquitetura e LGPD, e o que faria diferente]
+> Rascunho baseado no que aconteceu no projeto. Leia e ajuste com as suas palavras.
+
+O mais difícil foi resistir a uma arquitetura maior do que o problema. Um monólito com SQLite atende uma igreja local com custo quase zero. Na LGPD, aprendi que a base legal depende do tipo de dado: num cadastro de igreja, tudo é sensível. Faria diferente: mostraria os wireframes à secretaria antes de codificar.

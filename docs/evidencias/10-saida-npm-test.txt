@@ -1,0 +1,94 @@
+$ npm test   (23/11/2026 11:40, branch main)
+✔ culto semanal aparece em todos os domingos do período
+✔ evento único aparece só na sua data
+✔ evento único fora do período não aparece
+✔ ocorrências vêm em ordem de data e horário
+✔ gera cópia do banco com os dados, nomeada pela data
+✔ mantém só os backups mais recentes
+✔ refazer o backup no mesmo dia substitui o arquivo do dia
+✔ edita nome e telefone
+✔ receber visitante como membro registra a data de recebimento (RN02)
+✔ editar membro já recebido mantém a data original de recebimento
+✔ desmarcar o consentimento revoga o compartilhamento do contato
+✔ manter o consentimento marcado preserva a data original
+✔ rejeita edição sem nome
+✔ cadastra culto semanal e evento único
+✔ rejeita evento sem título
+✔ rejeita culto semanal sem dia da semana ou horário
+✔ rejeita evento único sem data e hora
+✔ eventos restritos a membros ficam fora da lista pública
+✔ bloqueia após o máximo de falhas
+✔ não bloqueia antes do máximo
+✔ desbloqueia depois que a janela passa
+✔ login certo zera as falhas
+✔ e-mail é comparado sem diferenciar maiúsculas
+✔ visitante com 6 meses de frequência está apto à membresia
+✔ visitante com menos de 6 meses não está apto
+✔ visitante sem data de primeira frequência não está apto
+✔ membro ativo não aparece como apto à membresia
+✔ lista projetos com seus missionários
+✔ projeto sem missionários aparece com lista vazia
+✔ rejeita projeto sem nome
+✔ rejeita missionário sem nome ou em projeto inexistente
+✔ cadastra pessoa e lista pelo nome
+✔ filtra pessoas por situação
+✔ lista apenas visitantes aptos à membresia
+✔ rejeita pessoa sem nome
+✔ contatos: só membros ativos que consentiram
+✔ agenda é pública e mostra o culto semanal
+✔ página inicial leva à agenda
+✔ secretaria cadastra evento
+✔ membro não cadastra evento (403)
+✔ evento inválido devolve 422 com a mensagem
+✔ pequeno grupo restrito não aparece para visitante sem login, mas aparece para membro
+✔ sem login, /contatos redireciona para /entrar
+✔ membro vê o contato de quem consentiu e não vê o de quem não consentiu
+✔ missões são públicas e mostram projetos com missionários
+✔ secretaria cadastra projeto e adiciona missionário
+✔ membro não cadastra projeto nem missionário (403)
+✔ projeto sem nome devolve 422 com a mensagem
+✔ GET /pessoas mostra pessoas, contagem de ativos e alerta de aptos
+✔ POST /pessoas cadastra e redireciona para a lista
+✔ POST /pessoas sem nome devolve 422 com a mensagem de erro
+✔ secretaria abre a edição com os dados preenchidos e salva a alteração
+✔ editar pessoa inexistente devolve 404
+✔ com o código certo, cria a secretaria e já entra no sistema
+✔ código errado é recusado e nenhum usuário é criado
+✔ depois que existe usuário, a página some mesmo com o código certo
+✔ sem código configurado, a página não existe
+✔ senha curta devolve 422 e não cria usuário
+✔ /saude responde ok quando o banco está acessível
+✔ /saude responde 503 quando o banco falha
+✔ respostas trazem cabeçalhos de segurança e não revelam o framework
+✔ sem login, /pessoas redireciona para /entrar
+✔ secretaria entra e acessa /pessoas
+✔ membro não acessa /pessoas (403)
+✔ senha errada devolve 401 com mensagem genérica
+✔ sair encerra a sessão
+✔ após 5 senhas erradas, bloqueia até a senha certa com 429
+✔ bloqueio de um e-mail não afeta outro
+✔ secretaria cria usuário e ele consegue entrar
+✔ e-mail duplicado devolve 422 com a mensagem
+✔ membro não acessa a gestão de usuários (403)
+✔ membro troca a própria senha
+✔ troca de senha com a atual errada devolve 422
+✔ confere a senha correta contra o hash
+✔ rejeita senha errada
+✔ hash não contém a senha e muda a cada geração (salt)
+✔ autentica com e-mail e senha corretos e devolve o perfil
+✔ e-mail é comparado sem diferenciar maiúsculas
+✔ senha errada não autentica
+✔ e-mail inexistente não autentica
+✔ rejeita senha com menos de 8 caracteres
+✔ rejeita e-mail já cadastrado
+✔ lista usuários sem expor o hash da senha
+✔ altera a própria senha conferindo a senha atual
+✔ não altera a senha se a atual estiver errada
+ℹ tests 85
+ℹ suites 0
+ℹ pass 85
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1316.252083

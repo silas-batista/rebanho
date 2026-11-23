@@ -1,9 +1,9 @@
 # Experiência Prática IV: Avaliação de Impacto e Encerramento
 
-> Rascunho para colar no DreamShaper na reabertura (04 a 07/12/2026).
+> Versão final para o DreamShaper (reabertura de 04 a 07/12/2026).
 > Seções na mesma ordem do "Resultado do Projeto" da plataforma.
 > Repositório: https://github.com/silas-batista/rebanho
-> **[PREENCHER]** marca o que depende das validações com a igreja ou da sua reflexão.
+> Onde uma atividade planejada não foi realizada no período, o documento diz isso explicitamente.
 
 ---
 
@@ -24,8 +24,8 @@
 |---|---|---|
 | I | Diagnóstico e planejamento | Problema, personas, ODS 16 e 17, MVP, 11 histórias de usuário, cronograma e indicadores |
 | II | Fundamentação e desenho | Requisitos, 7 regras de negócio, modelo de dados de 5 tabelas, arquitetura, protótipos, plano de validação |
-| III | Execução e evidências | MVP completo, 10 pull requests, testes automatizados, CI, capturas de tela, rodadas de validação |
-| IV | Impacto e encerramento | Sistema publicado, indicadores medidos, análise ética e de ODS, entrega à igreja |
+| III | Execução e evidências | MVP completo, pull requests, testes automatizados, CI, capturas de tela. Rodadas de validação planejadas, não realizadas |
+| IV | Impacto e encerramento | Segurança, sistema publicado com monitoramento e backup, análise ética e de ODS, plano de continuidade |
 
 **O que o sistema faz hoje:**
 - Cadastro e edição de pessoas, com **alerta automático de visitantes que completaram 6 meses** de frequência
@@ -52,11 +52,11 @@
 
 | Métrica | Valor |
 |---|---|
-| Código da aplicação | ~740 linhas (18 módulos em `src/`) |
-| Páginas e estilo | ~330 linhas |
-| Testes automatizados | 80 testes, ~850 linhas |
-| Commits | 31 [PREENCHER: atualizar no fim] |
-| Pull requests | 10 [PREENCHER: atualizar no fim] |
+| Código da aplicação | ~800 linhas (19 módulos em `src/`) |
+| Páginas e estilo | ~380 linhas |
+| Testes automatizados | 85 testes, ~900 linhas |
+| Commits | 34 de trabalho + 12 de merge |
+| Pull requests | 12, todos com CI verde |
 
 > A quantidade de código de teste é maior que a da aplicação. As regras críticas (membresia, consentimento, visibilidade dos PGs, permissões) foram testadas e depois quebradas de propósito para provar que o teste detecta a falha.
 
@@ -72,6 +72,7 @@
 | Segurança | `limitador.js` | Bloqueio após 5 tentativas em 15 min | #7 |
 | Usuários | `rotas-usuarios.js` | E-mail único, troca de senha | #9 |
 | Publicação | `backup.js`, `scripts/publicar.sh` | Backup diário, `/saude` | #10 |
+| Primeiro acesso | `rotas-primeiro-acesso.js` | Código de uso único, página some após o 1º usuário | #12 |
 
 **Mudanças em relação ao planejado:**
 - A stack mudou de Rails para Node/Express por escolha do aluno, sem alterar o modelo de dados.
@@ -91,8 +92,16 @@
 - Em produção, o cookie de login só trafega por HTTPS. Pelo HTTP direto não é possível entrar.
 - Configuração sensível (segredo da sessão) fica num arquivo `.env`, fora do repositório.
 
-**Endereço usado nas validações:** [PREENCHER]
-**Período em que ficou no ar:** [PREENCHER]
+**Publicação realizada em 23/11/2026**, com a agenda real (cultos de domingo e Tatame na Rocha) e as missões reais cadastradas no banco de produção. Pessoas e usuários ficam a cargo da igreja.
+
+| Verificação pelo endereço público | Resultado |
+|---|---|
+| `/saude` | `{"status":"ok"}` por HTTPS (`docs/evidencias/15-producao-saude.png`) |
+| Agenda e missões sem login | Acessíveis, com os dados reais |
+| `/pessoas` sem login | Redireciona para `/entrar` |
+| Cabeçalhos de segurança | `nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy` presentes |
+| Primeiro acesso da secretaria | Criado pelo navegador. Em seguida, a página passou a responder 404 |
+| Visão da secretaria em produção | `docs/evidencias/14-producao-missoes-secretaria.jpg` |
 
 **Limitações, declaradas com transparência:**
 - O sistema só fica no ar enquanto o computador do aluno estiver ligado.
@@ -103,25 +112,30 @@
 
 | Mecanismo | Como funciona | Evidência |
 |---|---|---|
-| Saúde do sistema | `GET /saude` responde `{"status":"ok"}` ou 503 se o banco falhar. Coberto por teste automatizado | [PREENCHER: print] |
-| Monitor externo | UptimeRobot (plano gratuito) consulta `/saude` a cada 5 minutos e avisa por e-mail se cair | [PREENCHER: print do painel] |
-| Backup | Cópia consistente do banco (`VACUUM INTO`) ao iniciar e a cada 24 h, mantendo as 14 mais recentes | [PREENCHER: print da pasta] |
+| Saúde do sistema | `GET /saude` responde `{"status":"ok"}` ou 503 se o banco falhar. Coberto por teste automatizado | `15-producao-saude.png` |
+| Monitor externo | Planejado: UptimeRobot (plano gratuito) consultando `/saude` a cada 5 minutos. **Não configurado no período**, porque o endereço do túnel muda a cada publicação | — |
+| Backup | Cópia consistente do banco (`VACUUM INTO`) ao iniciar e a cada 24 h, mantendo as 14 mais recentes | `16-backups.txt` |
 | Segurança | Cabeçalhos `nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy`. Bloqueio de login após 5 tentativas | Testes automatizados |
-| Qualidade | CI roda os 80 testes em todo pull request | Aba Actions do GitHub |
+| Qualidade | CI roda os 85 testes em todo pull request e no `main` | `12-github-actions.jpg` |
 
-**Ocorrências no período:** [PREENCHER: quedas, erros relatados, como foram resolvidos]
+**Ocorrências no período:**
+
+| Ocorrência | Causa | Solução |
+|---|---|---|
+| Banco de produção sem nenhum usuário após três tentativas de criar a secretaria pelo terminal | O comando não gravava no banco do servidor, e o script não dizia qual banco usava | Script passou a mostrar o caminho do banco. Criado o primeiro acesso pelo navegador com código de uso único (PR #12), que funcionou na primeira tentativa |
+| Endereço público mudou ao reiniciar | Comportamento do túnel gratuito | Limitação registrada. Endereço fixo exige domínio próprio |
 
 ## 7. Interação com a comunidade
 
 | Data | Atividade | Participantes | Resultado |
 |---|---|---|---|
-| [PREENCHER] | Entrevista de diagnóstico (EP I) | Rev. Fabrício Ribeiro | Regra dos 6 meses, rotina de cultos, PGs, Tatame na Rocha, missões |
-| [PREENCHER] | Validação do protótipo (EP II) | [PREENCHER] | [PREENCHER] |
-| [PREENCHER] | 1ª rodada de validação (EP III) | [PREENCHER] | [PREENCHER: tarefas concluídas sem ajuda, notas] |
-| [PREENCHER] | 2ª rodada de validação (EP III) | [PREENCHER] | [PREENCHER] |
-| [PREENCHER] | Entrega e treinamento da secretaria | [PREENCHER] | [PREENCHER] |
+| Nov/2026 | Levantamento de informações junto à igreja (EP I) | Liderança da igreja | Regra dos 6 meses, rotina de cultos, PGs nas casas, Tatame na Rocha, missões. Confirmação de que os missionários podem ser divulgados |
+| 23/11/2026 | Publicação e primeiro acesso | Aluno, com acesso de secretaria | Sistema no ar com a agenda e as missões reais |
+| — | Validação do protótipo (EP II) | — | **Não realizada** |
+| — | 1ª e 2ª rodadas de validação (EP III) | — | **Não realizadas.** Roteiro pronto |
+| — | Entrega e treinamento da secretaria | — | **Não realizada** |
 
-**Como a comunidade mudou o sistema:** a informação sobre os PGs nas casas gerou a regra de privacidade RN07. A regra dos 6 meses virou o alerta de aptos à membresia. Os horários reais e as missões reais deram forma à agenda e à página de missões. [PREENCHER: o que surgiu nas validações]
+**Como a comunidade mudou o sistema:** a informação sobre os PGs nas casas gerou a regra de privacidade RN07. A regra dos 6 meses virou o alerta de aptos à membresia. Os horários reais e as missões reais deram forma à agenda e à página de missões. Como as validações não aconteceram, nenhum ajuste veio do uso do sistema pela igreja.
 
 ## 8. Responsabilidade ética e dilemas
 
@@ -132,27 +146,27 @@
 | **Endereços dos PGs nas casas** | Eventos "só membros", com regra segura por padrão: se o código não pedir o contrário, eventos restritos ficam ocultos | Evitar expor a localização de famílias na internet |
 | **Crianças do Tatame na Rocha** | O sistema não cadastra as crianças, só divulga o projeto | Dados de menores exigem cuidado extra (LGPD, art. 14) e não eram necessários |
 | **Nomes de missionários em página pública** | Publicados com confirmação da igreja de que eles divulgam o trabalho | Consentimento antes de expor pessoas |
-| **Dados da igreja no computador do aluno** | Hospedagem temporária, com backup. Ao fim do projeto, os dados são entregues à igreja e apagados do computador do aluno | O aluno não deve ficar como guardião permanente de dados de terceiros |
+| **Dados da igreja no computador do aluno** | Hospedagem temporária, com backup. Proposta: ao fim do projeto, entregar os dados à igreja e apagá-los do computador do aluno | O aluno não deve ficar como guardião permanente de dados de terceiros |
 | **Evidências no trabalho acadêmico** | Capturas de tela com pessoas fictícias. Termo de feedback com autorização de uso | Não expor membros reais num repositório público |
 | **Dependência do desenvolvedor** | Código aberto, README, testes e gestão de usuários pela tela | A igreja pode seguir com outro desenvolvedor |
 
-[PREENCHER, se aplicável: uso de ferramentas de IA no desenvolvimento, conforme a política da instituição]
+**Uso de inteligência artificial:** o desenvolvimento contou com um assistente de IA (Claude Code) para escrever código, testes e rascunhos destes documentos, sob a direção do aluno, que definiu o projeto, tomou as decisões e validou os resultados. Registrar isso é parte da honestidade acadêmica.
 
 ## 9. Medição de indicadores e impacto
 
-Indicadores definidos na EP I, medidos ao fim do projeto:
+Indicadores definidos na EP I. Os que dependem de uso pela igreja **não foram medidos**, porque as validações e o uso real não aconteceram no período.
 
-| Indicador | Antes | Meta | Depois | Como foi medido |
+| Indicador | Antes | Meta | Resultado | Como |
 |---|---|---|---|---|
-| Tempo para saber o nº de membros ativos | [PREENCHER] | < 1 min | [PREENCHER] | Tarefa T2 cronometrada na validação |
-| Visitantes aptos à membresia identificados automaticamente | 0% (manual) | 100% | 100% | Regra RN01 coberta por teste. [PREENCHER: quantos aptos o sistema apontou] |
-| Contatos exibidos sem consentimento | Sem controle | 0 | 0 | Garantido por regra e teste automatizado |
-| Projetos missionários visíveis à congregação | [PREENCHER] | 100% | [PREENCHER] | Projetos cadastrados ÷ projetos apoiados |
-| % de membros com cadastro completo | [PREENCHER] | ≥ 90% em 2 meses | [PREENCHER] | Consulta ao banco. Meta de longo prazo |
-| Membros que acessam a agenda pelo sistema | 0 | ≥ 50% em 2 meses | [PREENCHER] | Relato da secretaria. Meta de longo prazo |
-| Satisfação do parceiro (1 a 5) | — | ≥ 4 | [PREENCHER] | Termo de Feedback |
+| Visitantes aptos à membresia identificados automaticamente | 0% (controle manual) | 100% | **100%** | Garantido pela regra RN01 e por teste automatizado |
+| Contatos exibidos sem consentimento | Sem controle | 0 | **0** | Garantido pelas regras RN03/RN04 e por teste automatizado |
+| Projetos missionários visíveis à congregação | Nenhum canal único | 100% | **2 projetos publicados** | A igreja apoia outros projetos além desses dois, ainda não cadastrados |
+| Tempo para saber o nº de membros ativos | Não medido | < 1 min | Não medido com usuários | No sistema, é um clique no filtro "Membro ativo" |
+| % de membros com cadastro completo | Não medido | ≥ 90% em 2 meses | Não medido | Depende de a secretaria cadastrar os membros |
+| Membros que acessam a agenda pelo sistema | 0 | ≥ 50% em 2 meses | Não medido | Depende de divulgação e de endereço fixo |
+| Satisfação do parceiro (1 a 5) | — | ≥ 4 | Não medido | Termo de Feedback não aplicado |
 
-**Análise:** [PREENCHER. Separar o que já foi atingido (regras garantidas pelo sistema) do que depende de tempo de uso (adesão dos membros, cadastro completo). Dizer com honestidade o que não deu tempo de medir no período da disciplina.]
+**Análise:** o projeto atingiu os indicadores que dependem do próprio sistema: as regras de membresia e de consentimento funcionam e são verificadas automaticamente a cada mudança no código. Não atingiu, nem mediu, os indicadores de adoção e satisfação, porque o sistema não chegou a ser usado pela igreja no período. O impacto social, portanto, é **potencial, não comprovado**. Medi-lo exige as rodadas de validação e alguns meses de uso.
 
 ## 10. Análise de avanço do Objetivo de Desenvolvimento Sustentável
 
@@ -163,7 +177,7 @@ Indicadores definidos na EP I, medidos ao fim do projeto:
 | **17.17** Parcerias da sociedade civil | Dá visibilidade às parcerias missionárias (Uruguai, Asas de Socorro) | Página de missões |
 | **3 e 10** Saúde, bem-estar e redução das desigualdades | A agenda pública divulga o Tatame na Rocha, esporte gratuito para crianças do bairro | Agenda pública |
 
-**Limites da contribuição:** o sistema é um meio, não um fim. O avanço real nos ODS depende de a igreja adotar a ferramenta e de a comunidade usar a informação divulgada. [PREENCHER: o que o parceiro relatou]
+**Limites da contribuição:** o sistema é um meio, não um fim. O avanço real nos ODS depende de a igreja adotar a ferramenta e de a comunidade usar a informação divulgada. Como o sistema não chegou a ser usado pela igreja no período, essa contribuição é potencial.
 
 ## 11. Elo entre teoria e prática
 
@@ -181,43 +195,27 @@ Indicadores definidos na EP I, medidos ao fim do projeto:
 
 ## 12. Autoavaliação discursiva
 
-[PREENCHER com suas palavras. Pontos sugeridos:
-- O que funcionou melhor: ouvir o parceiro mudou o sistema para melhor (PGs, 6 meses).
-- Maior dificuldade técnica e como foi superada.
-- O que faria diferente: por exemplo, validar com a igreja mais cedo, ou publicar antes.
-- Que competência do perfil do egresso mais se desenvolveu.]
+> Rascunho baseado no que aconteceu no projeto. Leia e ajuste com as suas palavras.
+
+O que funcionou melhor foi deixar as informações da igreja mudarem o sistema: a regra dos 6 meses e a privacidade dos Pequenos Grupos não estavam na ideia inicial e hoje são as partes mais importantes. Na parte técnica, a maior dificuldade não foi o código, mas colocar o sistema no ar para pessoas reais: o primeiro acesso pelo terminal falhou várias vezes, e a solução foi trazer esse passo para o navegador. O que faria diferente: validar com a igreja logo depois da primeira publicação, em vez de deixar para o fim, porque sem isso o projeto ficou sem a medição de impacto. A competência que mais se desenvolveu foi a responsabilidade com dados de terceiros: cada decisão de LGPD foi pensada antes do código.
 
 ## 13. Termo de feedback
 
-O Termo de Feedback foi preenchido e assinado pelo Rev. Fabrício Ribeiro em [PREENCHER: data].
-
-**Resumo das notas (1 a 5):**
-
-| Afirmação | Nota |
-|---|---|
-| O aluno entendeu as necessidades da igreja | [PREENCHER] |
-| O sistema resolve um problema real da secretaria | [PREENCHER] |
-| O sistema é fácil de usar | [PREENCHER] |
-| Os dados dos membros ficam protegidos | [PREENCHER] |
-| A agenda e as missões ajudam a comunidade a participar | [PREENCHER] |
-| O aluno se comunicou com respeito e clareza | [PREENCHER] |
-| A igreja recomendaria continuar usando o sistema | [PREENCHER] |
-
-**Comentários do parceiro:** [PREENCHER: transcrever]
-
-> Anexar a imagem do termo assinado.
+**Não aplicado.** O Termo de Feedback foi preparado (identificação, declaração das funcionalidades, 7 afirmações com escala de 1 a 5, comentários e autorização de uso), mas não foi preenchido nem assinado pela igreja até a data de entrega, porque as sessões de validação não aconteceram.
 
 ## 14. Revisão da experiência prática
 
+**Balanço:** foi entregue um sistema completo, testado (85 testes), publicado com HTTPS, backup e verificação de saúde, com a agenda e as missões reais da igreja. Ficaram pendentes as validações com usuários, a medição de impacto e o termo assinado. A causa foi não ter conseguido agendar as sessões com a igreja no período da disciplina.
+
 **Continuidade depois da disciplina** (próximos passos recomendados à igreja):
 
-1. **Hospedagem definitiva:** uma VPS de baixo custo (alguns dólares por mês) com o mesmo `npm start`, ou o computador da secretaria da igreja com o túnel.
-2. **Entrega dos dados:** exportar o banco e os backups para a igreja e apagá-los do computador do aluno.
-3. **Módulo de Pequenos Grupos:** líderes, participantes e frequência, a definir com os líderes.
-4. **Melhorias apontadas nas validações:** [PREENCHER]
-
-[PREENCHER: balanço da EP IV, o que foi entregue, o que ficou pendente e por quê]
+1. **Validação:** aplicar o roteiro da 1ª rodada com a secretaria e o pastor e corrigir o que surgir.
+2. **Hospedagem definitiva:** uma VPS de baixo custo com o mesmo `npm start`, ou o computador da secretaria da igreja com o túnel. Com um domínio próprio, o endereço fica fixo e o monitor externo passa a funcionar.
+3. **Entrega dos dados:** exportar o banco e os backups para a igreja e apagá-los do computador do aluno.
+4. **Funcionalidades:** editar e excluir eventos e projetos missionários, e o módulo de Pequenos Grupos, a definir com os líderes.
 
 ## 15. Autoavaliação e reflexão
 
-[PREENCHER: reflexão final sobre as quatro experiências práticas: do diagnóstico ao sistema publicado, o que aprendeu sobre trabalhar com um cliente real, sobre responsabilidade com dados de pessoas e sobre a própria evolução como desenvolvedor.]
+> Rascunho baseado no que aconteceu no projeto. Leia e ajuste com as suas palavras.
+
+As quatro experiências práticas mostraram o caminho inteiro de um software: entender um problema real, desenhar uma solução do tamanho certo, construir com testes e controle de versão, e colocar no ar com segurança. Aprendi que trabalhar com um cliente real exige mais do que código: exige agenda, conversa e paciência para validar. Também aprendi que, num sistema de igreja, quase todo dado é sensível, e que proteger as pessoas precisa estar no modelo de dados desde o começo. A parte que ficou por fazer, a validação com a igreja, é a que eu priorizaria num próximo projeto.
