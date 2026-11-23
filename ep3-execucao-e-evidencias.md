@@ -220,6 +220,15 @@ As imagens estão em `docs/evidencias/`. Os dados de pessoas são **fictícios**
 | A criação do primeiro usuário pelo terminal falhou três vezes, e o banco publicado continuou sem nenhum usuário | Comando de terminal frágil para quem não é desenvolvedor, sem mostrar em qual banco gravava | O script passou a mostrar o caminho do banco e erros curtos. Depois, criou-se o **primeiro acesso pelo navegador** com código de uso único, que se desativa após o primeiro cadastro (PR #12). Funcionou na primeira tentativa |
 | A igreja dependeria do desenvolvedor para cada novo acesso | Usuários só eram criados por script | Gestão de usuários pela tela e troca de senha (PR #9) |
 
+**Ajustes a partir da avaliação heurística** ([`docs/avaliacao-heuristica.md`](docs/avaliacao-heuristica.md)), feita pelo aluno com apoio de assistente de IA, sem usuários: 8 problemas encontrados pelas heurísticas de Nielsen, 4 corrigidos no PR #14:
+
+| Problema | Gravidade (0 a 4) | Correção |
+|---|---|---|
+| Cabeçalho com 634 px num celular de 360 px, com rolagem lateral | 3 | Menu quebra em linhas. Medido: 360 px |
+| Formulário de evento mostrava campos de culto e de evento juntos | 3 | Só aparece o grupo do tipo escolhido |
+| Páginas de erro em inglês ("Not Found") | 2 | Páginas em português, sem detalhes técnicos |
+| Nenhuma confirmação depois de salvar | 2 | Avisos fixos como "Pessoa salva." |
+
 **Pendências resolvidas nesta etapa:** bloqueio de login (PR #7), editar e inativar pessoas (PR #8), criar usuários pela tela (PR #9).
 
 **Pendências que continuam:** editar e excluir eventos e projetos missionários (hoje só é possível cadastrar), módulo de Pequenos Grupos (a definir com os líderes) e as duas rodadas de validação.
