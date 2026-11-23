@@ -1,9 +1,9 @@
-<%- include("../_topo", { titulo: "Novo projeto missionário" }) %>
-<h1>Novo projeto missionário</h1>
+<%- include("../_topo", { titulo }) %>
+<h1><%= titulo %></h1>
 
 <% if (erro) { %><p role="alert" class="erro"><%= erro %></p><% } %>
 
-<form method="post" action="/missoes">
+<form method="post" action="<%= acao %>">
   <label for="nome">Nome do projeto *</label>
   <input id="nome" name="nome" required value="<%= dados.nome || '' %>">
 
@@ -15,4 +15,5 @@
 
   <div class="acoes"><a href="/missoes">Cancelar</a> <button type="submit">Salvar</button></div>
 </form>
+<% if (id) { %><%- include("../_excluir", { acao: `/missoes/${id}/excluir`, rotulo: "Excluir projeto e seus missionários" }) %><% } %>
 <%- include("../_rodape") %>

@@ -18,6 +18,7 @@
       <span class="titulo"><%= ocorrencia.titulo %><% if (ocorrencia.visibilidade === "membros") { %> <small class="selo">só membros</small><% } %></span>
       <% if (ocorrencia.local) { %><span class="detalhe"><%= ocorrencia.local %></span><% } %>
       <% if (ocorrencia.descricao) { %><span class="detalhe"><%= ocorrencia.descricao %></span><% } %>
+      <% if (usuario?.perfil === "secretaria") { %><a href="/agenda/<%= ocorrencia.id %>/editar" class="editar">Editar</a><% } %>
     </li>
   <% } %>
 </ol>

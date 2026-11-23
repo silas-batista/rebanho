@@ -13,10 +13,18 @@
   <article class="projeto" aria-labelledby="projeto-<%= projeto.id %>">
     <h2 id="projeto-<%= projeto.id %>"><%= projeto.nome %><% if (projeto.local) { %> <span class="detalhe">· <%= projeto.local %></span><% } %></h2>
     <% if (projeto.descricao) { %><p><%= projeto.descricao %></p><% } %>
-    <% if (projeto.missionarios.length) { %>
+    <% if (projeto.missionarios.length && usuario?.perfil !== "secretaria") { %>
       <p><strong>Missionários:</strong> <%= projeto.missionarios.map((m) => m.nome).join(", ") %></p>
     <% } %>
     <% if (usuario?.perfil === "secretaria") { %>
+      <ul class="missionarios">
+        <% for (const missionario of projeto.missionarios) { %>
+          <li><%= missionario.nome %>
+            <form method="post" action="/missoes/missionarios/<%= missionario.id %>/excluir" class="em-linha"><button type="submit" class="discreto" aria-label="Remover <%= missionario.nome %>">remover</button></form>
+          </li>
+        <% } %>
+      </ul>
+      <a href="/missoes/<%= projeto.id %>/editar" class="editar">Editar projeto</a>
       <form method="post" action="/missoes/<%= projeto.id %>/missionarios" class="em-linha">
         <label for="missionario-<%= projeto.id %>">Adicionar missionário</label>
         <input id="missionario-<%= projeto.id %>" name="nome" required>

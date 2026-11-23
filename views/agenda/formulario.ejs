@@ -1,9 +1,9 @@
-<%- include("../_topo", { titulo: "Novo evento" }) %>
-<h1>Novo evento</h1>
+<%- include("../_topo", { titulo }) %>
+<h1><%= titulo %></h1>
 
 <% if (erro) { %><p role="alert" class="erro"><%= erro %></p><% } %>
 
-<form method="post" action="/agenda">
+<form method="post" action="<%= acao %>">
   <label for="titulo">Título *</label>
   <input id="titulo" name="titulo" required value="<%= dados.titulo || '' %>">
 
@@ -47,6 +47,7 @@
 
   <div class="acoes"><a href="/agenda">Cancelar</a> <button type="submit">Salvar</button></div>
 </form>
+<% if (id) { %><%- include("../_excluir", { acao: `/agenda/${id}/excluir`, rotulo: "Excluir evento" }) %><% } %>
 <script>
   // Mostra só os campos do tipo escolhido. Sem JavaScript, os dois grupos aparecem.
   const atualizarCampos = () => {
